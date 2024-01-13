@@ -1,4 +1,4 @@
-<div class='bottom-bar'>
+<footer class='bottom-bar'>
     <div class='tabs'>
         <div class='tab'>
             <img src='assets/icons/home.svg' alt='home' />
@@ -17,4 +17,4 @@
             <span>Profile</span>
         </div>
     </div>
-</div>
+</footer>
