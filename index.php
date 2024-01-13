@@ -1,3 +1,3 @@
 <?php
-    require_once 'utils/db.php';
-    require_once 'controllers/product.php';
+    require_once 'models/db/database.php';
+    require_once 'controllers/home.php';

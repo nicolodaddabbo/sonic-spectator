@@ -5,4 +5,4 @@
 // $products = Product::getAllProducts();
 
 // Call the view
-require_once 'views/product.php';
+require_once 'views/home.php';
