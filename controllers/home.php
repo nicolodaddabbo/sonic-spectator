@@ -1,9 +1,4 @@
 <?php
-
-// Call model
-// require_once 'models/product.php';
-// $products = Product::getAllProducts();
-
 /*$posts = [
     [
         'title' => 'Lorem ipsum dolor sit amet',
@@ -16,8 +11,11 @@
     ],
 ];*/
 
-// Call the view
-require_once 'views/home.php';
+// Call model
+require_once '/../models/db/database.php';
 
 // NEED TO PASS CURRENT LOGGED IN USER ID IN FUNCTION
-$posts = $databaseHelper->getPostsByFollowingUsers(/* add user ID */);
+$posts = $dbh->getPostsByFollowingUsers(/* add user ID */);
+
+// Call the view
+require_once 'views/home.php';
