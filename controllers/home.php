@@ -4,7 +4,7 @@
 // require_once 'models/product.php';
 // $products = Product::getAllProducts();
 
-$posts = [
+/*$posts = [
     [
         'title' => 'Lorem ipsum dolor sit amet',
         'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam vitae aliquam tincidunt, elit nunc aliquet nun
@@ -14,7 +14,10 @@ $posts = [
         'likes' => 10,
         'comments' => 5,
     ],
-];
+];*/
 
 // Call the view
 require_once 'views/home.php';
+
+// NEED TO PASS CURRENT LOGGED IN USER ID IN FUNCTION
+$posts = $databaseHelper->getPostsByFollowingUsers(/* add user ID */);

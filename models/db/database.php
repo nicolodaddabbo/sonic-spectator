@@ -157,7 +157,6 @@ class DatabaseHelper
 
     public function deleteUserAccount($user_id)
     {
-
         $this->deleteUserPosts($user_id);
         $this->deleteUserComments($user_id);
         $this->deleteUserLikes($user_id);
@@ -296,6 +295,34 @@ class DatabaseHelper
         $stmt->bind_param('i', $user_id);
         $stmt->execute();
         $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getPostsByFollowingUsers($user_id)
+    {
+        // Get the user IDs of those being followed by the specified user
+        $followingUsers = $this->getUserFollowing($user_id);
+
+        // If no users are being followed, return an empty array
+        if (empty($followingUsers)) {
+            return [];
+        }
+
+        // Extract the followed user IDs from the result
+        $followedUserIDs = array_column($followingUsers, 'followed_id');
+
+        // Prepare a query to get all posts made by the followed users
+        $query = "SELECT p.*
+                FROM `post` p
+                WHERE p.`user_id` IN (" . implode(',', $followedUserIDs) . ")
+                ORDER BY p.`date` DESC";
+
+        $result = $this->db->query($query);
+
+        if (!$result) {
+            die("Error retrieving posts: " . $this->db->error);
+        }
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
