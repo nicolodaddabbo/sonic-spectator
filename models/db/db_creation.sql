@@ -2,6 +2,18 @@
 CREATE DATABASE IF NOT EXISTS `sonic_spectator` DEFAULT CHARACTER SET utf8;
 USE `sonic_spectator`;
 
+-- Drop existing tables if they exist (for testing purposes)
+DROP TABLE IF EXISTS `like`;
+DROP TABLE IF EXISTS `notification`;
+DROP TABLE IF EXISTS `comment`;
+DROP TABLE IF EXISTS `post_tag`;
+DROP TABLE IF EXISTS `tag`;
+DROP TABLE IF EXISTS `post`;
+DROP TABLE IF EXISTS `block`;
+DROP TABLE IF EXISTS `follower`;
+DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `gender`;
+
 -- Gender Table
 CREATE TABLE IF NOT EXISTS `gender` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -16,7 +28,8 @@ CREATE TABLE IF NOT EXISTS `user` (
     `password` VARCHAR(255) NOT NULL,
     `birth_date` TIMESTAMP NOT NULL,
     `profile_img` VARCHAR(255),
-    `gender_id` INT NOT NULL,
+    `gender_id` INT /*NOT NULL*/,
+    `register_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`gender_id`) REFERENCES `gender`(`id`)
 );
 
@@ -25,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `follower` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `follower_id` INT NOT NULL,
     `followed_id` INT NOT NULL,
+    `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`follower_id`) REFERENCES `user`(`id`),
     FOREIGN KEY (`followed_id`) REFERENCES `user`(`id`)
 );
@@ -34,6 +48,7 @@ CREATE TABLE IF NOT EXISTS `block` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `blocker_id` INT NOT NULL,
     `blocked_id` INT NOT NULL,
+    `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`blocker_id`) REFERENCES `user`(`id`),
     FOREIGN KEY (`blocked_id`) REFERENCES `user`(`id`)
 );
@@ -44,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `post` (
     `description` VARCHAR(255) NOT NULL,
     `image` VARCHAR(255) NOT NULL,
     `user_id` INT NOT NULL,
+    `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
 );
 
@@ -68,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
     `text` VARCHAR(255) NOT NULL,
     `user_id` INT NOT NULL,
     `post_id` INT NOT NULL,
+    `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`),
     FOREIGN KEY (`post_id`) REFERENCES `post`(`id`)
 );
@@ -77,6 +94,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `user_id` INT NOT NULL,
     `post_id` INT,
+    `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`),
     FOREIGN KEY (`post_id`) REFERENCES `post`(`id`)
 );
@@ -86,6 +104,7 @@ CREATE TABLE IF NOT EXISTS `like` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `user_id` INT NOT NULL,
     `post_id` INT NOT NULL,
+    `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`),
     FOREIGN KEY (`post_id`) REFERENCES `post`(`id`)
 );
