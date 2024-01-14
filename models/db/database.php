@@ -25,6 +25,11 @@ class DatabaseHelper
         if (!$this->db->multi_query($sqlFile)) {
             die("Error creating tables: " . $this->db->error . "\n");
         }
+
+        // Move to the next result set (to clear any remaining results)
+        while ($this->db->more_results()) {
+            $this->db->next_result();
+        }
     }
 
     public function checkLoginCredentials($email, $password)
@@ -110,12 +115,36 @@ class DatabaseHelper
         $stmt->execute();
     }
 
-    public function sendNotification($user_id, $notificationText)
+    public function sendNotificationToFollowers($user_id, $notificationText)
     {
-        $query = "INSERT INTO `notification` (`user_id`, `text`) VALUES (?, ?)";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('is', $user_id, $notificationText);
-        $stmt->execute();
+        // Retrieve the followers of the user
+        $followers = $this->getUserFollowers($user_id);
+
+        // Iterate through followers and send notifications
+        foreach ($followers as $follower) {
+            $follower_id = $follower['follower_id'];
+
+            $query = "INSERT INTO `notification` (`user_id`, `text`) VALUES (?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('is', $follower_id, $notificationText);
+            $stmt->execute();
+        }
+    }
+
+    public function sendNotificationToFollowersWithPost($user_id, $notificationText, $post_id)
+    {
+        // Retrieve the followers of the user
+        $followers = $this->getUserFollowers($user_id);
+
+        // Iterate through followers and send notifications
+        foreach ($followers as $follower) {
+            $follower_id = $follower['follower_id'];
+
+            $query = "INSERT INTO `notification` (`user_id`, `text`, `post_id`) VALUES (?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('isi', $follower_id, $notificationText, $post_id);
+            $stmt->execute();
+        }
     }
 
     public function updateUserProfile($user_id, $newUsername, $newEmail, $newPassword, $newProfileImg)
@@ -203,7 +232,7 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getFollowers($user_id)
+    public function getUserFollowers($user_id)
     {
         $query = "SELECT `follower_id` FROM `follower` WHERE `followed_id`=?";
         $stmt = $this->db->prepare($query);
@@ -214,7 +243,7 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getFollowersCount($user_id)
+    public function getUserFollowersCount($user_id)
     {
         $query = "SELECT COUNT(*) AS followers_count FROM `follower` WHERE `followed_id`=?";
         $stmt = $this->db->prepare($query);
@@ -226,7 +255,7 @@ class DatabaseHelper
         return $row['followers_count'];
     }
 
-    public function getFollowing($user_id)
+    public function getUserFollowing($user_id)
     {
         $query = "SELECT `followed_id` FROM `follower` WHERE `follower_id`=?";
         $stmt = $this->db->prepare($query);
@@ -237,7 +266,7 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getFollowingCount($user_id)
+    public function getUserFollowingCount($user_id)
     {
         $query = "SELECT COUNT(*) AS following_count FROM `follower` WHERE `follower_id`=?";
         $stmt = $this->db->prepare($query);
@@ -249,9 +278,20 @@ class DatabaseHelper
         return $row['following_count'];
     }
 
-    public function getBlockedUsers($user_id)
+    public function getUserBlockedUsers($user_id)
     {
         $query = "SELECT `blocked_id` FROM `block` WHERE `blocker_id`=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getUserNotifications($user_id)
+    {
+        $query = "SELECT * FROM `notification` WHERE `user_id`=?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $user_id);
         $stmt->execute();
@@ -305,3 +345,11 @@ class DatabaseHelper
         return $row['likes_count'];
     }
 }
+
+// Testing the functions
+$databaseHelper = new DatabaseHelper();
+
+$dateTime = new DateTime();
+$timestamp = $dateTime->format('Y-m-d H:i:s');
+
+$databaseHelper->registerUser('user@example.com', 'NewUser', 'newpassword', $timestamp, null, null);
