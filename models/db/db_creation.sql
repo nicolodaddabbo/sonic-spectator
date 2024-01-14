@@ -2,7 +2,7 @@
 CREATE DATABASE IF NOT EXISTS `sonic_spectator` DEFAULT CHARACTER SET utf8;
 USE `sonic_spectator`;
 
--- Drop existing tables if they exist (for testing purposes)
+-- TESTING
 DROP TABLE IF EXISTS `like`;
 DROP TABLE IF EXISTS `notification`;
 DROP TABLE IF EXISTS `comment`;
@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS `block`;
 DROP TABLE IF EXISTS `follower`;
 DROP TABLE IF EXISTS `user`;
 DROP TABLE IF EXISTS `gender`;
+--
 
 -- Gender Table
 CREATE TABLE IF NOT EXISTS `gender` (
@@ -28,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `user` (
     `password` VARCHAR(255) NOT NULL,
     `birth_date` TIMESTAMP NOT NULL,
     `profile_img` VARCHAR(255),
-    `gender_id` INT /*NOT NULL*/,
+    `gender_id` INT NOT NULL,
     `register_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`gender_id`) REFERENCES `gender`(`id`)
 );
