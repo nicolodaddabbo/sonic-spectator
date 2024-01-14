@@ -19,7 +19,7 @@ class DatabaseHelper
         }
 
         // Reading the SQL file content
-        $sqlFile = file_get_contents('db_creation.sql');
+        $sqlFile = file_get_contents(__DIR__ . '/db_creation.sql');
 
         // Executing the SQL file
         if (!$this->db->multi_query($sqlFile)) {
