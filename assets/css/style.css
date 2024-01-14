@@ -27,6 +27,7 @@ body {
     justify-content: center;
     align-items: center;
     border-top: 1px solid #F5F5F5;
+    background-color: white;
     padding: 14px 0;
     position: fixed;
     left: 0;
@@ -48,4 +49,70 @@ body {
     align-items: center;
     gap: 2px;
     flex: 1 0 0;
+}
+
+/**** HOME ****/
+
+.home-content {
+    display: flex;
+    padding: 10px 10px 85px 10px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-container {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border: 5px solid #000;
+    background: #FFF;
+    box-shadow: 5px 5px 0px 0px #FF5454;
+    max-width: 340px;
+}
+
+.post-image {
+    width: 300px;
+    height: 300px;
+}
+
+.post-bottom-container {
+    display: flex;
+    padding: 5px 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.post-actions-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+}
+
+.post-action-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    gap: 5px;
+}
+
+.post-description-container {
+    display: flex;
+    padding: 10px 0px;
+    align-items: flex-start;
+    gap: 5px;
+    align-self: stretch;
+    font-size: 15px;
+}
+
+.post-description-user {
+    font-weight: bold;
 }
