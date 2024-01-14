@@ -12,10 +12,10 @@
 ];*/
 
 // Call model
-require_once '/../models/db/database.php';
+require_once __DIR__ . '/../models/db/database.php';
 
 // NEED TO PASS CURRENT LOGGED IN USER ID IN FUNCTION
-$posts = $dbh->getPostsByFollowingUsers(/* add user ID */);
+$posts = $dbh->getPostsByFollowingUsers(1);
 
 // Call the view
 require_once 'views/home.php';
