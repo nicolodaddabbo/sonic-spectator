@@ -222,7 +222,7 @@ class DatabaseHelper
 
     public function getUserPosts($user_id)
     {
-        $query = "SELECT `id`, `description`, `image` FROM `post` WHERE `user_id`=?";
+        $query = "SELECT `id`, `description`, `image` FROM `post` WHERE `user_id`=? ORDER BY `date` DESC";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $user_id);
         $stmt->execute();
@@ -233,7 +233,7 @@ class DatabaseHelper
 
     public function getUserFollowers($user_id)
     {
-        $query = "SELECT `follower_id` FROM `follower` WHERE `followed_id`=?";
+        $query = "SELECT `follower_id` FROM `follower` WHERE `followed_id`=? ORDER BY `date` DESC";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $user_id);
         $stmt->execute();
@@ -256,7 +256,7 @@ class DatabaseHelper
 
     public function getUserFollowing($user_id)
     {
-        $query = "SELECT `followed_id` FROM `follower` WHERE `follower_id`=?";
+        $query = "SELECT `followed_id` FROM `follower` WHERE `follower_id`=? ORDER BY `date` DESC";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $user_id);
         $stmt->execute();
@@ -279,7 +279,7 @@ class DatabaseHelper
 
     public function getUserBlockedUsers($user_id)
     {
-        $query = "SELECT `blocked_id` FROM `block` WHERE `blocker_id`=?";
+        $query = "SELECT `blocked_id` FROM `block` WHERE `blocker_id`=? ORDER BY `date` DESC";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $user_id);
         $stmt->execute();
@@ -290,7 +290,7 @@ class DatabaseHelper
 
     public function getUserNotifications($user_id)
     {
-        $query = "SELECT * FROM `notification` WHERE `user_id`=?";
+        $query = "SELECT * FROM `notification` WHERE `user_id`=? ORDER BY `date` DESC";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $user_id);
         $stmt->execute();
@@ -340,7 +340,7 @@ class DatabaseHelper
 
     public function getPostComments($post_id)
     {
-        $query = "SELECT `id`, `text`, `user_id` FROM `comment` WHERE `post_id`=?";
+        $query = "SELECT `id`, `text`, `user_id` FROM `comment` WHERE `post_id`=? ORDER BY `date` DESC";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $post_id);
         $stmt->execute();
@@ -351,7 +351,7 @@ class DatabaseHelper
 
     public function getPostLikes($post_id)
     {
-        $query = "SELECT `user_id` FROM `like` WHERE `post_id`=?";
+        $query = "SELECT `user_id` FROM `like` WHERE `post_id`=? ORDER BY `date` DESC";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $post_id);
         $stmt->execute();
@@ -373,10 +373,4 @@ class DatabaseHelper
     }
 }
 
-// Testing the functions
-$databaseHelper = new DatabaseHelper();
-
-$dateTime = new DateTime();
-$timestamp = $dateTime->format('Y-m-d H:i:s');
-
-$databaseHelper->registerUser('user@example.com', 'NewUser', 'newpassword', $timestamp, null, null);
+$dbh = new DatabaseHelper();
