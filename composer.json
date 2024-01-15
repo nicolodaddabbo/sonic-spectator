@@ -1,0 +1,16 @@
+{
+    "name": "unibo/sonic-spectator",
+    "description": "",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "classmap": [
+            "app/"
+        ]
+    },
+    "require": {
+        "symfony/routing": "^6.4",
+        "symfony/http-foundation": "^6.4"
+    }
+}
