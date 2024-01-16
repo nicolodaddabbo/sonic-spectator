@@ -72,6 +72,18 @@ class PostRepository
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getPostCommentsCount($post_id)
+    {
+        $query = "SELECT COUNT(*) AS comments_count FROM `comment` WHERE `post_id`=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $post_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        return $row['comments_count'];
+    }
+
     public function getPostLikes($post_id)
     {
         $query = "SELECT `user_id` FROM `like` WHERE `post_id`=? ORDER BY `date` DESC";
