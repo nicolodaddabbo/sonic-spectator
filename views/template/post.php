@@ -1,5 +1,5 @@
-<div class='post-wrapper'>
-    <div class='post-container'>
+<article class='post-wrapper'>
+    <section class='post-container'>
         <img class='post-image' src='assets/posts/<?= $post['image'] ?>' alt='' />
         <div class='post-bottom-container'>
             <div class='post-actions-container'>
@@ -13,13 +13,13 @@
                 </div>
             </div>
             <div class='post-description-container'>
-                <div class='post-description-user'>
+                <header class='post-description-user'>
                     <?= $post['user_id'] ?>
-                </div>
-                <div class='post-description'>
+                </header>
+                <p class='post-description'>
                     <?= $post['description'] ?>
-                </div>
+                </p>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+</article>
