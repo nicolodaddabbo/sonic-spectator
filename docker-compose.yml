@@ -1,0 +1,30 @@
+version: '3'
+
+networks:
+    dev:
+
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: "mysql://username:password@db:3306/database"
+    volumes:
+      - .:/var/www/html
+    networks:
+      - dev
+  
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sonic_spectator
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    networks:
+      - dev
+  
