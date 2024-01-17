@@ -1,3 +1,3 @@
-document.getElementById('searchBar').addEventListener('click', function () {
-    document.getElementById('searchInput').select();
+document.getElementById('clearButton').addEventListener('click', function () {
+    document.getElementById('searchInput').value = '';
 });

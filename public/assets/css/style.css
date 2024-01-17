@@ -130,20 +130,32 @@ body {
 
 .search-bar {
     display: flex;
-    padding: 12px 16px;
     align-items: center;
-    gap: 8px;
     align-self: stretch;
     border: 5px solid #FF5454;
     background: #FFF;
 }
 
-.search-action-icon {
+.search-action {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    padding-right: 12px;
+}
+
+.search-action img {
     width: 24px;
     height: 24px;
 }
 
-.clear-action-icon {
+.clear-action {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-right: 16px;
+    padding-left: 16px;
+}
+
+.clear-action img {
     width: 9px;
     height: 9px;
     stroke-width: 1px;
@@ -151,6 +163,8 @@ body {
 }
 
 .search-bar-text {
+    padding-top: 12px;
+    padding-bottom: 12px;
     flex: 1 0 0;
     color: #000;
     font-size: 15px;
