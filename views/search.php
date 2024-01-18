@@ -15,6 +15,13 @@
                     <img src='assets/icons/clear.svg' alt='Clear Icon'>
                 </section>
             </section>
+            <?php
+                if (isset($users)) {
+                    foreach ($users as $user):
+                        include 'template/user.php';
+                    endforeach;
+                }
+            ?>
         </article>
     </main>
     <?php include_once 'template/footer.php'; ?>

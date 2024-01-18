@@ -11,6 +11,25 @@ class PostRepository
         $this->userRepository = new \UserRepository($db);
     }
 
+    public function searchPostsByTags($searchTerm)
+    {
+        // Assuming you want to search posts by tags
+        $query = "SELECT p.*
+                FROM `post` p
+                INNER JOIN `post_tag` pt ON p.`id` = pt.`post_id`
+                INNER JOIN `tag` t ON pt.`tag_id` = t.`id`
+                WHERE t.`name` LIKE ?
+                ORDER BY p.`date` DESC";
+
+        $stmt = $this->db->prepare($query);
+        $searchTerm = '%' . $searchTerm . '%';
+        $stmt->bind_param('s', $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getUserPosts($user_id)
     {
         $query = "SELECT `id`, `description`, `image` FROM `post` WHERE `user_id`=? ORDER BY `date` DESC";
