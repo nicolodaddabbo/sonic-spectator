@@ -4,9 +4,10 @@ class UserRepository
 {
     private $db;
 
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db = $db;
+        $databaseConnection = new \DatabaseConnection();
+        $this->db = $databaseConnection->getConnection();
     }
 
     public function checkLoginCredentials($email, $password)

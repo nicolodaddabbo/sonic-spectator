@@ -5,10 +5,11 @@ class PostRepository
     private $db;
     private $userRepository;
 
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db = $db;
-        $this->userRepository = new \UserRepository($db);
+        $databaseConnection = new \DatabaseConnection();
+        $this->db = $databaseConnection->getConnection();
+        $this->userRepository = new \UserRepository();
     }
 
     public function searchPostsByTags($searchTerm)

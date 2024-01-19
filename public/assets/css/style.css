@@ -120,10 +120,20 @@ body {
 /**** SEARCH ****/
 
 .search-content {
+    width: 100%;
     display: flex;
     padding: 10px;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.search-results {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
     flex-shrink: 0;
 }
@@ -167,10 +177,11 @@ body {
     padding-bottom: 12px;
     flex: 1 0 0;
     color: #000;
+    font-family: Inter;
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 24px; /* 160% */
     border: none;
     outline: none;
 }
@@ -192,6 +203,12 @@ body {
     align-items: flex-start;
     gap: 5px;
     flex: 1 0 0;
+    color: #000;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 .user-container button {
@@ -202,5 +219,11 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #333;
+    background: #FF5454;
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px; /* 137.5% */
 }

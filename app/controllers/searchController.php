@@ -8,15 +8,13 @@ use Symfony\Component\Routing\RouteCollection;
 
 class SearchController
 {
-    private $conn;
     private $postRepository;
     private $userRepository;
 
     public function __construct()
     {
-        $this->conn = new \DatabaseConnection();
-        $this->postRepository = new \PostRepository($this->conn->getConnection());
-        $this->userRepository = new \UserRepository($this->conn->getConnection());
+        $this->postRepository = new \PostRepository();
+        $this->userRepository = new \UserRepository();
     }
 
     public function search(string $query, RouteCollection $routes)
@@ -24,6 +22,6 @@ class SearchController
         $users = $this->userRepository->searchUsers($query);
         $posts = $this->postRepository->searchPostsByTags($query);
 
-        require_once APP_ROOT . "/views/search.php";
+        include_once APP_ROOT . "/views/searchResults.php";
     }
 }

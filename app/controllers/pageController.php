@@ -6,13 +6,11 @@ use Symfony\Component\Routing\RouteCollection;
 
 class PageController
 {
-    private $conn;
     private $postRepository;
 
     public function __construct()
     {
-        $this->conn = new \DatabaseConnection();
-        $this->postRepository = new \PostRepository($this->conn->getConnection());
+        $this->postRepository = new \PostRepository();
     }
 
     public function indexAction(RouteCollection $routes)
