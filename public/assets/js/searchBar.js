@@ -3,12 +3,6 @@ document.getElementById('clearButton').addEventListener('click', function () {
     document.getElementById("searchResults").innerHTML = "";
 });
 
-document.getElementById('searchButton').addEventListener('click', function () {
-    const searchTerm = document.getElementById('searchInput').value;
-    const newUrl = '/search/' + encodeURIComponent(searchTerm);
-    window.history.pushState({ path: newUrl }, '', newUrl);
-});
-
 function liveSearch(searchTerm) {
     // Check if the search term is empty
     if (searchTerm.length == 0) {
