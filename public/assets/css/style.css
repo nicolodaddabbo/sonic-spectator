@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 body {
     font-family: 'Inter', sans-serif !important;
@@ -119,16 +120,7 @@ body {
 
 /**** SEARCH ****/
 
-.search-content {
-    width: 100%;
-    display: flex;
-    padding: 10px;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-}
-
+.search-content,
 .search-results {
     width: 100%;
     display: flex;
@@ -136,6 +128,10 @@ body {
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
+}
+
+.search-content {
+    padding: 10px;
 }
 
 .search-bar {
@@ -177,7 +173,7 @@ body {
     padding-bottom: 12px;
     flex: 1 0 0;
     color: #000;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif !important;
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
@@ -204,14 +200,15 @@ body {
     gap: 5px;
     flex: 1 0 0;
     color: #000;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif !important;
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
 }
 
-.user-container button {
+.button-following,
+.button-not-following {
     display: flex;
     width: 100px;
     height: 30px;
@@ -219,11 +216,20 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #FF5454;
     color: #FFF;
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif !important;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 22px; /* 137.5% */
+    border: none;
+    outline: none;
+}
+
+.button-following {
+    background: #333;
+}
+
+.button-not-following {
+    background: #FF5454;
 }

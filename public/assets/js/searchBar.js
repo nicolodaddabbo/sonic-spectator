@@ -25,3 +25,21 @@ function liveSearch(searchTerm) {
     // Send the request to the server
     xmlhttp.send();
 }
+
+/*function toggleFollow(profileUserId) {
+    const followButton = document.getElementById('followButton' + profileUserId);
+    
+    // Make an AJAX request to toggle the follow status on the server
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Update the button text and color based on the response
+            const isFollowing = JSON.parse(this.responseText).isFollowing;
+            followButton.innerHTML = isFollowing ? 'Following' : '+ Follow';
+            followButton.style.backgroundColor = isFollowing ? 'red' : 'green';
+        }
+    };
+
+    xmlhttp.open('GET', '/toggle-follow.php?profileUserId=' + profileUserId, true);
+    xmlhttp.send();
+}*/

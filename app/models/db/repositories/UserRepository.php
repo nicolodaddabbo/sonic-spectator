@@ -44,6 +44,18 @@ class UserRepository
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function isFollowing($followerId, $followedId)
+    {
+        $query = "SELECT COUNT(*) as count FROM `follower` WHERE `follower_id`=? AND `followed_id`=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $followerId, $followedId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        return $row['count'] > 0;
+    }
+
     public function getUserFollowersCount($user_id)
     {
         $query = "SELECT COUNT(*) AS followers_count FROM `follower` WHERE `followed_id`=?";
