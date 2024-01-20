@@ -1,6 +1,19 @@
+const followButtons = document.querySelectorAll('[id^="followButton"]');
+followButtons.forEach(button => {
+    const profileUserId = button.id.replace('followButton', '');
+    button.innerHTML = 'Following';
+    button.addEventListener('click', function() {
+        toggleFollow(profileUserId);
+    });
+});
+
 document.getElementById('clearButton').addEventListener('click', function () {
     document.getElementById('searchInput').value = '';
     document.getElementById("searchResults").innerHTML = "";
+});
+
+document.getElementById('searchInput').addEventListener('keyup', function() {
+    liveSearch(this.value);
 });
 
 function liveSearch(searchTerm) {
@@ -26,20 +39,35 @@ function liveSearch(searchTerm) {
     xmlhttp.send();
 }
 
-/*function toggleFollow(profileUserId) {
+/*async function toggleFollow(profileUserId) {
+    console.log('Code entered: Toggle Follow Function');
     const followButton = document.getElementById('followButton' + profileUserId);
-    
-    // Make an AJAX request to toggle the follow status on the server
-    const xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            // Update the button text and color based on the response
-            const isFollowing = JSON.parse(this.responseText).isFollowing;
-            followButton.innerHTML = isFollowing ? 'Following' : '+ Follow';
-            followButton.style.backgroundColor = isFollowing ? 'red' : 'green';
-        }
-    };
+    followButton.innerHTML = 'Following';
 
-    xmlhttp.open('GET', '/toggle-follow.php?profileUserId=' + profileUserId, true);
-    xmlhttp.send();
+    try {
+        const response = await fetch('/models/followToggle.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'profileUserId=' + profileUserId,
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            if (data.isFollowing) {
+                followButton.innerHTML = 'Following';
+                followButton.classList.remove('button-not-following');
+                followButton.classList.add('button-following');
+            } else {
+                followButton.innerHTML = '+ Follow';
+                followButton.classList.remove('button-following');
+                followButton.classList.add('button-not-following');
+            }
+        } else {
+            console.error('Failed to toggle follow status');
+        }
+    } catch (error) {
+        console.error('Error during toggle follow:', error);
+    }
 }*/

@@ -10,7 +10,7 @@
                 <section class='search-action' id='searchButton'>
                     <img src='assets/icons/search.svg' alt='Search Icon'>
                 </section>
-                <input type='text' placeholder='Search...' class='search-bar-text' id='searchInput' onkeyup="liveSearch(this.value)">
+                <input type='text' placeholder='Search...' class='search-bar-text' id='searchInput'>
                 <section class='clear-action' id='clearButton'>
                     <img src='assets/icons/clear.svg' alt='Clear Icon'>
                 </section>
