@@ -25,6 +25,8 @@ services:
       MYSQL_DATABASE: sonic_spectator
       MYSQL_USER: user
       MYSQL_PASSWORD: user
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
     networks:
       - dev
   
