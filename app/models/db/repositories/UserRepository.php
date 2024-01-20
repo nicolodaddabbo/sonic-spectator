@@ -125,13 +125,27 @@ class UserRepository
         return $stmt->insert_id;
     }
 
-    public function followUser($follower_id, $followed_id)
-    {
+    public function toggleFollowUser($follower_id, $followed_id)
+{
+    // Check if a follow relationship already exists
+    if ($this->isFollowing($follower_id, $followed_id)) {
+        // If it does, unfollow by deleting the corresponding record
+        $query = "DELETE FROM `follower` WHERE `follower_id` = ? AND `followed_id` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $follower_id, $followed_id);
+        $stmt->execute();
+
+        return false; // Indicate that the user is now not following
+    } else {
+        // If it doesn't, follow by inserting a new record
         $query = "INSERT INTO `follower` (`follower_id`, `followed_id`) VALUES (?, ?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ii', $follower_id, $followed_id);
         $stmt->execute();
+
+        return true; // Indicate that the user is now following
     }
+}
 
     public function blockUser($blocker_id, $blocked_id)
     {
