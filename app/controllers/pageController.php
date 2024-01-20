@@ -23,4 +23,9 @@ class PageController
     {
         require_once APP_ROOT . '/views/search.php';
     }
+
+    public function loginAction(RouteCollection $routes)
+    {
+        require_once APP_ROOT . '/views/login.php';
+    }
 }
