@@ -8,26 +8,22 @@ use Symfony\Component\Routing\RouteCollection;
 
 class SearchController
 {
-    private $postRepository;
     private $userRepository;
 
     public function __construct()
     {
-        $this->postRepository = new \PostRepository();
         $this->userRepository = new \UserRepository();
     }
 
     public function search(string $query, RouteCollection $routes)
     {
         $users = $this->userRepository->searchUsers($query);
-        $posts = $this->postRepository->searchPostsByTags($query);
 
         include_once APP_ROOT . "/views/searchResults.php";
     }
 
     public function toggleFollow(RouteCollection $routes)
     {
-        $userRepository = new \UserRepository();
         // Check if the request method is POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Retrieve the profile user ID from the POST request
@@ -35,10 +31,10 @@ class SearchController
 
             if ($profileUserId !== null) {
                 // Assuming you have a logged-in user ID, replace with your actual logic
-                $loggedInUserId = 1; // Replace with the actual logged-in user ID
+                $loggedInUserId = /*$loggedInUserId*/1; // Replace with the actual logged-in user ID
 
                 // Toggle follow status and retrieve the updated follow status
-                $isFollowing = $userRepository->toggleFollowUser($loggedInUserId, $profileUserId);
+                $isFollowing = $this->userRepository->toggleFollowUser($loggedInUserId, $profileUserId);
 
                 // Send the updated follow status as JSON response
                 echo json_encode(['isFollowing' => $isFollowing]);

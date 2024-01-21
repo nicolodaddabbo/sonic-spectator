@@ -50,8 +50,9 @@ async function toggleFollow(profileUserId) {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: 'profileUserId=' + profileUserId,
-        }).then((res) => res.json()
-        ).then((data) => {
+        })
+        .then((res) => res.json())
+        .then((data) => {
             if (data.isFollowing) {
                 followButton.innerHTML = 'Following';
                 followButton.classList.remove('button-not-following');
@@ -61,7 +62,8 @@ async function toggleFollow(profileUserId) {
                 followButton.classList.remove('button-following');
                 followButton.classList.add('button-not-following');
             }
-        }).catch(() => {
+        })
+        .catch(() => {
             console.log('Failed to toggle follow status');
         })
     } catch (error) {

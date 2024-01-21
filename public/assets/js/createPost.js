@@ -3,6 +3,7 @@ const addImageText = document.getElementById('addImageText');
 const descriptionInput = document.getElementById('descriptionInput');
 const imageInput = document.getElementById('imageInput');
 
+
 document.getElementById('postImageBox').addEventListener('click', function () {
     document.getElementById('imageInput').click();
 });
@@ -21,13 +22,47 @@ imageInput.addEventListener('change', function() {
 });
 
 document.getElementById('postButton').addEventListener('click', function () {
-    
+    const selectedFile = imageInput.files[0];
+    const description = descriptionInput.value;
+
+    if (selectedFile && description) {
+        // Use FormData to construct the data to send to the server
+        const formData = new FormData();
+        formData.append('description', description);
+        formData.append('image', selectedFile);
+
+        // Send the data to the server using fetch or another AJAX method
+        fetch('/createPost', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                // Reset the form or perform any other necessary actions
+                descriptionInput.value = '';
+                imageInput.value = '';
+                imagePreview.src = ''; 
+                imagePreview.style.display = 'none';
+                addImageText.style.display = 'block';
+
+                // Provide success feedback to the user
+                alert('Post created successfully!');
+            } else {
+                // Provide error feedback to the user
+                alert('Error creating post');
+            }
+        })
+        .catch(error => {
+            console.error('Failed to create post', error);
+        });
+    }
 });
 
 document.getElementById('cancelButton').addEventListener('click', function () {
     descriptionInput.value = '';
     imageInput.value = '';
-    imagePreview.src = '';
+    imagePreview.src = ''; 
     imagePreview.style.display = 'none';
     addImageText.style.display = 'block';
 });

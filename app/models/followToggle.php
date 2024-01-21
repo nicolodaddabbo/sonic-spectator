@@ -1,7 +1,6 @@
 <?php
-
+/*
 $userRepository = new \UserRepository();
-echo "HELLHIUAGSDHGAVSDGHJVASHGDVADSHO";
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the profile user ID from the POST request
@@ -23,4 +22,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     // Invalid request method, handle accordingly
     echo json_encode(['error' => 'Invalid request method']);
-}
+}*/
