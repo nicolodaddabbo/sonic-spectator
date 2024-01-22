@@ -47,10 +47,10 @@ document.getElementById('postButton').addEventListener('click', function () {
                 addImageText.style.display = 'block';
 
                 // Provide success feedback to the user
-                alert('Post created successfully!');
+                showNotification('success', 'Post created successfully!');
             } else {
                 // Provide error feedback to the user
-                alert('Error creating post');
+                showNotification('error', 'Error creating post');
             }
         })
         .catch(error => {
@@ -58,6 +58,21 @@ document.getElementById('postButton').addEventListener('click', function () {
         });
     }
 });
+
+function showNotification(type, message) {
+    const notificationContainer = document.getElementById('notification-container');
+
+    const notification = document.createElement('article');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+
+    notificationContainer.appendChild(notification);
+
+    // Remove the notification after 3000 milliseconds
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
 
 document.getElementById('cancelButton').addEventListener('click', function () {
     descriptionInput.value = '';

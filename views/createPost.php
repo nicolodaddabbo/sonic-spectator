@@ -19,6 +19,7 @@
                 <button type='submit' class='create-post-cancel' id='cancelButton'>Cancel</button>
                 <button type='submit' class='create-post-post' id='postButton'>Post</button>
             </section>
+            <section class='create-post-notification' id='notification-container'></section>
         </section>
     </main>
     <?php include_once 'template/footer.php'; ?>
