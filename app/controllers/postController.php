@@ -28,10 +28,11 @@ class PostController
         
             // Handle the file upload
             $uploadDir = 'assets/posts/';
-            $uploadedFile = $uploadDir . basename($_FILES['image']['name']);
+            $filename = basename($_FILES['image']['name']);
+            $uploadedFile = $uploadDir . $filename;
             if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadedFile)){
                 // File upload successful
-                $this->postRepository->createPost($description, $uploadedFile, /*$loggedInUserId*/1);
+                $this->postRepository->createPost($description, $filename, /*$loggedInUserId*/1);
                 $response['status'] = true;
             } else{
                 $response['status'] = false;
