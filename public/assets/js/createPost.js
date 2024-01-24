@@ -26,12 +26,12 @@ document.getElementById('postButton').addEventListener('click', function () {
     const description = descriptionInput.value;
 
     if (selectedFile && description) {
-        // Use FormData to construct the data to send to the server
+        // FormData to construct the data to send to the server
         const formData = new FormData();
         formData.append('description', description);
         formData.append('image', selectedFile);
 
-        // Send the data to the server using fetch or another AJAX method
+        // Send the data to the server using fetch
         fetch('/createPost', {
             method: 'POST',
             body: formData,
@@ -39,7 +39,7 @@ document.getElementById('postButton').addEventListener('click', function () {
         .then(response => response.json())
         .then(data => {
             if (data.status) {
-                // Reset the form or perform any other necessary actions
+                // Reset the form
                 descriptionInput.value = '';
                 imageInput.value = '';
                 imagePreview.src = ''; 

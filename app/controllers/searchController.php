@@ -6,6 +6,8 @@ use App\Models\Post;
 use App\Models\User;
 use Symfony\Component\Routing\RouteCollection;
 
+session_start();
+
 class SearchController
 {
     private $userRepository;
@@ -17,7 +19,7 @@ class SearchController
 
     public function search(string $query, RouteCollection $routes)
     {
-        $users = $this->userRepository->searchUsers($query);
+        $users = $this->userRepository->searchUsers($_SESSION['user_id'], $query);
 
         include_once APP_ROOT . "/views/searchResults.php";
     }
@@ -36,11 +38,11 @@ class SearchController
                 // Send the updated follow status as JSON response
                 echo json_encode(['isFollowing' => $isFollowing]);
             } else {
-                // Invalid request, handle accordingly
+                // Invalid request
                 echo json_encode(['error' => 'Invalid request']);
             }
         } else {
-            // Invalid request method, handle accordingly
+            // Invalid request method
             echo json_encode(['error' => 'Invalid request method']);
         }
 
