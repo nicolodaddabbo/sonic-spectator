@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use Symfony\Component\Routing\RouteCollection;
 
+session_start();
+
 class PageController
 {
     private $postRepository;
@@ -15,7 +17,7 @@ class PageController
 
     public function indexAction(RouteCollection $routes)
     {
-        $posts = $this->postRepository->getPostsByFollowingUsers(/*$loggedInUserId*/1);
+        $posts = $this->postRepository->getPostsByFollowingUsers($_SESSION['user_id']);
         require_once APP_ROOT . '/views/home.php';
     }
 

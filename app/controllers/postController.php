@@ -24,7 +24,7 @@ class PostController
             $uploadedFile = $uploadDir . $filename;
             if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadedFile)){
                 // File upload successful
-                $this->postRepository->createPost($description, $filename, /*$loggedInUserId*/1);
+                $this->postRepository->createPost($description, $filename, $_SESSION['user_id']);
                 $response['status'] = true;
             } else{
                 $response['status'] = false;

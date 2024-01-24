@@ -30,11 +30,8 @@ class SearchController
             $profileUserId = isset($_POST['profileUserId']) ? $_POST['profileUserId'] : null;
 
             if ($profileUserId !== null) {
-                // Assuming you have a logged-in user ID, replace with your actual logic
-                $loggedInUserId = /*$loggedInUserId*/1; // Replace with the actual logged-in user ID
-
                 // Toggle follow status and retrieve the updated follow status
-                $isFollowing = $this->userRepository->toggleFollowUser($loggedInUserId, $profileUserId);
+                $isFollowing = $this->userRepository->toggleFollowUser($_SESSION['user_id'], $profileUserId);
 
                 // Send the updated follow status as JSON response
                 echo json_encode(['isFollowing' => $isFollowing]);

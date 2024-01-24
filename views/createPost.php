@@ -1,11 +1,4 @@
-<?php
-session_start();
-
-// Redirect if not logged in
-if (!isset($_SESSION['user'])) {
-    header('location:login');
-}
-?>
+<?php include_once 'template/redirect.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include_once 'template/head.php'; ?>
