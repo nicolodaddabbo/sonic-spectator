@@ -132,7 +132,9 @@ body {
 }
 
 .search-content {
+    width: 360px;
     padding: 10px;
+    margin: auto;
 }
 
 .search-bar {
@@ -243,7 +245,6 @@ body {
     padding: 10px;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     margin: auto;
     gap: 10px;
     flex-shrink: 0;
