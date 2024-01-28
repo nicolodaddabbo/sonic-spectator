@@ -17,7 +17,9 @@ class PageController
 
     public function indexAction(RouteCollection $routes)
     {
-        $posts = $this->postRepository->getPostsByFollowingUsers($_SESSION['user_id']);
+        if(isset($_SESSION['user'])){
+            $posts = $this->postRepository->getPostsByFollowingUsers($_SESSION['user_id']);
+        }
         require_once APP_ROOT . '/views/home.php';
     }
 
