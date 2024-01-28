@@ -131,9 +131,9 @@ INSERT INTO `tag` (`name`) VALUES
 
 -- User Table
 INSERT INTO `user` (`email`, `username`, `password`, `birth_date`, `profile_img`, `gender_id`) VALUES
-('user1@example.com', 'user1', 'password1', '1990-01-15', 'profile1.jpg', 1),
-('user2@example.com', 'user2', 'password2', '1985-05-22', 'profile2.jpg', 2),
-('user3@example.com', 'user3', 'password3', '1998-09-10', 'profile3.jpg', 3);
+('user1@example.com', 'user1', MD5('password1'), '1990-01-15', 'profile1.jpg', 1),
+('user2@example.com', 'user2', MD5('password2'), '1985-05-22', 'profile2.jpg', 2),
+('user3@example.com', 'user3', MD5('password3'), '1998-09-10', 'profile3.jpg', 3);
 
 -- Follower Table
 INSERT INTO `follower` (`follower_id`, `followed_id`) VALUES
