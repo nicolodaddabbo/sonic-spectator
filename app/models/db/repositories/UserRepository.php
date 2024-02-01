@@ -114,6 +114,16 @@ class UserRepository
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getUser($user_id){
+        $query = "SELECT * FROM `user` WHERE `user_id`=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function registerUser($email, $username, $password, $birth_date, $profile_img, $gender_id)
     {
         $query = "INSERT INTO `user` (`email`, `username`, `password`, `birth_date`, `profile_img`, `gender_id`)
