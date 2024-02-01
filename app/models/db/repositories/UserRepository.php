@@ -21,12 +21,12 @@ class UserRepository
         return $result->fetch_assoc();
     }
 
-    public function searchUsers($searchTerm)
+    public function searchUsers($loggedInUserId, $searchTerm)
     {
-        $query = "SELECT `id`, `username` FROM `user` WHERE `username` LIKE ?";
+        $query = "SELECT `id`, `username` FROM `user` WHERE `id` != ? AND `username` LIKE ?";
         $stmt = $this->db->prepare($query);
         $searchTerm = '%' . $searchTerm . '%';
-        $stmt->bind_param('s', $searchTerm);
+        $stmt->bind_param('is', $loggedInUserId, $searchTerm);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -129,7 +129,7 @@ class UserRepository
 {
     // Check if a follow relationship already exists
     if ($this->isFollowing($follower_id, $followed_id)) {
-        // If it does, unfollow by deleting the corresponding record
+        // Unfollow by deleting the corresponding record
         $query = "DELETE FROM `follower` WHERE `follower_id` = ? AND `followed_id` = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ii', $follower_id, $followed_id);
@@ -137,7 +137,7 @@ class UserRepository
 
         return false; // Indicate that the user is now not following
     } else {
-        // If it doesn't, follow by inserting a new record
+        // Follow by inserting a new record
         $query = "INSERT INTO `follower` (`follower_id`, `followed_id`) VALUES (?, ?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ii', $follower_id, $followed_id);

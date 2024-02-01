@@ -7,11 +7,30 @@ use Symfony\Component\Routing\RouteCollection;
 
 class PostController
 {
-    public function test(int $id, RouteCollection $routes)
-    {
-        $post = new Post();
-        $post->read($id);
+    private $postRepository;
 
-        require_once APP_ROOT . "/views/home.php";
+    public function __construct()
+    {
+        $this->postRepository = new \PostRepository();
     }
+
+    public function createPost(RouteCollection $routes){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $description = $_POST['description'];
+        
+            // Handle the file upload
+            $uploadDir = 'assets/posts/';
+            $filename = basename($_FILES['image']['name']);
+            $uploadedFile = $uploadDir . $filename;
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadedFile)){
+                // File upload successful
+                $this->postRepository->createPost($description, $filename, $_SESSION['user_id']);
+                $response['status'] = true;
+            } else{
+                $response['status'] = false;
+            }
+            echo json_encode($response);
+        }
+    }
+
 }

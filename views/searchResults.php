@@ -5,7 +5,7 @@
             $userRepository = new \UserRepository();
             foreach ($users as $user):
                 $profileUserId = $user['id'];
-                $isFollowing = $userRepository->isFollowing(/*$loggedInUserId*/ 1, $profileUserId);
+                $isFollowing = $userRepository->isFollowing($_SESSION['user_id'], $profileUserId);
                 include 'template/user.php';
             endforeach;
         }

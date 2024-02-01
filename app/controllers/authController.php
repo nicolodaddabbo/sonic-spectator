@@ -16,8 +16,7 @@ class AuthController
     public function signIn(RouteCollection $routes)
     {
         $email = $_POST['email'];
-        // $password = md5($_POST['password']);
-        $password = $_POST['password']; // TODO: hash password
+        $password = md5($_POST['password']);
 
         $res = $this->userRepository->checkLoginCredentials($email, $password);
         

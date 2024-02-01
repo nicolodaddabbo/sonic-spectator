@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use Symfony\Component\Routing\RouteCollection;
 
+session_start();
+
 class PageController
 {
     private $postRepository;
@@ -15,7 +17,9 @@ class PageController
 
     public function indexAction(RouteCollection $routes)
     {
-        $posts = $this->postRepository->getPostsByFollowingUsers(1);
+        if(isset($_SESSION['user'])){
+            $posts = $this->postRepository->getPostsByFollowingUsers($_SESSION['user_id']);
+        }
         require_once APP_ROOT . '/views/home.php';
     }
 
@@ -33,4 +37,10 @@ class PageController
     {
         require_once APP_ROOT . '/views/register.php';
     }
+
+    public function createPostAction(RouteCollection $routes)
+    {
+        require_once APP_ROOT . '/views/createPost.php';
+    }
+
 }

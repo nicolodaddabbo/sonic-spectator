@@ -6,48 +6,43 @@ use App\Models\Post;
 use App\Models\User;
 use Symfony\Component\Routing\RouteCollection;
 
+session_start();
+
 class SearchController
 {
-    private $postRepository;
     private $userRepository;
 
     public function __construct()
     {
-        $this->postRepository = new \PostRepository();
         $this->userRepository = new \UserRepository();
     }
 
     public function search(string $query, RouteCollection $routes)
     {
-        $users = $this->userRepository->searchUsers($query);
-        $posts = $this->postRepository->searchPostsByTags($query);
+        $users = $this->userRepository->searchUsers($_SESSION['user_id'], $query);
 
         include_once APP_ROOT . "/views/searchResults.php";
     }
 
     public function toggleFollow(RouteCollection $routes)
     {
-        $userRepository = new \UserRepository();
         // Check if the request method is POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Retrieve the profile user ID from the POST request
             $profileUserId = isset($_POST['profileUserId']) ? $_POST['profileUserId'] : null;
 
             if ($profileUserId !== null) {
-                // Assuming you have a logged-in user ID, replace with your actual logic
-                $loggedInUserId = 1; // Replace with the actual logged-in user ID
-
                 // Toggle follow status and retrieve the updated follow status
-                $isFollowing = $userRepository->toggleFollowUser($loggedInUserId, $profileUserId);
+                $isFollowing = $this->userRepository->toggleFollowUser($_SESSION['user_id'], $profileUserId);
 
                 // Send the updated follow status as JSON response
                 echo json_encode(['isFollowing' => $isFollowing]);
             } else {
-                // Invalid request, handle accordingly
+                // Invalid request
                 echo json_encode(['error' => 'Invalid request']);
             }
         } else {
-            // Invalid request method, handle accordingly
+            // Invalid request method
             echo json_encode(['error' => 'Invalid request method']);
         }
 
