@@ -54,7 +54,7 @@ body {
 
 /**** HOME ****/
 
-.home-content {
+.post-list {
     display: flex;
     padding: 10px 10px 85px 10px;
     flex-direction: column;
@@ -352,4 +352,17 @@ body {
 
 .error {
     background-color: #f44336;
+}
+
+/**** PROFILE ****/
+
+.profile-top-bar-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.filter-red {
+    filter: invert(37%) sepia(39%) saturate(5366%) hue-rotate(342deg) brightness(99%) contrast(94%);
 }

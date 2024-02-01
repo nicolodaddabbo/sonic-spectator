@@ -9,17 +9,57 @@ session_start();
 class PageController
 {
     private $postRepository;
+    private $userRepository;
 
     public function __construct()
     {
         $this->postRepository = new \PostRepository();
+        $this->userRepository = new \UserRepository();
+    }
+
+    private function getLikes($posts)
+    {
+        $likes = [];
+        foreach($posts as $post)
+        {
+            $likes[$post['id']] = $this->postRepository->getPostLikes($post['id']);
+        }
+
+        return $likes;
+    }
+
+    private function getComments($posts)
+    {
+        $comments = [];
+        foreach($posts as $post)
+        {
+            $comments[$post['id']] = $this->postRepository->getPostComments($post['id']);
+        }
+
+        return $comments;
     }
 
     public function indexAction(RouteCollection $routes)
     {
-        if(isset($_SESSION['user'])){
-            $posts = $this->postRepository->getPostsByFollowingUsers($_SESSION['user_id']);
+        if(!isset($_SESSION['user']))
+        {
+            require_once APP_ROOT . '/views/home.php';
+            return;
         }
+        $posts = $this->postRepository->getPostsByFollowingUsers($_SESSION['user_id']);
+
+        $users = [];
+        foreach($posts as $post)
+        {
+            if (!isset($users[$post['user_id']]))
+            {
+                $users[$post['user_id']] = $this->userRepository->getUser($post['user_id'])[0];
+            }
+        }
+
+        $likes = $this->getLikes($posts);
+        $comments = $this->getComments($posts);
+
         require_once APP_ROOT . '/views/home.php';
     }
 
@@ -41,6 +81,21 @@ class PageController
     public function createPostAction(RouteCollection $routes)
     {
         require_once APP_ROOT . '/views/createPost.php';
+    }
+
+    public function profileAction(RouteCollection $routes)
+    {
+        if(!isset($_SESSION['user']))
+        {
+            require_once APP_ROOT . '/views/home.php';
+            return;
+        }
+        
+        $posts = $this->postRepository->getUserPosts($_SESSION['user_id']);
+        $likes = $this->getLikes($posts);
+        $comments = $this->getComments($posts);
+
+        require_once APP_ROOT . '/views/profile.php';
     }
 
 }

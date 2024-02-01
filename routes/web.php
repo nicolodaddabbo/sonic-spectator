@@ -17,3 +17,4 @@ $routes->add('signIn', new Route(constant('URL_SUBFOLDER') . '/signIn', array('c
 $routes->add('logOut', new Route(constant('URL_SUBFOLDER') . '/logOut', array('controller' => 'AuthController', 'method' => 'signOut'), array()));
 $routes->add('register', new Route(constant('URL_SUBFOLDER') . '/register', array('controller' => 'PageController', 'method' => 'registerAction'), array()));
 $routes->add('signUp', new Route(constant('URL_SUBFOLDER') . '/signUp', array('controller' => 'AuthController', 'method' => 'signUp'), array()));
+$routes->add('profile', new Route(constant('URL_SUBFOLDER') . '/profile', array('controller' => 'PageController', 'method' => 'profileAction'), array()));

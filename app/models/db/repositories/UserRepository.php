@@ -115,7 +115,7 @@ class UserRepository
     }
 
     public function getUser($user_id){
-        $query = "SELECT * FROM `user` WHERE `user_id`=?";
+        $query = "SELECT * FROM `user` WHERE `id`=?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $user_id);
         $stmt->execute();

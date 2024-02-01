@@ -6,7 +6,7 @@
 <body>
     <?php include_once 'template/header.php'; ?>
     <main>
-        <article class='home-content'>
+        <article class='post-list'>
             <?php foreach ($posts as $post): ?>
                 <?php include 'template/post.php'; ?>
             <?php endforeach; ?>

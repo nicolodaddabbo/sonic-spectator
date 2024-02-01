@@ -5,16 +5,18 @@
             <div class='post-actions-container'>
                 <div class='post-action-container'>
                     <img class='post-action-icon' src='assets/icons/like.svg' alt='' />
-                    <span class='post-action-label'>Likes</span>
+                    <span class='post-action-label'><?= count($likes[$post['id']]) ?> Likes</span>
                 </div>
                 <div class='post-action-container'>
                     <img class='post-action-icon' src='assets/icons/comment.svg' alt='' />
-                    <span class='post-action-label'>Comments</span>
+                    <span class='post-action-label'><?= count($comments[$post['id']]) ?> Comments</span>
                 </div>
             </div>
             <div class='post-description-container'>
                 <header class='post-description-user'>
-                    <?= $post['user_id'] ?>
+                    <?= $_SERVER['REQUEST_URI'] === "/profile" ?
+                        $_SESSION['user']
+                        : $users[$post['user_id']]['username'] ?>
                 </header>
                 <p class='post-description'>
                     <?= $post['description'] ?>
