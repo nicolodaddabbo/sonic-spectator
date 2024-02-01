@@ -39,4 +39,28 @@ class AuthController
         session_destroy();
         header('location:/');
     }
+
+    public function signUp(RouteCollection $routes)
+    {
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        // $password = md5($_POST['password']);
+        $password = $_POST['password']; // TODO: hash password
+        $birth_date = $_POST['birth_date'];
+        $profile_img = $_POST['profile_img'];
+        $gender_id = $_POST['gender_id'];
+
+        $res = $this->userRepository->createUser($email, $username, $password, $birth_date, $profile_img, $gender_id);
+
+        if ($res) {
+            session_start();
+            $_SESSION['user'] = $username;
+            $_SESSION['user_id'] = $res['id'];
+            header('location:/');
+        } else {
+            session_start();
+            $_SESSION['message'] = 'Sign up failed';
+            header('location:signUp');
+        }
+    }
 }

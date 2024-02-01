@@ -28,4 +28,9 @@ class PageController
     {
         require_once APP_ROOT . '/views/login.php';
     }
+
+    public function registerAction(RouteCollection $routes)
+    {
+        require_once APP_ROOT . '/views/register.php';
+    }
 }

@@ -13,7 +13,7 @@ if (isset($_SESSION['user'])) {
 <body>
     <main>
         <section class='container login-content'>
-            <h1 class="page-header text-center">Test Login</h1>
+            <h1 class="page-header text-center">Test Register</h1>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="login-panel panel panel-primary">
@@ -33,11 +33,11 @@ if (isset($_SESSION['user'])) {
                                             name="password" required>
                                     </div>
                                     <button type="submit" name="login" class="btn btn-lg btn-primary btn-block"><span
-                                            class="glyphicon glyphicon-log-in"></span> Login</button>
+                                            class="glyphicon glyphicon-log-in"></span> Register</button>
                                 </fieldset>
                             </form>
                             <div class="text-center">
-                                <a href="register">Register</a>
+                                <a href="login">Login</a>
                             </div>
                         </div>
                     </div>
