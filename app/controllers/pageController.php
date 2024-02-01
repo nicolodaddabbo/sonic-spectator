@@ -94,6 +94,9 @@ class PageController
         $posts = $this->postRepository->getUserPosts($_SESSION['user_id']);
         $likes = $this->getLikes($posts);
         $comments = $this->getComments($posts);
+        $post_count = count($posts);
+        $follower_count = $this->userRepository->getUserFollowersCount($_SESSION['user_id']);
+        $following_count = $this->userRepository->getUserFollowingCount($_SESSION['user_id']);
 
         require_once APP_ROOT . '/views/profile.php';
     }
