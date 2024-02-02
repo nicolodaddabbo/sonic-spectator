@@ -21,12 +21,10 @@ class AuthController
         $res = $this->userRepository->checkLoginCredentials($email, $password);
         
         if ($res != null) {
-            session_start();
             $_SESSION['user'] = $res['username'];
             $_SESSION['user_id'] = $res['id'];
             header('location:/');
         } else {
-            session_start();
             $_SESSION['message'] = 'Wrong email or password';
             header('location:login');
         }
@@ -48,15 +46,17 @@ class AuthController
         $profile_img = $_POST['profile_img'];
         $gender_id = $_POST['gender_id'];
 
-        $res = $this->userRepository->registerUser($email, $username, $password, $birth_date, $profile_img, $gender_id);
-
-        if ($res) {
-            session_start();
-            $_SESSION['user'] = $username;
-            $_SESSION['user_id'] = $res['id'];
-            header('location:/');
-        } else {
-            session_start();
+        try {
+            $res = $this->userRepository->registerUser($email, $username, $password, $birth_date, $profile_img, $gender_id);
+            if ($res) {
+                $_SESSION['user'] = $username;
+                $_SESSION['user_id'] = $res;
+                header('location:/');
+            } else {
+                $_SESSION['message'] = 'Sign up failed';
+                header('location:signUp');
+            }
+        } catch (\Exception $e) {
             $_SESSION['message'] = 'Sign up failed';
             header('location:signUp');
         }

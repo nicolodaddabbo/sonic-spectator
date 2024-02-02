@@ -126,6 +126,11 @@ class PageController
             return;
         }
 
+        if ($id === $_SESSION['user_id']) {
+            header('Location: /profile');
+            return;
+        }
+
         $user = $this->userRepository->getUser($id)[0];
         $posts = $this->postRepository->getUserPosts($id);
         $likes = $this->getLikes($posts);
