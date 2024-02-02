@@ -198,13 +198,13 @@ class PostRepository
         $stmt->execute();
     }
 
-    private function deletePost($post_id)
+    public function deletePost($post_id)
     {
         $this->deleteAllPostComments($post_id);
         $this->deleteAllPostLikes($post_id);
         $this->deleteAllPostNotifications($post_id);
         $this->deleteAllPostTags($post_id);
-        $query = "DELETE FROM `post` WHERE `post_id` = ?";
+        $query = "DELETE FROM `post` WHERE `id` = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $post_id);
         $stmt->execute();
@@ -218,7 +218,7 @@ class PostRepository
     }
 
     private function deleteAllPostLikes($post_id){
-        $query = "DELETE FROM `comment` WHERE `post_id` = ?";
+        $query = "DELETE FROM `like` WHERE `post_id` = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $post_id);
         $stmt->execute();
