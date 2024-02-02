@@ -218,7 +218,7 @@ class PostRepository
     }
 
     private function deleteAllPostLikes($post_id){
-        $query = "DELETE FROM `comment` WHERE `post_id` = ?";
+        $query = "DELETE FROM `like` WHERE `post_id` = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $post_id);
         $stmt->execute();
