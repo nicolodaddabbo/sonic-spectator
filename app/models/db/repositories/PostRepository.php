@@ -164,9 +164,35 @@ class PostRepository
         $stmt->execute();
     }
 
+    public function toggleLike($user_id, $post_id)
+    {
+        // Check if the user has already liked the post
+        $query = "SELECT * FROM `like` WHERE `user_id` = ? AND `post_id` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $user_id, $post_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            // User has already liked the post, so unlike it
+            $this->unlikePost($user_id, $post_id);
+        } else {
+            // User has not liked the post, so like it
+            $this->likePost($user_id, $post_id);
+        }
+    }
+
     public function likePost($user_id, $post_id)
     {
         $query = "INSERT INTO `like` (`user_id`, `post_id`) VALUES (?, ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $user_id, $post_id);
+        $stmt->execute();
+    }
+
+    private function unlikePost($user_id, $post_id)
+    {
+        $query = "DELETE FROM `like` WHERE `user_id` = ? AND `post_id` = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ii', $user_id, $post_id);
         $stmt->execute();
