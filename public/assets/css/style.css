@@ -348,12 +348,16 @@ body {
 .create-post-container {
     display: flex;
     width: 360px;
-    padding: 10px;
+    padding: 20px 10px;
     flex-direction: column;
     align-items: center;
     margin: auto;
-    gap: 10px;
+    gap: 40px;
     flex-shrink: 0;
+}
+
+.create-post-input {
+    width: 100%;
 }
 
 .create-post-input span {
@@ -376,6 +380,8 @@ body {
     background: #FFF;
     box-shadow: 2px 2px 0px 0px #FF5454;
     outline: none;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .create-post-image {
@@ -413,7 +419,7 @@ body {
 
 .create-post-buttons {
     display: flex;
-    padding: 40px 12px;
+    padding: 0;
     align-items: flex-start;
     gap: 8px;
     align-self: stretch;
