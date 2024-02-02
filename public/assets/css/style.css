@@ -50,6 +50,11 @@ body {
     align-items: center;
     gap: 2px;
     flex: 1 0 0;
+    opacity: 0.5;
+}
+
+.tab.active {
+    opacity: 1;
 }
 
 /**** HOME ****/
