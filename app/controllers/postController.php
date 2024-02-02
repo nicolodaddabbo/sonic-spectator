@@ -68,4 +68,16 @@ class PostController
             echo json_encode($response);
         }
     }
+
+    public function deletePost(RouteCollection $routes)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $post_id = $_POST['post_id'];
+
+            $this->postRepository->deletePost($post_id);
+            $response['status'] = true;
+
+            echo json_encode($response);
+        }
+    }
 }

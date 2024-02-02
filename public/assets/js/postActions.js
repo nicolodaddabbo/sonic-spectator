@@ -77,3 +77,31 @@ commentButtons.forEach(commentButton => {
         });
     });
 });
+
+const deleteButtons = document.querySelectorAll('[id^=delete-]');
+
+deleteButtons.forEach(deleteButton => {
+    deleteButton.addEventListener('click', function () {
+        const post_id = this.id.split('-')[1];
+        fetch('/deletePost', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'post_id=' + post_id,
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    const post = document.getElementById(`post-${post_id}`);
+                    post.remove();
+                    console.log('Post deleted successfully');
+                } else {
+                    showNotification('error', 'Error deleting post');
+                }
+            })
+            .catch(error => {
+                console.error('Failed to delete post', error);
+            });
+    });
+});

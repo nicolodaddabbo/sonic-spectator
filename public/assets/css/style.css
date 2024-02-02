@@ -110,6 +110,10 @@ body {
     gap: 5px;
 }
 
+.delete {
+    filter: invert(37%) sepia(39%) saturate(5366%) hue-rotate(342deg) brightness(99%) contrast(94%);
+}
+
 .post-description-container {
     display: flex;
     padding: 10px 0px;

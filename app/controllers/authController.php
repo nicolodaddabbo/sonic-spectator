@@ -43,13 +43,12 @@ class AuthController
     {
         $email = $_POST['email'];
         $username = $_POST['username'];
-        // $password = md5($_POST['password']);
-        $password = $_POST['password']; // TODO: hash password
+        $password = md5($_POST['password']);
         $birth_date = $_POST['birth_date'];
         $profile_img = $_POST['profile_img'];
         $gender_id = $_POST['gender_id'];
 
-        $res = $this->userRepository->createUser($email, $username, $password, $birth_date, $profile_img, $gender_id);
+        $res = $this->userRepository->registerUser($email, $username, $password, $birth_date, $profile_img, $gender_id);
 
         if ($res) {
             session_start();
