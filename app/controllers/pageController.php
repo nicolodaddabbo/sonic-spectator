@@ -119,4 +119,31 @@ class PageController
         require_once APP_ROOT . '/views/profile.php';
     }
 
+    public function showUser(int $id, RouteCollection $routes)
+    {
+        if (!isset($_SESSION['user'])) {
+            require_once APP_ROOT . '/views/home.php';
+            return;
+        }
+
+        $user = $this->userRepository->getUser($id)[0];
+        $posts = $this->postRepository->getUserPosts($id);
+        $likes = $this->getLikes($posts);
+        $comments = $this->getComments($posts);
+        $post_count = count($posts);
+        $follower_count = $this->userRepository->getUserFollowersCount($user['id']);
+        $following_count = $this->userRepository->getUserFollowingCount($user['id']);
+        $comments = $this->getComments($posts);
+        $commenting_users = [];
+        foreach ($comments as $comment) {
+            foreach ($comment as $userComment) {
+                if (!isset($commenting_users[$userComment['user_id']])) {
+                    $commenting_users[$userComment['user_id']] = $this->userRepository->getUser($userComment['user_id'])[0];
+                }
+            }
+        }
+
+        require_once APP_ROOT . '/views/profile.php';
+    }
+
 }
