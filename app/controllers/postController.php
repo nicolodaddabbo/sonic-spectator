@@ -35,4 +35,17 @@ class PostController
             echo json_encode($response);
         }
     }
+
+    public function likePost(RouteCollection $routes)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $post_id = $_POST['postId'];
+            $user_id = $_SESSION['user_id'];
+
+            $this->postRepository->toggleLike($user_id, $post_id);
+            $response['likes'] = $this->postRepository->getPostLikesCount($post_id);
+            $response['status'] = true;
+            echo json_encode($response);
+        }
+    }
 }

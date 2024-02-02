@@ -3,13 +3,18 @@
         <img class='post-image' src='assets/posts/<?= $post['image'] ?>' alt='' />
         <div class='post-bottom-container'>
             <div class='post-actions-container'>
-                <div class='post-action-container'>
-                    <img class='post-action-icon' src='assets/icons/like.svg' alt='' />
-                    <span class='post-action-label'><?= count($likes[$post['id']]) ?> Likes</span>
+                <div id='like-<?= $post['id'] ?>' class='post-action-container'>
+                    <img class='post-action-icon <?= in_array($_SESSION['user_id'], $likes[$post['id']]) ? 'active' : '' ?>'
+                        src='assets/icons/like.svg' alt='' />
+                    <span id='like-counter-<?= $post['id'] ?>' class='post-action-label'>
+                        <?= count($likes[$post['id']]) ?> Likes
+                    </span>
                 </div>
                 <div class='post-action-container'>
                     <img class='post-action-icon' src='assets/icons/comment.svg' alt='' />
-                    <span class='post-action-label'><?= count($comments[$post['id']]) ?> Comments</span>
+                    <span class='post-action-label'>
+                        <?= count($comments[$post['id']]) ?> Comments
+                    </span>
                 </div>
             </div>
             <div class='post-description-container'>

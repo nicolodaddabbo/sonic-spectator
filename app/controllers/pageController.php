@@ -57,7 +57,14 @@ class PageController
             }
         }
 
-        $likes = $this->getLikes($posts);
+        $likesArray = $this->getLikes($posts);
+        // Flatten the array of likes
+        $likes = array_map(function($subArray) {
+            return array_map(function($item) {
+                return $item['user_id'];
+            }, $subArray);
+        }, $likesArray);
+        
         $comments = $this->getComments($posts);
 
         require_once APP_ROOT . '/views/home.php';

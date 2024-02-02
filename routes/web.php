@@ -18,3 +18,4 @@ $routes->add('logOut', new Route(constant('URL_SUBFOLDER') . '/logOut', array('c
 $routes->add('register', new Route(constant('URL_SUBFOLDER') . '/register', array('controller' => 'PageController', 'method' => 'registerAction'), array()));
 $routes->add('signUp', new Route(constant('URL_SUBFOLDER') . '/signUp', array('controller' => 'AuthController', 'method' => 'signUp'), array()));
 $routes->add('profile', new Route(constant('URL_SUBFOLDER') . '/profile', array('controller' => 'PageController', 'method' => 'profileAction'), array()));
+$routes->add('like_post', new Route(constant('URL_SUBFOLDER') . '/likePost', array('controller' => 'PostController', 'method' => 'likePost'), array()));
