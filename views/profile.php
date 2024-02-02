@@ -26,6 +26,7 @@
         <?php endforeach; ?>
     </article>
     <?php include_once 'template/footer.php'; ?>
+    <script src="assets/js/postActions.js"></script>
 </body>
 
 </html>

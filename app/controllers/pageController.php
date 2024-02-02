@@ -20,8 +20,7 @@ class PageController
     private function getLikes($posts)
     {
         $likes = [];
-        foreach($posts as $post)
-        {
+        foreach ($posts as $post) {
             $likes[$post['id']] = $this->postRepository->getPostLikes($post['id']);
         }
 
@@ -31,8 +30,7 @@ class PageController
     private function getComments($posts)
     {
         $comments = [];
-        foreach($posts as $post)
-        {
+        foreach ($posts as $post) {
             $comments[$post['id']] = $this->postRepository->getPostComments($post['id']);
         }
 
@@ -41,31 +39,36 @@ class PageController
 
     public function indexAction(RouteCollection $routes)
     {
-        if(!isset($_SESSION['user']))
-        {
+        if (!isset($_SESSION['user'])) {
             require_once APP_ROOT . '/views/home.php';
             return;
         }
         $posts = $this->postRepository->getPostsByFollowingUsers($_SESSION['user_id']);
 
-        $users = [];
-        foreach($posts as $post)
-        {
-            if (!isset($users[$post['user_id']]))
-            {
-                $users[$post['user_id']] = $this->userRepository->getUser($post['user_id'])[0];
+        $posting_users = [];
+        foreach ($posts as $post) {
+            if (!isset($posting_users[$post['user_id']])) {
+                $posting_users[$post['user_id']] = $this->userRepository->getUser($post['user_id'])[0];
             }
         }
 
         $likesArray = $this->getLikes($posts);
         // Flatten the array of likes
-        $likes = array_map(function($subArray) {
-            return array_map(function($item) {
+        $likes = array_map(function ($subArray) {
+            return array_map(function ($item) {
                 return $item['user_id'];
             }, $subArray);
         }, $likesArray);
-        
+
         $comments = $this->getComments($posts);
+        $commenting_users = [];
+        foreach ($comments as $comment) {
+            foreach ($comment as $userComment) {
+                if (!isset($commenting_users[$userComment['user_id']])) {
+                    $commenting_users[$userComment['user_id']] = $this->userRepository->getUser($userComment['user_id'])[0];
+                }
+            }
+        }
 
         require_once APP_ROOT . '/views/home.php';
     }
@@ -92,18 +95,26 @@ class PageController
 
     public function profileAction(RouteCollection $routes)
     {
-        if(!isset($_SESSION['user']))
-        {
+        if (!isset($_SESSION['user'])) {
             require_once APP_ROOT . '/views/home.php';
             return;
         }
-        
+
         $posts = $this->postRepository->getUserPosts($_SESSION['user_id']);
         $likes = $this->getLikes($posts);
         $comments = $this->getComments($posts);
         $post_count = count($posts);
         $follower_count = $this->userRepository->getUserFollowersCount($_SESSION['user_id']);
         $following_count = $this->userRepository->getUserFollowingCount($_SESSION['user_id']);
+        $comments = $this->getComments($posts);
+        $commenting_users = [];
+        foreach ($comments as $comment) {
+            foreach ($comment as $userComment) {
+                if (!isset($commenting_users[$userComment['user_id']])) {
+                    $commenting_users[$userComment['user_id']] = $this->userRepository->getUser($userComment['user_id'])[0];
+                }
+            }
+        }
 
         require_once APP_ROOT . '/views/profile.php';
     }

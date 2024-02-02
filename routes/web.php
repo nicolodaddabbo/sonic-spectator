@@ -19,3 +19,4 @@ $routes->add('register', new Route(constant('URL_SUBFOLDER') . '/register', arra
 $routes->add('signUp', new Route(constant('URL_SUBFOLDER') . '/signUp', array('controller' => 'AuthController', 'method' => 'signUp'), array()));
 $routes->add('profile', new Route(constant('URL_SUBFOLDER') . '/profile', array('controller' => 'PageController', 'method' => 'profileAction'), array()));
 $routes->add('like_post', new Route(constant('URL_SUBFOLDER') . '/likePost', array('controller' => 'PostController', 'method' => 'likePost'), array()));
+$routes->add('newComment', new Route(constant('URL_SUBFOLDER') . '/newComment', array('controller' => 'PostController', 'method' => 'newComment'), array()));
