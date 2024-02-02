@@ -197,4 +197,44 @@ class PostRepository
         $stmt->bind_param('ii', $user_id, $post_id);
         $stmt->execute();
     }
+
+    private function deletePost($post_id)
+    {
+        $this->deleteAllPostComments($post_id);
+        $this->deleteAllPostLikes($post_id);
+        $this->deleteAllPostNotifications($post_id);
+        $this->deleteAllPostTags($post_id);
+        $query = "DELETE FROM `post` WHERE `post_id` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $post_id);
+        $stmt->execute();
+    }
+
+    private function deleteAllPostComments($post_id){
+        $query = "DELETE FROM `comment` WHERE `post_id` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $post_id);
+        $stmt->execute();
+    }
+
+    private function deleteAllPostLikes($post_id){
+        $query = "DELETE FROM `comment` WHERE `post_id` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $post_id);
+        $stmt->execute();
+    }
+
+    private function deleteAllPostNotifications($post_id){
+        $query = "DELETE FROM `notification` WHERE `post_id` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $post_id);
+        $stmt->execute();
+    }
+
+    private function deleteAllPostTags($post_id){
+        $query = "DELETE FROM `post_tag` WHERE `post_id` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $post_id);
+        $stmt->execute();
+    }
 }
