@@ -329,6 +329,10 @@ body {
     line-height: normal;
 }
 
+.user-container a {
+    all: unset;
+}
+
 .button-following,
 .button-not-following {
     display: flex;

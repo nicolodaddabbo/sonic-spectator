@@ -1,6 +1,8 @@
 <header class='top-bar'>
     <?php if ($_SERVER['REQUEST_URI'] !== "/profile") { ?>
-        <img src='/assets/icons/back.svg' alt='back' class='back' />
+        <a href="<?= $_SERVER['HTTP_REFERER'] ?>">
+            <img src='/assets/icons/back.svg' alt='back' class='back' />
+        </a>
     <?php } ?>
     <span class='title'>
         <?= $_SERVER['REQUEST_URI'] === "/profile" ? $_SESSION['user'] : $user['username'] ?>
