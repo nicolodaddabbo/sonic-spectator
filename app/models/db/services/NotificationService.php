@@ -20,7 +20,18 @@ class NotificationService
         $stmt->execute();
     }
 
-    public function markNotificationAsViewed($notificationId)
+    public function markAllUserNotificationsAsViewed($user_id)
+    {
+        // Get all notifications for the user
+        $userNotifications = $this->userRepository->getUserNotifications($user_id);
+
+        // Mark all notifications as viewed
+        foreach ($userNotifications as $notification) {
+            $this->markNotificationAsViewed($notification['id']);
+        }
+    }
+
+    private function markNotificationAsViewed($notificationId)
     {
         $query = "UPDATE `notification` SET `viewed` = TRUE WHERE `id` = ?";
         $stmt = $this->db->prepare($query);
