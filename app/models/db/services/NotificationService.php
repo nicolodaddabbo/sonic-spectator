@@ -12,35 +12,20 @@ class NotificationService
         $this->userRepository = new \UserRepository();
     }
 
-    public function sendNotificationToFollowers($user_id, $notificationText)
+    public function sendNotification($notification_type_id, $sending_user_id, $user_id)
     {
-        // Retrieve the followers of the user
-        $followers = $this->userRepository->getUserFollowers($user_id);
-
-        // Iterate through followers and send notifications
-        foreach ($followers as $follower) {
-            $follower_id = $follower['follower_id'];
-
-            $query = "INSERT INTO `notification` (`user_id`, `text`) VALUES (?, ?)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('is', $follower_id, $notificationText);
-            $stmt->execute();
-        }
+        $query = "INSERT INTO `notification` (`notification_type_id`, `user_id`, `sending_user_id`) VALUES (?, ?, ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('iii', $notification_type_id, $user_id, $sending_user_id);
+        $stmt->execute();
     }
 
-    public function sendNotificationToFollowersWithPost($user_id, $notificationText, $post_id)
+    public function deleteNotification($notificationId)
     {
-        // Retrieve the followers of the user
-        $followers = $this->userRepository->getUserFollowers($user_id);
-
-        // Iterate through followers and send notifications
-        foreach ($followers as $follower) {
-            $follower_id = $follower['follower_id'];
-
-            $query = "INSERT INTO `notification` (`user_id`, `text`, `post_id`) VALUES (?, ?, ?)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('isi', $follower_id, $notificationText, $post_id);
-            $stmt->execute();
-        }
+        $query = "DELETE FROM `notification` WHERE `id` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $notificationId);
+        $stmt->execute();
     }
+    
 }

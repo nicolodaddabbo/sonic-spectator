@@ -93,12 +93,20 @@ CREATE TABLE IF NOT EXISTS `comment` (
 -- Notification Table
 CREATE TABLE IF NOT EXISTS `notification` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `notification_type_id` INT NOT NULL,
     `user_id` INT NOT NULL,
-    `post_id` INT,
-    `text` VARCHAR(255),
+    `sending_user_id` INT NOT NULL,
     `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`notification_type_id`) REFERENCES `notification_type`(`id`),
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`post_id`) REFERENCES `post`(`id`) ON DELETE CASCADE
+    FOREIGN KEY (`sending_user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE
+);
+
+-- Notification Type Table
+CREATE TABLE IF NOT EXISTS `notification_type` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `type` VARCHAR(255) NOT NULL,
+    `text` VARCHAR(255) NOT NULL
 );
 
 -- Like Table
@@ -131,11 +139,17 @@ INSERT INTO `tag` (`name`) VALUES
 ('Punk'),
 ('Folk');
 
+-- Notification Type Table
+INSERT INTO `notification_type` (`type`, `text`) VALUES
+('like', 'liked your post'),
+('comment', 'commented on your post'),
+('follow', 'started following you');
+
 -- User Table
 INSERT INTO `user` (`email`, `username`, `password`, `birth_date`, `profile_img`, `gender_id`) VALUES
-('user1@example.com', 'user1', md5('password1'), '1990-01-15', 'profile1.jpg', 1),
-('user2@example.com', 'user2', md5('password2'), '1985-05-22', 'profile2.jpg', 2),
-('user3@example.com', 'user3', md5('password3'), '1998-09-10', 'profile3.jpg', 3);
+('user1@example.com', 'user1', 'password1', '1990-01-15', 'profile1.jpg', 1),
+('user2@example.com', 'user2', 'password2', '1985-05-22', 'profile2.jpg', 2),
+('user3@example.com', 'user3', 'password3', '1998-09-10', 'profile3.jpg', 3);
 
 -- Follower Table
 INSERT INTO `follower` (`follower_id`, `followed_id`) VALUES
@@ -169,14 +183,21 @@ INSERT INTO `comment` (`text`, `user_id`, `post_id`) VALUES
 ('Comment on Post 2', 3, 2),
 ('Comment on Post 3', 1, 3);
 
--- Notification Table
-INSERT INTO `notification` (`user_id`, `post_id`) VALUES
-(2, 1),
-(3, 2),
-(1, 3);
-
 -- Like Table
 INSERT INTO `like` (`user_id`, `post_id`) VALUES
 (1, 2),
 (2, 3),
 (3, 1);
+
+-- Notification Table
+INSERT INTO `notification` (`notification_type_id`, `sending_user_id`, `user_id`)
+VALUES
+(1, 1, 2),  -- User 1 liked a post by User 2
+(1, 2, 3),  -- User 2 liked a post by User 3
+(1, 3, 1),  -- User 2 liked a post by User 3
+(2, 2, 1),  -- User 2 commented on a post by User 1
+(2, 2, 3),  -- User 3 commented on a post by User 2
+(2, 1, 3),  -- User 1 commented on a post by User 3
+(3, 1, 2),  -- User 1 started following User 2
+(3, 2, 1),  -- User 2 started following User 1
+(3, 1, 3);  -- User 1 started following User 3

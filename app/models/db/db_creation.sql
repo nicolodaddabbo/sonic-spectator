@@ -93,12 +93,20 @@ CREATE TABLE IF NOT EXISTS `comment` (
 -- Notification Table
 CREATE TABLE IF NOT EXISTS `notification` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `notification_type_id` INT NOT NULL,
     `user_id` INT NOT NULL,
-    `post_id` INT,
-    `text` VARCHAR(255),
+    `sending_user_id` INT NOT NULL,
     `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`notification_type_id`) REFERENCES `notification_type`(`id`),
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`post_id`) REFERENCES `post`(`id`) ON DELETE CASCADE
+    FOREIGN KEY (`sending_user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE
+);
+
+-- Notification Type Table
+CREATE TABLE IF NOT EXISTS `notification_type` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `type` VARCHAR(255) NOT NULL,
+    `text` VARCHAR(255) NOT NULL
 );
 
 -- Like Table

@@ -18,6 +18,12 @@ INSERT INTO `tag` (`name`) VALUES
 ('Punk'),
 ('Folk');
 
+-- Notification Type Table
+INSERT INTO `notification_type` (`type`, `text`) VALUES
+('like', 'liked your post'),
+('comment', 'commented on your post'),
+('follow', 'started following you');
+
 -- User Table
 INSERT INTO `user` (`email`, `username`, `password`, `birth_date`, `profile_img`, `gender_id`) VALUES
 ('user1@example.com', 'user1', 'password1', '1990-01-15', 'profile1.jpg', 1),
@@ -56,14 +62,21 @@ INSERT INTO `comment` (`text`, `user_id`, `post_id`) VALUES
 ('Comment on Post 2', 3, 2),
 ('Comment on Post 3', 1, 3);
 
--- Notification Table
-INSERT INTO `notification` (`user_id`, `post_id`) VALUES
-(2, 1),
-(3, 2),
-(1, 3);
-
 -- Like Table
 INSERT INTO `like` (`user_id`, `post_id`) VALUES
 (1, 2),
 (2, 3),
 (3, 1);
+
+-- Notification Table
+INSERT INTO `notification` (`notification_type_id`, `sending_user_id`, `user_id`)
+VALUES
+(1, 1, 2),  -- User 1 liked a post by User 2
+(1, 2, 3),  -- User 2 liked a post by User 3
+(1, 3, 1),  -- User 2 liked a post by User 3
+(2, 2, 1),  -- User 2 commented on a post by User 1
+(2, 2, 3),  -- User 3 commented on a post by User 2
+(2, 1, 3),  -- User 1 commented on a post by User 3
+(3, 1, 2),  -- User 1 started following User 2
+(3, 2, 1),  -- User 2 started following User 1
+(3, 1, 3);  -- User 1 started following User 3
