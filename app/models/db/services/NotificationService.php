@@ -49,7 +49,7 @@ class NotificationService
 
     public function getNotificationType($notificationId)
     {
-        $query = "SELECT nt.type
+        $query = "SELECT nt.*
                   FROM `notification` n
                   JOIN `notification_type` nt ON n.notification_type_id = nt.id
                   WHERE n.id = ?";
