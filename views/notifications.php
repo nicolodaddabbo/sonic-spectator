@@ -14,6 +14,7 @@
             ?>
         </article>
     </main>
+    <script src='/assets/js/notifications.js'></script>
 </body>
 
 </html>
