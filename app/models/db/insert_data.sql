@@ -73,9 +73,9 @@ INSERT INTO `notification` (`notification_type_id`, `sending_user_id`, `user_id`
 (1, 1, 2, 2),  -- User 1 liked a post by User 2
 (1, 2, 3, 3),  -- User 2 liked a post by User 3
 (1, 3, 1, 1),  -- User 2 liked a post by User 1
-(2, 2, 1, NULL),  -- User 2 commented on a post by User 1
-(2, 2, 3, NULL),  -- User 3 commented on a post by User 2
-(2, 1, 3, NULL),  -- User 1 commented on a post by User 3
+(2, 2, 1, 1),  -- User 2 commented on a post by User 1
+(2, 3, 2, 2),  -- User 3 commented on a post by User 2
+(2, 1, 3, 3),  -- User 1 commented on a post by User 3
 (3, 1, 2, NULL),  -- User 1 started following User 2
 (3, 2, 1, NULL),  -- User 2 started following User 1
 (3, 1, 3, NULL);  -- User 1 started following User 3
