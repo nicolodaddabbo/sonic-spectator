@@ -103,11 +103,13 @@ CREATE TABLE IF NOT EXISTS `notification` (
     `notification_type_id` INT NOT NULL,
     `user_id` INT NOT NULL,
     `sending_user_id` INT NOT NULL,
+    `post_id` INT,
     `viewed` BOOLEAN DEFAULT FALSE,
     `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`notification_type_id`) REFERENCES `notification_type`(`id`),
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE,
     FOREIGN KEY (`sending_user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE
+    FOREIGN KEY (`post_id`) REFERENCES `post`(`id`) ON DELETE CASCADE
 );
 
 -- Like Table

@@ -103,11 +103,13 @@ CREATE TABLE IF NOT EXISTS `notification` (
     `notification_type_id` INT NOT NULL,
     `user_id` INT NOT NULL,
     `sending_user_id` INT NOT NULL,
+    `post_id` INT,
     `viewed` BOOLEAN DEFAULT FALSE,
     `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`notification_type_id`) REFERENCES `notification_type`(`id`),
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE,
     FOREIGN KEY (`sending_user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE
+    FOREIGN KEY (`post_id`) REFERENCES `post`(`id`) ON DELETE CASCADE
 );
 
 -- Like Table
@@ -191,14 +193,13 @@ INSERT INTO `like` (`user_id`, `post_id`) VALUES
 (3, 1);
 
 -- Notification Table
-INSERT INTO `notification` (`notification_type_id`, `sending_user_id`, `user_id`)
-VALUES
-(1, 1, 2),  -- User 1 liked a post by User 2
-(1, 2, 3),  -- User 2 liked a post by User 3
-(1, 3, 1),  -- User 2 liked a post by User 3
-(2, 2, 1),  -- User 2 commented on a post by User 1
-(2, 2, 3),  -- User 3 commented on a post by User 2
-(2, 1, 3),  -- User 1 commented on a post by User 3
-(3, 1, 2),  -- User 1 started following User 2
-(3, 2, 1),  -- User 2 started following User 1
-(3, 1, 3);  -- User 1 started following User 3
+INSERT INTO `notification` (`notification_type_id`, `sending_user_id`, `user_id`, `post_id`) VALUES
+(1, 1, 2, 2),  -- User 1 liked a post by User 2
+(1, 2, 3, 3),  -- User 2 liked a post by User 3
+(1, 3, 1, 1),  -- User 2 liked a post by User 1
+(2, 2, 1, NULL),  -- User 2 commented on a post by User 1
+(2, 2, 3, NULL),  -- User 3 commented on a post by User 2
+(2, 1, 3, NULL),  -- User 1 commented on a post by User 3
+(3, 1, 2, NULL),  -- User 1 started following User 2
+(3, 2, 1, NULL),  -- User 2 started following User 1
+(3, 1, 3, NULL);  -- User 1 started following User 3

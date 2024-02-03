@@ -46,5 +46,23 @@ class NotificationService
         $stmt->bind_param('i', $notificationId);
         $stmt->execute();
     }
+
+    public function getType($notificationId)
+    {
+        $query = "SELECT nt.type
+                  FROM `notification` n
+                  JOIN `notification_type` nt ON n.notification_type_id = nt.id
+                  WHERE n.id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $notificationId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($row = $result->fetch_assoc()) {
+            return $row['type'];
+        }
+
+        return null;
+    }
     
 }
