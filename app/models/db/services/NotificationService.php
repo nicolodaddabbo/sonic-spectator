@@ -47,7 +47,7 @@ class NotificationService
         $stmt->execute();
     }
 
-    public function getType($notificationId)
+    public function getNotificationType($notificationId)
     {
         $query = "SELECT nt.type
                   FROM `notification` n
@@ -58,11 +58,7 @@ class NotificationService
         $stmt->execute();
         $result = $stmt->get_result();
 
-        if ($row = $result->fetch_assoc()) {
-            return $row['type'];
-        }
-
-        return null;
+        return $result->fetch_assoc();
     }
     
 }
