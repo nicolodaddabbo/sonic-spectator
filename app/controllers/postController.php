@@ -26,7 +26,7 @@ class PostController
             $description = $_POST['description'];
 
             // Handle the file upload
-            $uploadDir = '/assets/posts/';
+            $uploadDir = 'assets/posts/';
             $filename = basename($_FILES['image']['name']);
             $uploadedFile = $uploadDir . $filename;
             if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadedFile)) {
