@@ -67,6 +67,10 @@ body {
     gap: 10px;
 }
 
+.title {
+    margin: 0;
+}
+
 .post-container {
     display: flex;
     padding: 20px;
