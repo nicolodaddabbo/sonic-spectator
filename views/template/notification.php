@@ -1,10 +1,15 @@
 <section class='notification-wrapper <?= $notification['viewed'] ? '' : 'new' ?>'>
     <section>
-        <a href='/user/<?= $notification['sending_user_id'] ?>'>
-            <?= $usernames[$notification['sending_user_id']] ?>
-        </a>
-        <span>
-            <?= $notification_types[$notification['notification_type_id']]['text'] ?>
+        <section>
+            <a href='/user/<?= $notification['sending_user_id'] ?>'>
+                <?= $usernames[$notification['sending_user_id']] ?>
+            </a>
+            <span>
+                <?= $notification_types[$notification['notification_type_id']]['text'] ?>
+            </span>
+        </section>
+        <span class='notification-date'>
+            <?= time_elapsed_string($notification['date']) ?>
         </span>
     </section>
     <?php

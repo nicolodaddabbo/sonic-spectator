@@ -11,10 +11,12 @@ session_start();
 class SearchController
 {
     private $userRepository;
+    private $notificationService;
 
     public function __construct()
     {
         $this->userRepository = new \UserRepository();
+        $this->notificationService = new \NotificationService();
     }
 
     public function search(string $query, RouteCollection $routes)
@@ -34,7 +36,10 @@ class SearchController
             if ($profileUserId !== null) {
                 // Toggle follow status and retrieve the updated follow status
                 $isFollowing = $this->userRepository->toggleFollowUser($_SESSION['user_id'], $profileUserId);
-
+                if ($isFollowing) {
+                    // Send a follow notification
+                    $this->notificationService->sendNotification(3, $_SESSION['user_id'], $profileUserId);
+                }
                 // Send the updated follow status as JSON response
                 echo json_encode(['isFollowing' => $isFollowing]);
             } else {

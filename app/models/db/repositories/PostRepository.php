@@ -42,6 +42,17 @@ class PostRepository
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getPostById($post_id)
+    {
+        $query = "SELECT `id`, `description`, `image`, `user_id` FROM `post` WHERE `id`=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $post_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc();
+    }
+
     public function getUserPostById($user_id, $post_id)
     {
         $query = "SELECT `id`, `description`, `image` FROM `post` WHERE `user_id`=? AND `id`=?";

@@ -11,11 +11,13 @@ class PostController
 {
     private $postRepository;
     private $userRepository;
+    private $notificationService;
 
     public function __construct()
     {
         $this->postRepository = new \PostRepository();
         $this->userRepository = new \UserRepository();
+        $this->notificationService = new \NotificationService();
     }
 
     public function createPost(RouteCollection $routes)
@@ -43,8 +45,15 @@ class PostController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $post_id = $_POST['postId'];
             $user_id = $_SESSION['user_id'];
+            $owner_id = $this->postRepository->getPostById($post_id)['user_id'];
 
             $this->postRepository->toggleLike($user_id, $post_id);
+
+            $isLike = $this->postRepository->isPostLikedByUser($user_id, $post_id);
+            if ($user_id !== $owner_id && $isLike) {
+                $this->notificationService->sendNotificationWithPost(1, $user_id, $owner_id, $post_id);
+            }
+            
             $response['likes'] = $this->postRepository->getPostLikesCount($post_id);
             $response['status'] = true;
             echo json_encode($response);
@@ -57,8 +66,13 @@ class PostController
             $post_id = $_POST['post_id'];
             $user_id = $_SESSION['user_id'];
             $text = $_POST['text'];
+            $owner_id = $this->postRepository->getPostById($post_id)['user_id'];
 
             $this->postRepository->addCommentToPost($text, $user_id, $post_id);
+            
+            if ($user_id !== $owner_id) {
+                $this->notificationService->sendNotificationWithPost(2, $user_id, $owner_id, $post_id);
+            }
 
             $response['new_comment'] = [
                 'username' => $this->userRepository->getUser($user_id)[0]['username'],

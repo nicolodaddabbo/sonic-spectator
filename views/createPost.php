@@ -25,6 +25,7 @@
     </main>
     <?php include_once 'template/footer.php'; ?>
     <script src="/assets/js/createPost.js"></script>
+    <script src="/assets/js/notifications.js"></script>
 </body>
 
 </html>

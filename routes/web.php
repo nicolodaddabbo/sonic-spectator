@@ -24,3 +24,4 @@ $routes->add('deletePost', new Route(constant('URL_SUBFOLDER') . '/deletePost', 
 $routes->add('user', new Route(constant('URL_SUBFOLDER') . '/user/{id}', array('controller' => 'PageController', 'method' => 'showUser'), array()));
 $routes->add('notifications', new Route(constant('URL_SUBFOLDER') . '/notifications', array('controller' => 'PageController', 'method' => 'notificationsAction'), array()));
 $routes->add('markAllAsViewed', new Route(constant('URL_SUBFOLDER') . '/markAllAsViewed', array('controller' => 'NotificationController', 'method' => 'markAllAsViewed'), array()));
+$routes->add('getNewNotificationsCount', new Route(constant('URL_SUBFOLDER') . '/getNewNotificationsCount', array('controller' => 'NotificationController', 'method' => 'getNewNotificationsCount'), array()));

@@ -20,6 +20,14 @@ class NotificationService
         $stmt->execute();
     }
 
+    public function sendNotificationWithPost($notification_type_id, $sending_user_id, $user_id, $post_id)
+    {
+        $query = "INSERT INTO `notification` (`notification_type_id`, `user_id`, `sending_user_id`, `post_id`) VALUES (?, ?, ?, ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('iiii', $notification_type_id, $user_id, $sending_user_id, $post_id);
+        $stmt->execute();
+    }
+
     public function markAllUserNotificationsAsViewed($user_id)
     {
         // Get all notifications for the user
@@ -60,5 +68,5 @@ class NotificationService
 
         return $result->fetch_assoc();
     }
-    
+
 }

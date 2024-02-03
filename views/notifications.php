@@ -1,4 +1,5 @@
 <?php include_once 'template/redirect.php'; ?>
+<?php include_once 'utils/time_elapsed_string.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include_once 'template/head.php'; ?>
@@ -14,7 +15,7 @@
             ?>
         </article>
     </main>
-    <script src='/assets/js/notifications.js'></script>
+    <script src='/assets/js/markNotifications.js'></script>
 </body>
 
 </html>

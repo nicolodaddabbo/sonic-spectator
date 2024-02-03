@@ -687,3 +687,30 @@ body {
 .notification-wrapper a {
     color: #FF5454;
 }
+
+#notification-counter-container {
+    position: relative;
+}
+
+#notification-counter {
+    display: none;
+}
+
+#notification-counter.full {
+    position: absolute;
+    font-size: 10px;
+    top: -10px;
+    right: -10px;
+    background: #FF5454;
+    color: #FFF;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 100%;
+    display: block;
+}
+
+.notification-date {
+    opacity: 0.5;
+}

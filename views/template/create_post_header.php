@@ -1,6 +1,4 @@
 <header class='top-bar'>
     <span class='title'>New Post</span>
-    <a href='/notifications'>
-        <img src='/assets/icons/notification.svg' alt='notifications' />
-    </a>
+    <?php include_once 'notification_counter.php'; ?>
 </header>
