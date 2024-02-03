@@ -25,12 +25,12 @@
             <span class='profile-stats-item-title'>Following</span>
         </section>
     </section>
-    <article class='post-list'>
+    <section id='post-list' role='list'>
         <h2 class='post-list-title'>Posts</h2>
         <?php foreach ($posts as $post): ?>
             <?php include 'template/post.php'; ?>
         <?php endforeach; ?>
-    </article>
+    </section>
     <?php if ($_SERVER['REQUEST_URI'] === "/profile") {
         include_once 'template/footer.php';
     } ?>

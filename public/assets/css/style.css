@@ -59,7 +59,7 @@ body {
 
 /**** HOME ****/
 
-.post-list {
+#post-list {
     display: flex;
     padding: 10px 10px 85px 10px;
     flex-direction: column;
