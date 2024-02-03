@@ -42,6 +42,17 @@ class PostRepository
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getUserPostById($user_id, $post_id)
+    {
+        $query = "SELECT `id`, `description`, `image` FROM `post` WHERE `user_id`=? AND `id`=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $user_id, $post_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc();
+    }
+
     public function getPostsByFollowingUsers($user_id)
     {
         // Get the user IDs of those being followed by the specified user

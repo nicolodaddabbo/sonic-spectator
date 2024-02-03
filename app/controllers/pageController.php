@@ -10,11 +10,13 @@ class PageController
 {
     private $postRepository;
     private $userRepository;
+    private $notificationService;
 
     public function __construct()
     {
         $this->postRepository = new \PostRepository();
         $this->userRepository = new \UserRepository();
+        $this->notificationService = new \NotificationService();
     }
 
     private function getLikes($posts)
@@ -149,6 +151,36 @@ class PageController
         }
 
         require_once APP_ROOT . '/views/profile.php';
+    }
+
+    public function notificationsAction(RouteCollection $routes)
+    {
+        if (!isset($_SESSION['user'])) {
+            require_once APP_ROOT . '/views/home.php';
+            return;
+        }
+
+        define('NOTIFICATION_TYPE_LIKE', 1);
+        define('NOTIFICATION_TYPE_COMMENT', 2);
+        define('NOTIFICATION_TYPE_FOLLOW', 3);
+
+        $notifications = $this->userRepository->getUserNotifications($_SESSION['user_id']);
+        $usernames = [];
+        $notification_types = [];
+        $post_images = [];
+        foreach ($notifications as $notification) {
+            if (!isset($usernames[$notification['sending_user_id']])) {
+                $usernames[$notification['sending_user_id']] = $this->userRepository->getUser($notification['sending_user_id'])[0]['username'];
+            }
+            if (!isset($notification_types[$notification['notification_type_id']])) {
+                $notification_types[$notification['notification_type_id']] = $this->notificationService->getNotificationType($notification['id']);
+            }
+            if ($notification['post_id'] && !isset($post_images[$notification['post_id']])) {
+                $post_images[$notification['post_id']] = $this->postRepository->getUserPostById($_SESSION['user_id'], $notification['post_id'])['image'];
+            }
+        }
+
+        require_once APP_ROOT . '/views/notifications.php';
     }
 
 }

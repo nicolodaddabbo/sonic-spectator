@@ -22,3 +22,4 @@ $routes->add('like_post', new Route(constant('URL_SUBFOLDER') . '/likePost', arr
 $routes->add('newComment', new Route(constant('URL_SUBFOLDER') . '/newComment', array('controller' => 'PostController', 'method' => 'newComment'), array()));
 $routes->add('deletePost', new Route(constant('URL_SUBFOLDER') . '/deletePost', array('controller' => 'PostController', 'method' => 'deletePost'), array()));
 $routes->add('user', new Route(constant('URL_SUBFOLDER') . '/user/{id}', array('controller' => 'PageController', 'method' => 'showUser'), array()));
+$routes->add('notifications', new Route(constant('URL_SUBFOLDER') . '/notifications', array('controller' => 'PageController', 'method' => 'notificationsAction'), array()));
