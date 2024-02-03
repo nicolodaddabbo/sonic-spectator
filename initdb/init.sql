@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
     `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`notification_type_id`) REFERENCES `notification_type`(`id`),
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`sending_user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE
+    FOREIGN KEY (`sending_user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE,
     FOREIGN KEY (`post_id`) REFERENCES `post`(`id`) ON DELETE CASCADE
 );
 
@@ -196,7 +196,7 @@ INSERT INTO `like` (`user_id`, `post_id`) VALUES
 INSERT INTO `notification` (`notification_type_id`, `sending_user_id`, `user_id`, `post_id`) VALUES
 (1, 1, 2, 2),  -- User 1 liked a post by User 2
 (1, 2, 3, 3),  -- User 2 liked a post by User 3
-(1, 3, 1, 1),  -- User 2 liked a post by User 1
+(1, 3, 1, 1),  -- User 3 liked a post by User 1
 (2, 2, 1, 1),  -- User 2 commented on a post by User 1
 (2, 3, 2, 2),  -- User 3 commented on a post by User 2
 (2, 1, 3, 3),  -- User 1 commented on a post by User 3
