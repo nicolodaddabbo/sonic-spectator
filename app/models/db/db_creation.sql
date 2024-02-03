@@ -96,6 +96,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
     `notification_type_id` INT NOT NULL,
     `user_id` INT NOT NULL,
     `sending_user_id` INT NOT NULL,
+    `viewed` BOOLEAN DEFAULT FALSE,
     `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`notification_type_id`) REFERENCES `notification_type`(`id`),
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE,

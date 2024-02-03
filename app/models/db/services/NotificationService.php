@@ -20,6 +20,14 @@ class NotificationService
         $stmt->execute();
     }
 
+    public function markNotificationAsViewed($notificationId)
+    {
+        $query = "UPDATE `notification` SET `viewed` = TRUE WHERE `id` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $notificationId);
+        $stmt->execute();
+    }
+
     public function deleteNotification($notificationId)
     {
         $query = "DELETE FROM `notification` WHERE `id` = ?";
