@@ -1,3 +1,4 @@
+-- Create database
 CREATE DATABASE IF NOT EXISTS `sonic_spectator` DEFAULT CHARACTER SET utf8;
 USE `sonic_spectator`;
 
@@ -39,8 +40,8 @@ CREATE TABLE IF NOT EXISTS `follower` (
     `follower_id` INT NOT NULL,
     `followed_id` INT NOT NULL,
     `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (`follower_id`) REFERENCES `user`(`id`),
-    FOREIGN KEY (`followed_id`) REFERENCES `user`(`id`)
+    FOREIGN KEY (`follower_id`) REFERENCES `user`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`followed_id`) REFERENCES `user`(`id`) ON DELETE CASCADE
 );
 
 -- Block Table
@@ -49,8 +50,8 @@ CREATE TABLE IF NOT EXISTS `block` (
     `blocker_id` INT NOT NULL,
     `blocked_id` INT NOT NULL,
     `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (`blocker_id`) REFERENCES `user`(`id`),
-    FOREIGN KEY (`blocked_id`) REFERENCES `user`(`id`)
+    FOREIGN KEY (`blocker_id`) REFERENCES `user`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`blocked_id`) REFERENCES `user`(`id`) ON DELETE CASCADE
 );
 
 -- Post Table
@@ -60,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `post` (
     `image` VARCHAR(255) NOT NULL,
     `user_id` INT NOT NULL,
     `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
+    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE
 );
 
 -- Tag Table
@@ -74,8 +75,8 @@ CREATE TABLE IF NOT EXISTS `post_tag` (
     `post_id` INT,
     `tag_id` INT,
     PRIMARY KEY (`post_id`, `tag_id`),
-    FOREIGN KEY (`post_id`) REFERENCES `post`(`id`),
-    FOREIGN KEY (`tag_id`) REFERENCES `tag`(`id`)
+    FOREIGN KEY (`post_id`) REFERENCES `post`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`tag_id`) REFERENCES `tag`(`id`) ON DELETE CASCADE
 );
 
 -- Comment Table
@@ -85,8 +86,8 @@ CREATE TABLE IF NOT EXISTS `comment` (
     `user_id` INT NOT NULL,
     `post_id` INT NOT NULL,
     `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`),
-    FOREIGN KEY (`post_id`) REFERENCES `post`(`id`)
+    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`post_id`) REFERENCES `post`(`id`) ON DELETE CASCADE
 );
 
 -- Notification Table
@@ -94,9 +95,10 @@ CREATE TABLE IF NOT EXISTS `notification` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `user_id` INT NOT NULL,
     `post_id` INT,
+    `text` VARCHAR(255),
     `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`),
-    FOREIGN KEY (`post_id`) REFERENCES `post`(`id`)
+    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`post_id`) REFERENCES `post`(`id`) ON DELETE CASCADE
 );
 
 -- Like Table
@@ -105,8 +107,8 @@ CREATE TABLE IF NOT EXISTS `like` (
     `user_id` INT NOT NULL,
     `post_id` INT NOT NULL,
     `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`),
-    FOREIGN KEY (`post_id`) REFERENCES `post`(`id`)
+    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`post_id`) REFERENCES `post`(`id`) ON DELETE CASCADE
 );
 
 -- Gender Table
