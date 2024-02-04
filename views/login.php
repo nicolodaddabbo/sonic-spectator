@@ -32,7 +32,7 @@ if (isset($_SESSION['user'])) {
             <?php
             if (isset($_SESSION['message'])) {
             ?>
-                <div class='auth-alert' role="alert" aria-live="polite">
+                <div class='alert error' role="alert" aria-live="polite">
                     <?php echo $_SESSION['message']; ?>
                 </div>
             <?php

@@ -480,20 +480,21 @@ body {
     color: #FFF;
 }
 
-.notification {
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-    color: #fff;
+.alert {
+    color: #000;
     font-weight: bold;
+    padding: 30px;
+    box-shadow: 5px 5px 0px 0px #000;
 }
 
 .success {
+    color: #fff;
     background-color: #4CAF50;
 }
 
 .error {
-    background-color: #f44336;
+    color: #fff;
+    background-color: #FF5454;
 }
 
 /**** PROFILE ****/
@@ -632,14 +633,6 @@ body {
     justify-content: center;
     gap: 20px;
     height: 100vh;
-}
-
-.auth-alert {
-    background-color: #FF5454;
-    color: #fff;
-    font-weight: bold;
-    padding: 30px;
-    box-shadow: 5px 5px 0px 0px #000;
 }
 
 .signup-link {

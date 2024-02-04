@@ -2,6 +2,9 @@ const imagePreview = document.getElementById('imagePreview');
 const addImageText = document.getElementById('addImageText');
 const descriptionInput = document.getElementById('descriptionInput');
 const imageInput = document.getElementById('imageInput');
+const notificationContainer = document.getElementById('notification-container');
+const descriptionTextCounter = document.getElementById('textCounter');
+const descriptionTextMaxLength = 255;
 
 function getColorBasedOnPercentage(percentage) {
     // Adjusting the color based on the percentage starting after 50%
@@ -12,8 +15,6 @@ function getColorBasedOnPercentage(percentage) {
 descriptionInput.addEventListener('input', function () {
     
     const textarea = this;
-    const maxLength = 255;
-    const counter = document.getElementById('textCounter');
 
     // Change textarea height to match wrapping text
     textarea.style.height = (textarea.scrollHeight > textarea.clientHeight) ? (textarea.scrollHeight)+"px" : "60px";
@@ -21,16 +22,16 @@ descriptionInput.addEventListener('input', function () {
     // Get the current length of the text
     const currentLength = textarea.value.length;
     // Calculate the percentage of characters used
-    const percentageUsed = (currentLength / maxLength) * 100;
+    const percentageUsed = (currentLength / descriptionTextMaxLength) * 100;
     // Change color based on percentage
     const color = getColorBasedOnPercentage(percentageUsed);
     // Update the counter text and color
-    counter.textContent = currentLength + '/' + maxLength;
-    counter.style.color = color;
+    descriptionTextCounter.textContent = currentLength + '/' + descriptionTextMaxLength;
+    descriptionTextCounter.style.color = color;
     // Trim the text if it exceeds the maximum length
-    if (currentLength > maxLength) {
-        textarea.value = textarea.value.substring(0, maxLength);
-        counter.textContent = maxLength + '/' + maxLength;
+    if (currentLength > descriptionTextMaxLength) {
+        textarea.value = textarea.value.substring(0, descriptionTextMaxLength);
+        descriptionTextCounter.textContent = descriptionTextMaxLength + '/' + descriptionTextMaxLength;
     }
 });
 
@@ -70,11 +71,7 @@ document.getElementById('postButton').addEventListener('click', function () {
         .then(data => {
             if (data.status) {
                 // Reset the form
-                descriptionInput.value = '';
-                imageInput.value = '';
-                imagePreview.src = ''; 
-                imagePreview.style.display = 'none';
-                addImageText.style.display = 'block';
+                resetForm();
 
                 // Provide success feedback to the user
                 showNotification('success', 'Post created successfully!');
@@ -85,15 +82,22 @@ document.getElementById('postButton').addEventListener('click', function () {
         })
         .catch(error => {
             console.error('Failed to create post', error);
+            showNotification('error', 'Error creating post');
         });
+    }else{
+        if(!selectedFile){
+            showNotification('error', 'Image is required.');
+        }
     }
 });
 
-function showNotification(type, message) {
-    const notificationContainer = document.getElementById('notification-container');
+document.getElementById('postForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+});
 
+function showNotification(type, message) {
     const notification = document.createElement('article');
-    notification.className = `notification ${type}`;
+    notification.className = `alert ${type}`;
     notification.textContent = message;
 
     notificationContainer.appendChild(notification);
@@ -105,9 +109,14 @@ function showNotification(type, message) {
 }
 
 document.getElementById('cancelButton').addEventListener('click', function () {
+    resetForm();
+});
+
+function resetForm() {
     descriptionInput.value = '';
     imageInput.value = '';
     imagePreview.src = ''; 
     imagePreview.style.display = 'none';
     addImageText.style.display = 'block';
-});
+    descriptionTextCounter.textContent = '0/' + descriptionTextMaxLength;
+}
