@@ -156,6 +156,7 @@ body {
 
 .post-description-container p {
     margin-left: 5px;
+    word-break: break-all;
 }
 
 .back {
@@ -191,6 +192,7 @@ body {
     flex-direction: column;
     gap: 10px;
     flex: 1;
+    overflow: scroll;
 }
 
 .comment-handler {
@@ -218,6 +220,7 @@ body {
 
 .comment {
     font-weight: 300;
+    word-break: break-all;
 }
 
 .comment-form {
@@ -777,6 +780,10 @@ body {
     border: 0;
 }
 
+.create-post-notification {
+    margin-bottom: 75px;
+}
+
 /*** RESPONSIVE ***/
 @media (min-width: 768px) {
     #post-list {
@@ -792,10 +799,6 @@ body {
 
     .search-content {
         width: 50%;
-    }
-
-    .create-post-notification {
-        margin-bottom: 75px;
     }
 
     .profile-stats {
