@@ -16,7 +16,7 @@ likeButtons.forEach(likeButton => {
                 if (data.status) {
                     likeCount.textContent = data.likes + " Likes";
                     this.querySelector('.post-action-icon').classList.toggle('active');
-                    console.log('Post liked successfully');
+                    // console.log('Post liked successfully');
                 } else {
                     showNotification('error', 'Error liking post');
                 }
@@ -65,7 +65,7 @@ commentButtons.forEach(commentButton => {
                             commentText.textContent = data.new_comment.text;
                             newComment.appendChild(commentText);
                             commentContainer.prepend(newComment);
-                            console.log('Comment added successfully');
+                            // console.log('Comment added successfully');
                         } else {
                             showNotification('error', 'Error adding comment');
                         }
@@ -95,7 +95,7 @@ deleteButtons.forEach(deleteButton => {
                 if (data.status) {
                     const post = document.getElementById(`post-${post_id}`);
                     post.remove();
-                    console.log('Post deleted successfully');
+                    // console.log('Post deleted successfully');
                 } else {
                     showNotification('error', 'Error deleting post');
                 }

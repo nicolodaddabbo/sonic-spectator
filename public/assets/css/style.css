@@ -199,20 +199,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    animation-name: animatebottom;
-    animation-duration: 0.4s;
-}
-
-@keyframes animatebottom {
-    from {
-        bottom: -300px;
-        opacity: 0
-    }
-
-    to {
-        bottom: 0;
-        opacity: 1
-    }
 }
 
 .comment-list-container {
@@ -765,4 +751,32 @@ body {
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     border: 0;
+}
+
+/*** RESPONSIVE ***/
+@media (min-width: 768px) {
+    #post-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: baseline;
+    }
+
+    .notification-wrapper {
+        width: 50%;
+    }
+
+    .search-content {
+        width: 50%;
+    }
+
+    .create-post-notification {
+        margin-bottom: 75px;
+    }
+
+    .profile-stats {
+        width: 50%;
+        margin: auto;
+        justify-content: space-around;
+    }
 }
