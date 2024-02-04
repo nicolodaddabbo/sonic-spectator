@@ -28,17 +28,21 @@
             </section>
             <section class='post-description-container'>
                 <?php if (isset($user) || $_SERVER['REQUEST_URI'] === '/profile') { ?>
-                    <header class='post-description-user'>
-                        <?= $_SERVER['REQUEST_URI'] === '/profile' ? $_SESSION['user'] : $user['username'] ?>
-                    </header>
+                    <section>
+                        <img src="/assets/profiles/<?= $profileImage; ?>" alt="Profile Image" class="profile-image-small">
+                        <header>
+                            <?= $_SERVER['REQUEST_URI'] === '/profile' ? $_SESSION['user'] : $user['username'] ?>
+                        </header>
+                    </section>
                 <?php } else { ?>
                     <a href='/user/<?= $post['user_id'] ?>'>
-                        <header class='post-description-user'>
+                        <img src="/assets/profiles/<?= $posting_users[$post['user_id']]['profile_img'] ?>" alt="Profile Image" class="profile-image-small">
+                        <header>
                             <?= $posting_users[$post['user_id']]['username'] ?>
                         </header>
                     </a>
                 <?php } ?>
-                <p class='post-description'>
+                <p>
                     <?= $post['description'] ?>
                 </p>
             </section>

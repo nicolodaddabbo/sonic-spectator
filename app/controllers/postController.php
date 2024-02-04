@@ -75,7 +75,7 @@ class PostController
             }
 
             $response['new_comment'] = [
-                'username' => $this->userRepository->getUser($user_id)[0]['username'],
+                'username' => $this->userRepository->getUser($user_id)['username'],
                 'text' => $text,
             ];
             $response['status'] = true;
