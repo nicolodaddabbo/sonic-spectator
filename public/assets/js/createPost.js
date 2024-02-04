@@ -1,9 +1,12 @@
+import { showValidationBubble } from './validationBubble.js';
+
 const imagePreview = document.getElementById('imagePreview');
 const addImageText = document.getElementById('addImageText');
 const descriptionInput = document.getElementById('descriptionInput');
 const imageInput = document.getElementById('imageInput');
 const notificationContainer = document.getElementById('notification-container');
 const descriptionTextCounter = document.getElementById('textCounter');
+const postImageBox = document.getElementById('postImageBox');
 const descriptionTextMaxLength = 255;
 
 function getColorBasedOnPercentage(percentage) {
@@ -35,7 +38,7 @@ descriptionInput.addEventListener('input', function () {
     }
 });
 
-document.getElementById('postImageBox').addEventListener('click', function () {
+postImageBox.addEventListener('click', function () {
     document.getElementById('imageInput').click();
 });
 
@@ -85,8 +88,10 @@ document.getElementById('postButton').addEventListener('click', function () {
             showNotification('error', 'Error creating post');
         });
     }else{
-        if(!selectedFile){
-            showNotification('error', 'Image is required.');
+        if (!description) {
+            showValidationBubble(descriptionInput, 'Description cannot be blank.');
+        } else {
+            showValidationBubble(postImageBox, 'Please upload an image.');
         }
     }
 });

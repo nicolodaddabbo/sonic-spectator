@@ -6,7 +6,7 @@
 <body>
     <?php include_once 'template/create_post_header.php'; ?>
     <main role="main">
-        <form class='create-post-container' id='postForm' role="form" aria-labelledby="postFormHeading">
+        <form class='create-post-container' id='postForm' role="form" aria-labelledby="postFormHeading" novalidate>
             <h2 id="postFormHeading" class="visually-hidden">Create Post Form</h2>
             <section class='create-post-input'>
                 <label for='descriptionInput'>Description</label>
@@ -27,7 +27,7 @@
         </form>
     </main>
     <?php include_once 'template/footer.php'; ?>
-    <script src="/assets/js/createPost.js"></script>
+    <script type="module" src="/assets/js/createPost.js"></script>
     <script src="/assets/js/notifications.js"></script>
 </body>
 

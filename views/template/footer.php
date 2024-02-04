@@ -1,4 +1,4 @@
-<footer class='bottom-bar'>
+<footer class='bottom-bar' id='footer'>
     <nav class='tabs'>
         <section class='tab' id='homeTab'>
             <img src='/assets/icons/home.svg' alt='Home' />
