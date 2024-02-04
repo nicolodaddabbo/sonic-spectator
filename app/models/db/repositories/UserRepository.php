@@ -121,7 +121,7 @@ class UserRepository
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all(MYSQLI_ASSOC);
+        return $result->fetch_assoc();
     }
 
     public function registerUser($email, $username, $password, $birth_date, $profile_img, $gender_id)

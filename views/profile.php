@@ -5,6 +5,9 @@
 
 <body>
     <?php include_once 'template/profile_header.php'; ?>
+    <section class='profile-info'>
+        <img src='/assets/profiles/<?= $profileImage; ?>' alt='Profile Image'>
+    </section>
     <section class='profile-stats'>
         <section class='profile-stats-item'>
             <span class='profile-stats-item-value'>

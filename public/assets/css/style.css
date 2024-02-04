@@ -57,39 +57,6 @@ body {
     opacity: 1;
 }
 
-.validation-bubble {
-    position: absolute;
-    background-color: #FF5454;
-    color: #FFF;
-    padding: 8px;
-    border-radius: 5px;
-    font-size: 14px;
-    margin-top: 5px;
-    z-index: 1;
-}
-
-/* Bubble arrow */
-.validation-bubble::before {
-    content: '';
-    position: absolute;
-    border-style: solid;
-    border-width: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* Arrow pointing up when the bubble is below */
-.validation-bubble:not(.above)::before {
-    border-color: transparent transparent #FF5454 transparent;
-    bottom: 100%;
-}
-
-/* Arrow pointing down when the bubble is above */
-.validation-bubble.above::before {
-    border-color: #FF5454 transparent transparent transparent;
-    top: 100%;
-}
-
 /**** HOME ****/
 
 #post-list {
@@ -527,6 +494,18 @@ body {
 
 .filter-red {
     filter: invert(37%) sepia(39%) saturate(5366%) hue-rotate(342deg) brightness(99%) contrast(94%);
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-info img {
+    width: 150px; /* Adjust as needed */
+    height: 150px; /* Adjust as needed */
+    border-radius: 50%;
+    object-fit: cover; /* Ensure the image covers the circle */
+    margin-bottom: 10px; /* Adjust as needed */
 }
 
 .profile-stats {

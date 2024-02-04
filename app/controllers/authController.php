@@ -41,12 +41,21 @@ class AuthController
 
     public function signUp(RouteCollection $routes)
     {
+        $uploadDir = 'assets/profiles/';
+
         $email = $_POST['email'];
         $username = $_POST['username'];
         $password = md5($_POST['password']);
         $birth_date = $_POST['birth_date'];
-        $profile_img = $_POST['profile_img'];
+        $profile_img = 'default.jpg';
         $gender_id = $_POST['gender_id'];
+
+        // Check if a file was uploaded
+        if (isset($_FILES['profile_img']) && $_FILES['profile_img']['error'] === UPLOAD_ERR_OK) {
+            $profile_img = $_FILES['profile_img']['name'];
+            $targetPath = $uploadDir . $profile_img;
+            move_uploaded_file($_FILES['profile_img']['tmp_name'], $targetPath);
+        }
 
         try {
             $res = $this->userRepository->registerUser($email, $username, $password, $birth_date, $profile_img, $gender_id);
@@ -62,7 +71,13 @@ class AuthController
             }
         } catch (\Exception $e) {
             session_start();
-            $_SESSION['message'] = 'Failed inserting new user: ' . $e->getMessage();
+            if (strpos($e->getMessage(), 'username')) {
+                $_SESSION['message'] = 'Username already exists';
+            } elseif (strpos($e->getMessage(), 'email')) {
+                $_SESSION['message'] = 'Email already exists';
+            } else {
+                $_SESSION['message'] = 'Failed inserting new user: ' . $e->getMessage();
+            }
             header('location:register');
         }
     }

@@ -12,7 +12,7 @@ if (isset($_SESSION['user'])) {
     <main id='auth' role="main">
         <section id='auth-section'>
             <h1>Register</h1>
-            <form action='signUp' method='POST' class='auth-form' role="form" aria-labelledby="registerHeading">
+            <form action='signUp' method='POST' class='auth-form' role="form" aria-labelledby="registerHeading" enctype="multipart/form-data">
                 <h2 id="registerHeading" class="visually-hidden">Registration Form</h2>
                 <section class="auth-form-input">
                     <label for='username' class="visually-hidden">Username</label>

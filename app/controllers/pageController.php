@@ -102,6 +102,7 @@ class PageController
             return;
         }
 
+        $profileImage = $this->userRepository->getUser($_SESSION['user_id'])['profile_img'];
         $posts = $this->postRepository->getUserPosts($_SESSION['user_id']);
         $likes = $this->getLikes($posts);
         $comments = $this->getComments($posts);
@@ -133,7 +134,8 @@ class PageController
             return;
         }
 
-        $user = $this->userRepository->getUser($id)[0];
+        $user = $this->userRepository->getUser($id);
+        $profileImage = $user['profile_img'];
         $posts = $this->postRepository->getUserPosts($id);
         $likes = $this->getLikes($posts);
         $comments = $this->getComments($posts);
