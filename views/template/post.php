@@ -1,8 +1,8 @@
 <article id='post-<?= $post['id'] ?>' class='post-wrapper'>
     <section class='post-container'>
         <img class='post-image' src='/assets/posts/<?= $post['image'] ?>' alt='Post Image' />
-        <div class='post-bottom-container'>
-            <div class='post-actions-container'>
+        <section class='post-bottom-container'>
+            <section class='post-actions-container'>
                 <div id='like-<?= $post['id'] ?>' class='post-action-container'>
                     <img class='post-action-icon <?= in_array($_SESSION['user_id'], $likes[$post['id']]) ? 'active' : '' ?>'
                         src='/assets/icons/like.svg' alt='Like Icon' />
@@ -25,8 +25,8 @@
                     </div>
                     <?php
                 } ?>
-            </div>
-            <div class='post-description-container'>
+            </section>
+            <section class='post-description-container'>
                 <?php if (isset($user) || $_SERVER['REQUEST_URI'] === "/profile") { ?>
                     <header class='post-description-user'>
                         <?= $_SERVER['REQUEST_URI'] === "/profile" ? $_SESSION['user'] : $user['username'] ?>
@@ -41,14 +41,14 @@
                 <p class='post-description'>
                     <?= $post['description'] ?>
                 </p>
-            </div>
-        </div>
+            </section>
+        </section>
     </section>
     <section id='comment-section-<?= $post['id'] ?>' class='comment-section'>
         <div class='comment-handler'>
             <div></div>
         </div>
-        <span class='comment-section-header'>Comments</span>
+        <header class='comment-section-header'>Comments</header>
         <section class='comment-list-container'>
             <?php
             if (isset($comments[$post['id']])) {

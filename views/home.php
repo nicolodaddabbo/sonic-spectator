@@ -8,7 +8,7 @@
     <?php include_once 'template/header.php'; ?>
 
     <main>
-        <section id='post-list' role='list'>
+        <section id='post-list'>
             <?php foreach ($posts as $post): ?>
                 <?php include 'template/post.php'; ?>
             <?php endforeach; ?>
