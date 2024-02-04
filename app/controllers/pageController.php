@@ -147,7 +147,7 @@ class PageController
         foreach ($comments as $comment) {
             foreach ($comment as $userComment) {
                 if (!isset($commenting_users[$userComment['user_id']])) {
-                    $commenting_users[$userComment['user_id']] = $this->userRepository->getUser($userComment['user_id'])[0];
+                    $commenting_users[$userComment['user_id']] = $this->userRepository->getUser($userComment['user_id']);
                 }
             }
         }
@@ -172,7 +172,7 @@ class PageController
         $post_images = [];
         foreach ($notifications as $notification) {
             if (!isset($usernames[$notification['sending_user_id']])) {
-                $usernames[$notification['sending_user_id']] = $this->userRepository->getUser($notification['sending_user_id'])[0]['username'];
+                $usernames[$notification['sending_user_id']] = $this->userRepository->getUser($notification['sending_user_id'])['username'];
             }
             if (!isset($notification_types[$notification['notification_type_id']])) {
                 $notification_types[$notification['notification_type_id']] = $this->notificationService->getNotificationType($notification['id']);
