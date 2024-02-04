@@ -1,5 +1,3 @@
-import { showValidationBubble } from './validationBubble.js';
-
 const imagePreview = document.getElementById('imagePreview');
 const addImageText = document.getElementById('addImageText');
 const descriptionInput = document.getElementById('descriptionInput');
@@ -88,10 +86,8 @@ document.getElementById('postButton').addEventListener('click', function () {
             showNotification('error', 'Error creating post');
         });
     }else{
-        if (!description) {
-            showValidationBubble(descriptionInput, 'Description cannot be blank.');
-        } else {
-            showValidationBubble(postImageBox, 'Please upload an image.');
+        if (!selectedFile) {
+            showNotification('error', 'Please upload an image.');
         }
     }
 });
