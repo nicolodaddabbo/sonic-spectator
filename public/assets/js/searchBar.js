@@ -64,7 +64,7 @@ async function toggleFollow(profileUserId) {
             }
         })
         .catch(() => {
-            console.log('Failed to toggle follow status');
+            console.error('Failed to toggle follow status');
         })
     } catch (error) {
         console.error('Error during toggle follow:', error);
