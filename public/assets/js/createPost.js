@@ -3,6 +3,36 @@ const addImageText = document.getElementById('addImageText');
 const descriptionInput = document.getElementById('descriptionInput');
 const imageInput = document.getElementById('imageInput');
 
+function getColorBasedOnPercentage(percentage) {
+    // Adjusting the color based on the percentage starting after 50%
+    const red = Math.round(255 * Math.max(0, (percentage - 50) / 50));
+    return 'rgb(' + red + ', 0, 0)';
+}
+
+descriptionInput.addEventListener('input', function () {
+    
+    const textarea = this;
+    const maxLength = 255;
+    const counter = document.getElementById('textCounter');
+
+    // Change textarea height to match wrapping text
+    textarea.style.height = (textarea.scrollHeight > textarea.clientHeight) ? (textarea.scrollHeight)+"px" : "60px";
+
+    // Get the current length of the text
+    const currentLength = textarea.value.length;
+    // Calculate the percentage of characters used
+    const percentageUsed = (currentLength / maxLength) * 100;
+    // Change color based on percentage
+    const color = getColorBasedOnPercentage(percentageUsed);
+    // Update the counter text and color
+    counter.textContent = currentLength + '/' + maxLength;
+    counter.style.color = color;
+    // Trim the text if it exceeds the maximum length
+    if (currentLength > maxLength) {
+        textarea.value = textarea.value.substring(0, maxLength);
+        counter.textContent = maxLength + '/' + maxLength;
+    }
+});
 
 document.getElementById('postImageBox').addEventListener('click', function () {
     document.getElementById('imageInput').click();
