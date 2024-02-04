@@ -25,3 +25,5 @@ $routes->add('user', new Route(constant('URL_SUBFOLDER') . '/user/{id}', array('
 $routes->add('notifications', new Route(constant('URL_SUBFOLDER') . '/notifications', array('controller' => 'PageController', 'method' => 'notificationsAction'), array()));
 $routes->add('markAllAsViewed', new Route(constant('URL_SUBFOLDER') . '/markAllAsViewed', array('controller' => 'NotificationController', 'method' => 'markAllAsViewed'), array()));
 $routes->add('getNewNotificationsCount', new Route(constant('URL_SUBFOLDER') . '/getNewNotificationsCount', array('controller' => 'NotificationController', 'method' => 'getNewNotificationsCount'), array()));
+$routes->add('followersList', new Route(constant('URL_SUBFOLDER') . '/followers/{id}', array('controller' => 'PageController', 'method' => 'followersListAction'), array()));
+$routes->add('followingList', new Route(constant('URL_SUBFOLDER') . '/following/{id}', array('controller' => 'PageController', 'method' => 'followingListAction'), array()));

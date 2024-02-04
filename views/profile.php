@@ -15,18 +15,22 @@
             </span>
             <span class='profile-stats-item-title'>Posts</span>
         </section>
-        <section class='profile-stats-item'>
-            <span class='profile-stats-item-value'>
-                <?= $follower_count; ?>
-            </span>
-            <span class='profile-stats-item-title'>Followers</span>
-        </section>
-        <section class='profile-stats-item'>
-            <span class='profile-stats-item-value'>
-                <?= $following_count; ?>
-            </span>
-            <span class='profile-stats-item-title'>Following</span>
-        </section>
+        <a href='/followers/<?= $_SERVER['REQUEST_URI'] === '/profile' ? $_SESSION['user_id'] : $user['id'] ?>'>
+            <section class='profile-stats-item'>
+                <span class='profile-stats-item-value'>
+                    <?= $follower_count; ?>
+                </span>
+                <span class='profile-stats-item-title'>Followers</span>
+            </section>
+        </a>
+        <a href='/following/<?= $_SERVER['REQUEST_URI'] === '/profile' ? $_SESSION['user_id'] : $user['id'] ?>'>
+            <section class='profile-stats-item'>
+                <span class='profile-stats-item-value'>
+                    <?= $following_count; ?>
+                </span>
+                <span class='profile-stats-item-title'>Following</span>
+            </section>
+        </a>
     </section>
     <section id='post-list' role='list'>
         <h2 class='post-list-title'>Posts</h2>

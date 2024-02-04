@@ -185,4 +185,44 @@ class PageController
         require_once APP_ROOT . '/views/notifications.php';
     }
 
+    public function followersListAction(int $id, RouteCollection $routes)
+    {
+        if (!isset($_SESSION['user'])) {
+            require_once APP_ROOT . '/views/home.php';
+            return;
+        }
+
+        $follow_list = $this->userRepository->getUserFollowers($id);
+        $usernames = [];
+        foreach ($follow_list as $item)
+        {
+            if (!isset($usernames[$item['follower_id']])) {
+                $usernames[$item['follower_id']] = $this->userRepository->getUser($item['follower_id'])['username'];
+            }
+        }
+        $header = 'Followers';
+
+        require_once APP_ROOT . '/views/follow_list.php';
+    }
+
+    public function followingListAction(int $id, RouteCollection $routes)
+    {
+        if (!isset($_SESSION['user'])) {
+            require_once APP_ROOT . '/views/home.php';
+            return;
+        }
+
+        $follow_list = $this->userRepository->getUserFollowing($id);
+        $usernames = [];
+        foreach ($follow_list as $item)
+        {
+            if (!isset($usernames[$item['followed_id']])) {
+                $usernames[$item['followed_id']] = $this->userRepository->getUser($item['followed_id'])['username'];
+            }
+        }
+        $header = 'Following';
+
+        require_once APP_ROOT . '/views/follow_list.php';
+    }
+
 }
