@@ -14,7 +14,8 @@
             </section>
             <section class='create-post-image' id='postImageBox'>
                 <span id='addImageText'>Add Image</span>
-                <input type='file' id='imageInput' name="image" accept='image/*' aria-labelledby="addImageText">
+                <label for='imageInput' class="visually-hidden">Add Image Input</label>
+                <input type='file' id='imageInput' name="image" accept='image/*'>
                 <img id='imagePreview' alt='Image Preview' aria-live="polite">
             </section>
             <section class='create-post-buttons'>

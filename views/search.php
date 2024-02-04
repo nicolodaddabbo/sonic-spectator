@@ -8,10 +8,11 @@
     <main role="main">
         <section class='search-content'>
             <section class='search-bar' role="search">
-                <section class='search-action' id='searchButton' role="button" aria-label="Search">
+                <section class='search-action'>
                     <img src='/assets/icons/search.svg' alt='Search Icon'>
                 </section>
-                <input type='text' placeholder='Search...' class='search-bar-text' id='searchInput' role="searchbox" aria-label="Search Input">
+                <label for="searchInput" class="visually-hidden">Search Input</label>
+                <input type='text' placeholder='Search...' class='search-bar-text' id='searchInput' role="searchbox">
                 <section class='clear-action' id='clearButton' role="button" aria-label="Clear Search">
                     <img src='/assets/icons/clear.svg' alt='Clear Icon'>
                 </section>

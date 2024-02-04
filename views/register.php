@@ -10,33 +10,32 @@ if (isset($_SESSION['user'])) {
 
 <body>
     <main id='auth' role="main">
-        <section class='auth-section'>
+        <section id='auth-section'>
             <h1>Register</h1>
             <form action='signUp' method='POST' class='auth-form' role="form" aria-labelledby="registerHeading">
                 <h2 id="registerHeading" class="visually-hidden">Registration Form</h2>
-                <section>
-                    <input id='username' type='text' name='username' autocomplete='on' placeholder='Username...' required aria-label="Username">
+                <section class="auth-form-input">
+                    <label for='username' class="visually-hidden">Username</label>
+                    <input id='username' type='text' name='username' autocomplete='on' placeholder='Username...' required>
                 </section>
-                <section>
-                    <input id='email' type='email' name='email' autocomplete='on' placeholder='Email...' required aria-label="Email">
+                <section class="auth-form-input">
+                    <label for='email' class="visually-hidden">Email</label>
+                    <input id='email' type='email' name='email' autocomplete='on' placeholder='Email...' required>
                 </section>
-                <section>
-                    <input id='password' type='password' name='password' autocomplete='on' placeholder='Password...' required aria-label="Password">
+                <section class="auth-form-input">
+                    <label for='password' class="visually-hidden">Password</label>
+                    <input id='password' type='password' name='password' autocomplete='on' placeholder='Password...' required>
                 </section>
-                <!-- <section>
-                    <label for='confirm_password'>Confirm Password</label>
-                    <input id='confirm_password' type='password' name='password' autocomplete='on'
-                        placeholder='Confirm Password...' required>
-                </section> -->
-                <section>
+                <section class="auth-form-input">
                     <label for='birth_date'>Birth Date</label>
                     <input id='birth_date' type='date' name='birth_date' autocomplete='on' required>
                 </section>
-                <section>
+                <section class="auth-form-input">
                     <label for='profile_img'>Profile Image</label>
                     <input type='file' id='profile_img' name="profile_img" accept='image/*'>
                 </section>
-                <section id='gender-section'>
+                <fieldset id='gender-section' role='group' aria-labelledby='genderLegend'>
+                    <legend id='genderLegend' class="visually-hidden">Gender</legend>
                     <section id='gender-label'>
                         <label>Gender</label>
                     </section>
@@ -54,7 +53,7 @@ if (isset($_SESSION['user'])) {
                             <label for='other'>Other</label>
                         </p>
                     </section>
-                </section>
+                </fieldset>
                 <section>
                     <span>Already registered? <a class='signup-link' href='/login'>Log In</a></span>
                 </section>
@@ -69,7 +68,6 @@ if (isset($_SESSION['user'])) {
                     <?php echo $_SESSION['message']; ?>
                 </div>
             <?php
-
                 unset($_SESSION['message']);
             }
             ?>

@@ -10,21 +10,23 @@ if (isset($_SESSION['user'])) {
 
 <body>
     <main id='auth' role="main">
-        <section class='auth-section'>
+        <section id='auth-section'>
             <h1>Log In</h1>
             <form action='signIn' method='POST' class='auth-form' role="form" aria-labelledby="loginHeading">
                 <h2 id="loginHeading" class="visually-hidden">Log In Form</h2>
-                <section>
-                    <input id='email' type='email' name='email' autocomplete='on' placeholder='Email...' required aria-label="Email" />
+                <section class="auth-form-input">
+                    <label for='email' class="visually-hidden">Email</label>
+                    <input id='email' type='email' name='email' autocomplete='on' placeholder='Email...' required>
                 </section>
-                <section>
-                    <input id='password' type='password' name='password' autocomplete='on' placeholder='Password...' required aria-label="Password" />
+                <section class="auth-form-input">
+                    <label for='password' class="visually-hidden">Password</label>
+                    <input id='password' type='password' name='password' autocomplete='on' placeholder='Password...' required>
                 </section>
                 <section>
                     <span>Don't have an account? <a class='signup-link' href='/register'>Sign up</a></span>
                 </section>
                 <section id='submit-button'>
-                    <input type="submit" value="Log In" role="button" />
+                    <input type="submit" value="Log In" role="button">
                 </section>
             </form>
             <?php
