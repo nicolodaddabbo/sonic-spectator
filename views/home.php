@@ -1,6 +1,6 @@
 <?php include_once 'template/redirect.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <?php include_once 'template/head.php'; ?>
 
@@ -17,8 +17,8 @@
 
     <?php include_once 'template/footer.php'; ?>
 
-    <script src="/assets/js/postActions.js"></script>
-    <script src="/assets/js/notifications.js"></script>
+    <script src='/assets/js/postActions.js'></script>
+    <script src='/assets/js/notifications.js'></script>
 </body>
 
 </html>

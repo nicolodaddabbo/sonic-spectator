@@ -50,7 +50,7 @@ class PageController
         $posting_users = [];
         foreach ($posts as $post) {
             if (!isset($posting_users[$post['user_id']])) {
-                $posting_users[$post['user_id']] = $this->userRepository->getUser($post['user_id'])[0];
+                $posting_users[$post['user_id']] = $this->userRepository->getUser($post['user_id']);
             }
         }
 
@@ -67,7 +67,7 @@ class PageController
         foreach ($comments as $comment) {
             foreach ($comment as $userComment) {
                 if (!isset($commenting_users[$userComment['user_id']])) {
-                    $commenting_users[$userComment['user_id']] = $this->userRepository->getUser($userComment['user_id'])[0];
+                    $commenting_users[$userComment['user_id']] = $this->userRepository->getUser($userComment['user_id']);
                 }
             }
         }
@@ -114,7 +114,7 @@ class PageController
         foreach ($comments as $comment) {
             foreach ($comment as $userComment) {
                 if (!isset($commenting_users[$userComment['user_id']])) {
-                    $commenting_users[$userComment['user_id']] = $this->userRepository->getUser($userComment['user_id'])[0];
+                    $commenting_users[$userComment['user_id']] = $this->userRepository->getUser($userComment['user_id']);
                 }
             }
         }

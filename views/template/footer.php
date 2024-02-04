@@ -19,4 +19,4 @@
     </nav>
 </footer>
 
-<script src="/assets/js/tabNavigation.js"></script>
+<script src='/assets/js/tabNavigation.js'></script>

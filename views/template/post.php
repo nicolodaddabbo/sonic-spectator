@@ -17,7 +17,7 @@
                     </span>
                 </div>
                 <?php
-                if ($_SERVER['REQUEST_URI'] === "/profile") {
+                if ($_SERVER['REQUEST_URI'] === '/profile') {
                     ?>
                     <div id='delete-<?= $post['id'] ?>' class='post-action-container delete'>
                         <img class='post-action-icon' src='/assets/icons/delete.svg' alt='Delete Icon' />
@@ -27,9 +27,9 @@
                 } ?>
             </section>
             <section class='post-description-container'>
-                <?php if (isset($user) || $_SERVER['REQUEST_URI'] === "/profile") { ?>
+                <?php if (isset($user) || $_SERVER['REQUEST_URI'] === '/profile') { ?>
                     <header class='post-description-user'>
-                        <?= $_SERVER['REQUEST_URI'] === "/profile" ? $_SESSION['user'] : $user['username'] ?>
+                        <?= $_SERVER['REQUEST_URI'] === '/profile' ? $_SESSION['user'] : $user['username'] ?>
                     </header>
                 <?php } else { ?>
                     <a href='/user/<?= $post['user_id'] ?>'>

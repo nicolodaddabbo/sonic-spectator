@@ -1,6 +1,6 @@
 <?php include_once 'template/redirect.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <?php include_once 'template/head.php'; ?>
 
 <body>
@@ -34,11 +34,11 @@
             <?php include 'template/post.php'; ?>
         <?php endforeach; ?>
     </section>
-    <?php if ($_SERVER['REQUEST_URI'] === "/profile") {
+    <?php if ($_SERVER['REQUEST_URI'] === '/profile') {
         include_once 'template/footer.php';
     } ?>
-    <script src="/assets/js/postActions.js"></script>
-    <script src="/assets/js/notifications.js"></script>
+    <script src='/assets/js/postActions.js'></script>
+    <script src='/assets/js/notifications.js'></script>
 </body>
 
 </html>
