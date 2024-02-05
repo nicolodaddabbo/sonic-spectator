@@ -13,7 +13,7 @@
                 </section>
                 <label for='searchInput' class='visually-hidden'>Search Input</label>
                 <input type='text' placeholder='Search...' class='search-bar-text' id='searchInput' role='searchbox'>
-                <section class='clear-action' id='clearButton' role='button' aria-label='Clear Search'>
+                <section class='clear-action' id='clearButton' aria-label='Clear Search'>
                     <img src='/assets/icons/clear.svg' alt='Clear Icon'>
                 </section>
             </section>

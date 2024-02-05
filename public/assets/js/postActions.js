@@ -37,10 +37,9 @@ commentButtons.forEach(commentButton => {
         commentSection.querySelector('.comment-handler').addEventListener('click', function () {
             commentSection.classList.remove('active');
         });
-        
-        const commentForm = commentSection.querySelector('.comment-form-container');
-        commentForm.querySelector('.comment-submit').addEventListener('click', function () {
-            const commentInput = commentForm.querySelector('.comment-input');
+
+        document.getElementById('comment-submit-' + postId).addEventListener('click', function () {
+            const commentInput = document.getElementById('comment-input-' + postId);
             const comment = commentInput.value;
             if (comment) {
                 const formData = new FormData();

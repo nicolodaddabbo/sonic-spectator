@@ -98,12 +98,9 @@
         </section>
         <section class='comment-form-container'>
             <section id='comment-form-<?= $post['id'] ?>' class='comment-form'>
-                <label>
-                    <span class='visually-hidden'>Insert Comment</span>
-                    <textarea name='comment' class='comment-input' placeholder='Add a comment...'
-                        autocomplete='on'></textarea>
-                </label>
-                <button type='submit' class='comment-submit'>
+                <label for='comment-input-<?= $post['id'] ?>' class='visually-hidden'>Insert Comment</label>
+                <textarea name='comment' id='comment-input-<?= $post['id'] ?>' placeholder='Add a comment...' autocomplete='on'></textarea>
+                <button type='submit' id='comment-submit-<?= $post['id'] ?>'>
                     <img src='/assets/icons/send.svg' alt='Send Icon'>
                 </button>
             </section>

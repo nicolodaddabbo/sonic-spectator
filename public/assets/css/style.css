@@ -284,12 +284,6 @@ textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
     justify-content: space-between;
 }
 
-.comment-form label {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
 .comment-form textarea {
     background-color: transparent;
     border: none;
