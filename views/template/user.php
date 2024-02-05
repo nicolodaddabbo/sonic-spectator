@@ -3,7 +3,7 @@
         <a class='user-info-container' href='/user/<?= $profileUserId ?>'>
             <img src='/assets/profiles/<?= $profileUserImage ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
             <span>
-                <strong><?= $user['username'] ?></strong>
+                <?= $user['username'] ?>
             </span>
         </a>
     </span>

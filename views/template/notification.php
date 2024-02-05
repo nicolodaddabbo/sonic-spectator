@@ -4,7 +4,7 @@
             <a class='user-info-container' href='/user/<?= $notification['sending_user_id'] ?>'>
                 <img src='/assets/profiles/<?= $users[$notification['sending_user_id']]['profile_img'] ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
                 <span>
-                    <strong><?= $users[$notification['sending_user_id']]['username'] ?></strong>
+                    <?= $users[$notification['sending_user_id']]['username'] ?>
                 </span>
             </a>
             <span>

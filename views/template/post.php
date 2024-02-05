@@ -3,7 +3,9 @@
         <?php if ($post['artist'] !== ''): ?>
             <section class='concert-container'>
                 <span>
-                    @ <?= $post['artist'] ?><?= substr($post['artist'], -1) === 's' ? "'" : "'s" ?> concert
+                    @
+                    <?= $post['artist'] ?>
+                    <?= substr($post['artist'], -1) === 's' ? "'" : "'s" ?> concert
                 </span>
             </section>
         <?php endif; ?>
@@ -40,9 +42,7 @@
                         <img src='/assets/profiles/<?= $profileImage; ?>' alt='Profile Image'
                             onerror='handleImageError(this, "profile")'>
                         <span>
-                            <strong>
-                                <?= $_SERVER['REQUEST_URI'] === '/profile' ? $_SESSION['user'] : $user['username'] ?>
-                            </strong>
+                            <?= $_SERVER['REQUEST_URI'] === '/profile' ? $_SESSION['user'] : $user['username'] ?>
                         </span>
                     </section>
                 <?php } else { ?>
@@ -50,9 +50,7 @@
                         <img src='/assets/profiles/<?= $posting_users[$post['user_id']]['profile_img'] ?>'
                             alt='Profile Image' onerror='handleImageError(this, "profile")'>
                         <span>
-                            <strong>
-                                <?= $posting_users[$post['user_id']]['username'] ?>
-                            </strong>
+                            <?= $posting_users[$post['user_id']]['username'] ?>
                         </span>
                     </a>
                 <?php } ?>
@@ -82,9 +80,7 @@
                             <img src='/assets/profiles/<?= $commenting_users[$comment['user_id']]['profile_img'] ?>'
                                 alt='Profile Image' onerror='handleImageError(this, "profile")'>
                             <span>
-                                <strong>
-                                    <?= $commenting_users[$comment['user_id']]['username'] ?>
-                                </strong>
+                                <?= $commenting_users[$comment['user_id']]['username'] ?>
                             </span>
                         </span>
                         <span class='comment'>
@@ -99,7 +95,8 @@
         <section class='comment-form-container'>
             <section id='comment-form-<?= $post['id'] ?>' class='comment-form'>
                 <label for='comment-input-<?= $post['id'] ?>' class='visually-hidden'>Insert Comment</label>
-                <textarea name='comment' id='comment-input-<?= $post['id'] ?>' placeholder='Add a comment...' autocomplete='on'></textarea>
+                <textarea name='comment' id='comment-input-<?= $post['id'] ?>' placeholder='Add a comment...'
+                    autocomplete='on'></textarea>
                 <button type='submit' id='comment-submit-<?= $post['id'] ?>'>
                     <img src='/assets/icons/send.svg' alt='Send Icon'>
                 </button>

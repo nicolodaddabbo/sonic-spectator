@@ -81,6 +81,9 @@ commentButtons.forEach(commentButton => {
                             newComment.appendChild(userInfo);
                             newComment.appendChild(commentText);
                             commentContainer.prepend(newComment);
+
+                            const counter = commentButton.querySelector('.post-action-label');
+                            counter.textContent = parseInt(counter.textContent.replace(/\D/g, '')) + 1 + ' comments';
                         } else {
                             showNotification('error', 'Error adding comment');
                         }

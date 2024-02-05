@@ -155,6 +155,10 @@ body {
     gap: 5px;
 }
 
+.user-info-container span {
+    font-weight: bold !important;
+}
+
 a.user-info-container {
     cursor: pointer;
 }
