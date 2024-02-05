@@ -118,6 +118,7 @@ body {
     align-items: center;
     font-size: 12px;
     gap: 5px;
+    cursor: pointer;
 }
 
 .delete {
@@ -165,10 +166,6 @@ a.user-info-container {
 .back {
     height: 20px;
     width: 20px;
-}
-
-.post-action-icon {
-    cursor: pointer;
 }
 
 .post-action-icon.active {
