@@ -22,6 +22,7 @@
     </main>
     <?php include_once 'template/footer.php'; ?>
     <script src='/assets/js/searchBar.js'></script>
+    <script src='/assets/js/followButtonHandler.js'></script>
     <script src='/assets/js/notifications.js'></script>
     <script src="/assets/js/imageErrorHandler.js"></script>
 </body>

@@ -17,19 +17,20 @@
 
     <main>
         <section id='follow-list'>
-            <?php foreach ($usernames as $user_id => $username): ?>
-                <article class='follow-list-item'>
-                    <span>
-                        <a href='/user/<?= $user_id ?>'>
-                            <?= $username ?>
-                        </a>
-                    </span>
-                </article>
-            <?php endforeach; ?>
+            <?php 
+            $userRepository = new \UserRepository();
+            foreach ($users as $user_id => $user):
+                $profileUserId = $user['id'];
+                $profileUserImage = $user['profile_img'];
+                $isFollowing = $userRepository->isFollowing($_SESSION['user_id'], $user['id']);
+                include 'template/user.php';
+            endforeach;
+            ?>
         </section>
     </main>
 
     <script src="/assets/js/postActions.js"></script>
+    <script src='/assets/js/followButtonHandler.js'></script>
     <script src="/assets/js/notifications.js"></script>
 </body>
 

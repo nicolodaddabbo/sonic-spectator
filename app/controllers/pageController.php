@@ -213,11 +213,11 @@ class PageController
         }
 
         $follow_list = $this->userRepository->getUserFollowing($id);
-        $usernames = [];
+        $users = [];
         foreach ($follow_list as $item)
         {
-            if (!isset($usernames[$item['followed_id']])) {
-                $usernames[$item['followed_id']] = $this->userRepository->getUser($item['followed_id'])['username'];
+            if (!isset($users[$item['followed_id']])) {
+                $users[$item['followed_id']] = $this->userRepository->getUser($item['followed_id']);
             }
         }
         $header = 'Following';
