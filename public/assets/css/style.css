@@ -273,6 +273,7 @@ textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
     word-wrap: break-word;
     scrollbar-color: white black;
     scrollbar-width: thin;
+    height: 60px;
 }
 
 .comment-form textarea:focus {
