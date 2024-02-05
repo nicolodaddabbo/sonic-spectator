@@ -139,7 +139,9 @@ function resetForm() {
     imagePreview.src = ''; 
     imagePreview.style.display = 'none';
     addImageText.style.display = 'block';
+    descriptionTextCounter.style.color = 'black';
     descriptionTextCounter.textContent = '0/' + descriptionTextMaxLength;
     artistInput.value = '';
+    artistTextCounter.style.color = 'black';
     artistTextCounter.textContent = '0/' + artistTextMaxLength;
 }
