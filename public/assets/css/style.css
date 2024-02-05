@@ -132,12 +132,14 @@ body {
     font-size: 15px;
 }
 
-.post-description-container section {
+.user-info-container {
+    all: unset;
     display: flex;
     align-items: center;
 }
 
-.post-description-container img {
+
+.user-info-container img {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -145,13 +147,7 @@ body {
     margin-right: 10px;
 }
 
-.post-description-container a{
-    all: unset;
-    display: flex;
-    align-items: center;
-}
-
-.post-description-container header {
+.user-info-container header {
     font-weight: bold;
 }
 
@@ -344,10 +340,6 @@ body {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-}
-
-.user-container a {
-    all: unset;
 }
 
 .button-following,

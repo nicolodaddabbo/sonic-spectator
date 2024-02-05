@@ -28,14 +28,14 @@
             </section>
             <section class='post-description-container'>
                 <?php if (isset($user) || $_SERVER['REQUEST_URI'] === '/profile') { ?>
-                    <section>
+                    <section class='user-info-container'>
                         <img src='/assets/profiles/<?= $profileImage; ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
                         <header>
                             <?= $_SERVER['REQUEST_URI'] === '/profile' ? $_SESSION['user'] : $user['username'] ?>
                         </header>
                     </section>
                 <?php } else { ?>
-                    <a href='/user/<?= $post['user_id'] ?>'>
+                    <a class='user-info-container' href='/user/<?= $post['user_id'] ?>'>
                         <img src='/assets/profiles/<?= $posting_users[$post['user_id']]['profile_img'] ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
                         <header>
                             <?= $posting_users[$post['user_id']]['username'] ?>

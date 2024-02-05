@@ -23,7 +23,7 @@ class UserRepository
 
     public function searchUsers($loggedInUserId, $searchTerm)
     {
-        $query = "SELECT `id`, `username` FROM `user` WHERE `id` != ? AND `username` LIKE ?";
+        $query = "SELECT * FROM `user` WHERE `id` != ? AND `username` LIKE ?";
         $stmt = $this->db->prepare($query);
         $searchTerm = '%' . $searchTerm . '%';
         $stmt->bind_param('is', $loggedInUserId, $searchTerm);

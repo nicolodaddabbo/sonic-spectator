@@ -5,7 +5,8 @@
             $userRepository = new \UserRepository();
             foreach ($users as $user):
                 $profileUserId = $user['id'];
-                $isFollowing = $userRepository->isFollowing($_SESSION['user_id'], $profileUserId);
+                $profileUserImage = $user['profile_img'];
+                $isFollowing = $userRepository->isFollowing($_SESSION['user_id'], $user['id']);
                 include 'template/user.php';
             endforeach;
         }
