@@ -219,8 +219,10 @@ a.user-info-container {
     font-weight: bold;
 }
 
-.comment-user {
-    font-weight: bold;
+.comment-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .comment {

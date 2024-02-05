@@ -53,19 +53,34 @@ commentButtons.forEach(commentButton => {
                     .then(data => {
                         if (data.status) {
                             commentInput.value = '';
+                            // Create new comment element
                             const commentContainer = commentSection.querySelector('.comment-list-container');
                             const newComment = document.createElement('section');
                             newComment.className = 'comment-container';
-                            const commentUser = document.createElement('span');
-                            commentUser.className = 'comment-user';
-                            commentUser.textContent = data.new_comment.username + " ";
-                            newComment.appendChild(commentUser);
+
+                            // User info container
+                            const userInfo = document.createElement('span');
+                            userInfo.className = 'user-info-container';
+                            const userImg = document.createElement('img');
+                            userImg.src = '/assets/profiles/' + data.new_comment.profile_img;
+                            userImg.alt = 'Profile Image';
+                            userImg.onerror = function () {
+                                handleImageError(this, 'profile');
+                            };
+                            const userName = document.createElement('header');
+                            userName.textContent = data.new_comment.username;
+                            userInfo.appendChild(userImg);
+                            userInfo.appendChild(userName);
+
+                            // Comment text
                             const commentText = document.createElement('span');
                             commentText.className = 'comment';
                             commentText.textContent = data.new_comment.text;
+
+                            // Assemble the comment element
+                            newComment.appendChild(userInfo);
                             newComment.appendChild(commentText);
                             commentContainer.prepend(newComment);
-                            // console.log('Comment added successfully');
                         } else {
                             showNotification('error', 'Error adding comment');
                         }

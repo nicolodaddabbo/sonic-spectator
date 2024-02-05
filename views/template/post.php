@@ -59,8 +59,11 @@
                 foreach ($comments[$post['id']] as $comment) {
                     ?>
                     <section class='comment-container'>
-                        <span class='comment-user'>
-                            <?= $commenting_users[$comment['user_id']]['username'] ?>
+                        <span class='user-info-container'>
+                            <img src='/assets/profiles/<?= $commenting_users[$comment['user_id']]['profile_img'] ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
+                            <header>
+                                <?= $commenting_users[$comment['user_id']]['username'] ?>
+                            </header>
                         </span>
                         <span class='comment'>
                             <?= $comment['text'] ?>

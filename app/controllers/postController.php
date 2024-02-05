@@ -74,8 +74,11 @@ class PostController
                 $this->notificationService->sendNotificationWithPost(2, $user_id, $owner_id, $post_id);
             }
 
+            $user = $this->userRepository->getUser($user_id);
+
             $response['new_comment'] = [
-                'username' => $this->userRepository->getUser($user_id)['username'],
+                'profile_img' => $user['profile_img'],
+                'username' => $user['username'],
                 'text' => $text,
             ];
             $response['status'] = true;
