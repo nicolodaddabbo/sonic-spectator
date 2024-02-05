@@ -248,7 +248,7 @@ a.user-info-container {
     justify-content: space-between;
 }
 
-.comment-input {
+.comment-form input {
     background-color: transparent;
     border: none;
     color: white;
@@ -256,16 +256,16 @@ a.user-info-container {
     font-weight: bold;
 }
 
-.comment-input:focus {
+.comment-form input:focus {
     outline: none;
 }
 
-.comment-submit {
+.comment-form button {
     background-color: transparent;
     border: none;
 }
 
-.comment-submit img {
+.comment-form button img {
     width: 30px;
     height: 30px;
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
