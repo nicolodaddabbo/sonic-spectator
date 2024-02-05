@@ -160,6 +160,7 @@ body {
 }
 
 a.user-info-container {
+    text-decoration: none;
     cursor: pointer;
 }
 
