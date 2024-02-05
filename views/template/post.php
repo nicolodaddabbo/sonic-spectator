@@ -29,16 +29,16 @@
                 <?php if (isset($user) || $_SERVER['REQUEST_URI'] === '/profile') { ?>
                     <section class='user-info-container'>
                         <img src='/assets/profiles/<?= $profileImage; ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
-                        <header>
-                            <?= $_SERVER['REQUEST_URI'] === '/profile' ? $_SESSION['user'] : $user['username'] ?>
-                        </header>
+                        <span>
+                            <strong><?= $_SERVER['REQUEST_URI'] === '/profile' ? $_SESSION['user'] : $user['username'] ?></strong>
+                        </span>
                     </section>
                 <?php } else { ?>
                     <a class='user-info-container' href='/user/<?= $post['user_id'] ?>'>
                         <img src='/assets/profiles/<?= $posting_users[$post['user_id']]['profile_img'] ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
-                        <header>
-                            <?= $posting_users[$post['user_id']]['username'] ?>
-                        </header>
+                        <span>
+                            <strong><?= $posting_users[$post['user_id']]['username'] ?></strong>
+                        </span>
                     </a>
                 <?php } ?>
                 <p>
@@ -60,9 +60,9 @@
                     <article class='comment-container'>
                         <span class='user-info-container'>
                             <img src='/assets/profiles/<?= $commenting_users[$comment['user_id']]['profile_img'] ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
-                            <header>
-                                <?= $commenting_users[$comment['user_id']]['username'] ?>
-                            </header>
+                            <span>
+                                <strong><?= $commenting_users[$comment['user_id']]['username'] ?></strong>
+                            </span>
                         </span>
                         <span class='comment'>
                             <?= $comment['text'] ?>
@@ -75,9 +75,11 @@
         </section>
         <section class='comment-form-container'>
             <section id='comment-form-<?= $post['id'] ?>' class='comment-form'>
-                <label for='commentInput' class='visually-hidden'>Insert Comment</label>
-                <textarea type='text' name='comment' id='commentInput' placeholder='Add a comment...' autocomplete='on'></textarea>
-                <button type='submit' id='commentSubmit'>
+                <label>
+                    <span class='visually-hidden'>Insert Comment</span>
+                    <textarea name='comment' class='comment-input' placeholder='Add a comment...' autocomplete='on'></textarea>
+                </label>
+                <button type='submit' class='comment-submit'>
                     <img src='/assets/icons/send.svg' alt='Send Icon'>
                 </button>
             </section>

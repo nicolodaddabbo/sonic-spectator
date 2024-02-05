@@ -162,10 +162,6 @@ a.user-info-container:active {
     object-fit: cover;
 }
 
-.user-info-container header {
-    font-weight: bold;
-}
-
 .post-description-container p {
     margin-top: 4.25px;
     margin-left: 5px;
@@ -266,6 +262,12 @@ textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.comment-form label {
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .comment-form textarea {

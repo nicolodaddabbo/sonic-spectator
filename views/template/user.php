@@ -2,9 +2,9 @@
     <span>
         <a class='user-info-container' href='/user/<?= $profileUserId ?>'>
             <img src='/assets/profiles/<?= $profileUserImage ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
-            <header>
-                <?= $user['username'] ?>
-            </header>
+            <span>
+                <strong><?= $user['username'] ?></strong>
+            </span>
         </a>
     </span>
     <?php
