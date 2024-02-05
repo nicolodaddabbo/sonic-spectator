@@ -4,8 +4,7 @@
         <section class='post-bottom-container'>
             <section class='post-actions-container'>
                 <div id='like-<?= $post['id'] ?>' class='post-action-container'>
-                    <img class='post-action-icon <?= in_array($_SESSION['user_id'], $likes[$post['id']]) ? 'active' : '' ?>'
-                        src='/assets/icons/like.svg' alt='Like Icon' />
+                    <img class='post-action-icon <?= in_array($_SESSION['user_id'], $likes[$post['id']]) ? 'active' : '' ?>' src='/assets/icons/like.svg' alt='Like Icon'>
                     <span id='like-counter-<?= $post['id'] ?>' class='post-action-label'>
                         <?= count($likes[$post['id']]) ?> likes
                     </span>
@@ -76,9 +75,10 @@
         </section>
         <section class='comment-form-container'>
             <section id='comment-form-<?= $post['id'] ?>' class='comment-form'>
-                <input type='text' name='comment' class='comment-input' placeholder='Add a comment...' />
+                <label for='comment' class='visually-hidden'>Insert Comment</label>
+                <input type='text' name='comment' id='comment' class='comment-input' placeholder='Add a comment...'>
                 <button type='submit' class='comment-submit'>
-                    <img src='/assets/icons/send.svg' alt='Send Icon' />
+                    <img src='/assets/icons/send.svg' alt='Send Icon'>
                 </button>
             </section>
         </section>
