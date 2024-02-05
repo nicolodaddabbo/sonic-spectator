@@ -14,6 +14,8 @@ function setupFollowButtons() {
 
 async function toggleFollow(profileUserId) {
     const followButton = document.getElementById('followButton' + profileUserId);
+    const followersCount = document.getElementById('followers-counter');
+
     try {
         await fetch('/toggleFollow', {
             method: 'POST',
@@ -28,11 +30,18 @@ async function toggleFollow(profileUserId) {
                 followButton.innerHTML = 'Following';
                 followButton.classList.remove('button-not-following');
                 followButton.classList.add('button-following');
+                if (followersCount) {
+                    followersCount.innerHTML = parseInt(followersCount.innerHTML) + 1;
+                }
             } else {
                 followButton.innerHTML = '+ Follow';
                 followButton.classList.remove('button-following');
                 followButton.classList.add('button-not-following');
+                if (followersCount) {
+                    followersCount.innerHTML = parseInt(followersCount.innerHTML) - 1;
+                }
             }
+
         })
         .catch(() => {
             console.error('Failed to toggle follow status');

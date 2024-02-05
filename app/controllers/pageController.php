@@ -142,6 +142,7 @@ class PageController
         $post_count = count($posts);
         $follower_count = $this->userRepository->getUserFollowersCount($user['id']);
         $following_count = $this->userRepository->getUserFollowingCount($user['id']);
+        $isFollowing = $this->userRepository->isFollowing($_SESSION['user_id'], $user['id']);
         $comments = $this->getComments($posts);
         $commenting_users = [];
         foreach ($comments as $comment) {

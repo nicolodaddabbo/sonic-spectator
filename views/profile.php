@@ -7,7 +7,18 @@
 <body>
     <?php include_once 'template/profile_header.php'; ?>
     <section class='profile-info'>
-        <img src='/assets/profiles/<?= $profileImage; ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
+        <img src='/assets/profiles/<?= $profileImage; ?>' alt='Profile Image'
+            onerror='handleImageError(this, "profile")'>
+        <?php
+        if ($_SERVER['REQUEST_URI'] !== '/profile' ) {
+            ?>
+            <button class='button-<?= $isFollowing ? 'following' : 'not-following' ?>'
+                id='followButton<?= $user['id'] ?>'>
+                <?= $isFollowing ? 'Following' : '+ Follow' ?>
+            </button>
+            <?php
+        }
+        ?>
     </section>
     <section class='profile-stats'>
         <section class='profile-stats-item'>
@@ -18,7 +29,7 @@
         </section>
         <a href='/followers/<?= $_SERVER['REQUEST_URI'] === '/profile' ? $_SESSION['user_id'] : $user['id'] ?>'>
             <section class='profile-stats-item'>
-                <span class='profile-stats-item-value'>
+                <span id='followers-counter' class='profile-stats-item-value'>
                     <?= $follower_count; ?>
                 </span>
                 <span class='profile-stats-item-title'>Followers</span>
@@ -45,6 +56,7 @@
     <script src='/assets/js/postActions.js'></script>
     <script src='/assets/js/notifications.js'></script>
     <script src="/assets/js/imageErrorHandler.js"></script>
+    <script src='/assets/js/followButtonHandler.js'></script>
 </body>
 
 </html>
