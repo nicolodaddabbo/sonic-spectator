@@ -138,6 +138,7 @@ body {
     all: unset;
     display: flex;
     align-items: center;
+    gap: 5px;
 }
 
 a.user-info-container {
@@ -150,7 +151,6 @@ a.user-info-container {
     height: 30px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 10px;
 }
 
 .user-info-container header {
