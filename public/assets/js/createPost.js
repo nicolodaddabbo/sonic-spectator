@@ -97,6 +97,11 @@ document.getElementById('postForm').addEventListener('submit', function (event) 
 });
 
 function showNotification(type, message) {
+    const existingNotification = notificationContainer.querySelector('.alert');
+
+    if (existingNotification) {
+        existingNotification.remove();
+    }
     const notification = document.createElement('article');
     notification.className = `alert ${type}`;
     notification.textContent = message;
