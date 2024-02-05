@@ -161,6 +161,12 @@ a.user-info-container {
 
 a.user-info-container:hover {
     text-decoration: none;
+    color: inherit;
+}
+
+a.user-info-container:active {
+    text-decoration: none;
+    color: inherit;
 }
 
 .user-info-container img {
@@ -627,12 +633,19 @@ textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 }
 
 .profile-stats a {
+    text-decoration: none;
     all: unset;
     cursor: pointer;
 }
 
 .profile-stats a:hover {
     text-decoration: none;
+    color: inherit;
+}
+
+.profile-stats a:active {
+    text-decoration: none;
+    color: inherit;
 }
 
 #follow-list {
