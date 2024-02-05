@@ -12,7 +12,10 @@ function liveSearch(searchTerm) {
     if (searchTerm.length == 0) {
         // Clear the content of the "searchResults" element and return
         document.getElementById("searchResults").innerHTML = "";
+        document.getElementById('searchPlaceholder').style.display = 'inherit';
         return;
+    } else {
+        document.getElementById('searchPlaceholder').style.display = 'none';
     }
     // Create a new XMLHttpRequest object
     const xmlhttp = new XMLHttpRequest();

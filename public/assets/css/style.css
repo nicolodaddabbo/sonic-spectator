@@ -220,6 +220,7 @@ a.user-info-container:active {
     0% {
         transform: translateY(100%);
     }
+
     100% {
         transform: translateY(0%);
     }
@@ -275,11 +276,29 @@ a.user-info-container:active {
     line-height: 55px;
 }
 
-textarea:focus::placeholder { color:transparent; }
-textarea:focus::-webkit-input-placeholder { color:transparent; }
-textarea:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
-textarea:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
-textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+textarea:focus::placeholder {
+    color: transparent;
+}
+
+textarea:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+textarea:focus:-moz-placeholder {
+    color: transparent;
+}
+
+/* FF 4-18 */
+textarea:focus::-moz-placeholder {
+    color: transparent;
+}
+
+/* FF 19+ */
+textarea:focus:-ms-input-placeholder {
+    color: transparent;
+}
+
+/* IE 10+ */
 
 .comment-container {
     display: flex;
@@ -361,6 +380,41 @@ textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
     align-self: stretch;
     border: 5px solid #FF5454;
     background: #FFF;
+}
+
+#searchPlaceholder {
+    height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#searchIconShadow {
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 7px);
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    z-index: -1;
+}
+
+#searchIcon {
+    width: 150px;
+    height: 150px;
+    filter: invert(37%) sepia(39%) saturate(5366%) hue-rotate(342deg) brightness(99%) contrast(94%);
+}
+
+#searchedUserNotFound {
+    font-size: 18px;
+    font-weight: bold;
+    border: 5px solid #FF5454;
+    margin-top: 20px;
+    padding: 10px;
+    box-shadow: 5px 5px 0px 0px #000;
 }
 
 .search-action {

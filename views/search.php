@@ -18,6 +18,10 @@
                 </section>
             </section>
             <section class='search-results' id='searchResults' role='region' aria-live='polite'></section>
+            <section class='search-placeholder' id='searchPlaceholder'>
+                <img id='searchIcon' src='/assets/icons/search.svg' alt='Search Icon'>
+                <img id='searchIconShadow' src='/assets/icons/search.svg' alt='Search Icon Shadow'>
+            </section>
         </section>
     </main>
     <?php include_once 'template/footer.php'; ?>
