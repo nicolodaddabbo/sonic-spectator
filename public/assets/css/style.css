@@ -152,6 +152,7 @@ body {
 }
 
 .post-description-container p {
+    margin-top: 4.25px;
     margin-left: 5px;
     word-break: break-all;
 }
