@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang='en'>
 <?php include_once 'template/head.php'; ?>
+<?php include_once 'utils/time_elapsed_string.php'; ?>
 
 <body>
     <?php include_once 'template/profile_header.php'; ?>

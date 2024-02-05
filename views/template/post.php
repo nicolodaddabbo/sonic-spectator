@@ -1,15 +1,19 @@
 <article id='post-<?= $post['id'] ?>' class='post-wrapper'>
     <section class='post-container'>
-        <section class='concert-container'>
-            <span>
-                @ <?= $post['artist'] ?><?= substr($post['artist'], -1) === 's' ? "'" : "'s" ?> concert
-            </span>
-        </section>
-        <img class='post-image' src='/assets/posts/<?= $post['image'] ?>' alt='Post Image' onerror='handleImageError(this, "post")'>
+        <?php if ($post['artist'] !== ''): ?>
+            <section class='concert-container'>
+                <span>
+                    @ <?= $post['artist'] ?><?= substr($post['artist'], -1) === 's' ? "'" : "'s" ?> concert
+                </span>
+            </section>
+        <?php endif; ?>
+        <img class='post-image' src='/assets/posts/<?= $post['image'] ?>' alt='Post Image'
+            onerror='handleImageError(this, "post")'>
         <section class='post-bottom-container'>
             <section class='post-actions-container'>
                 <div id='like-<?= $post['id'] ?>' class='post-action-container'>
-                    <img class='post-action-icon <?= in_array($_SESSION['user_id'], $likes[$post['id']]) ? 'active' : '' ?>' src='/assets/icons/like.svg' alt='Like Icon'>
+                    <img class='post-action-icon <?= in_array($_SESSION['user_id'], $likes[$post['id']]) ? 'active' : '' ?>'
+                        src='/assets/icons/like.svg' alt='Like Icon'>
                     <span id='like-counter-<?= $post['id'] ?>' class='post-action-label'>
                         <?= count($likes[$post['id']]) ?> likes
                     </span>
@@ -33,22 +37,33 @@
             <section class='post-description-container'>
                 <?php if (isset($user) || $_SERVER['REQUEST_URI'] === '/profile') { ?>
                     <section class='user-info-container'>
-                        <img src='/assets/profiles/<?= $profileImage; ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
+                        <img src='/assets/profiles/<?= $profileImage; ?>' alt='Profile Image'
+                            onerror='handleImageError(this, "profile")'>
                         <span>
-                            <strong><?= $_SERVER['REQUEST_URI'] === '/profile' ? $_SESSION['user'] : $user['username'] ?></strong>
+                            <strong>
+                                <?= $_SERVER['REQUEST_URI'] === '/profile' ? $_SESSION['user'] : $user['username'] ?>
+                            </strong>
                         </span>
                     </section>
                 <?php } else { ?>
                     <a class='user-info-container' href='/user/<?= $post['user_id'] ?>'>
-                        <img src='/assets/profiles/<?= $posting_users[$post['user_id']]['profile_img'] ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
+                        <img src='/assets/profiles/<?= $posting_users[$post['user_id']]['profile_img'] ?>'
+                            alt='Profile Image' onerror='handleImageError(this, "profile")'>
                         <span>
-                            <strong><?= $posting_users[$post['user_id']]['username'] ?></strong>
+                            <strong>
+                                <?= $posting_users[$post['user_id']]['username'] ?>
+                            </strong>
                         </span>
                     </a>
                 <?php } ?>
                 <p>
                     <?= $post['description'] ?>
                 </p>
+            </section>
+            <section class='post-date-container'>
+                <span>
+                    <?= time_elapsed_string($post['date']) ?>
+                </span>
             </section>
         </section>
     </section>
@@ -64,9 +79,12 @@
                     ?>
                     <article class='comment-container'>
                         <span class='user-info-container'>
-                            <img src='/assets/profiles/<?= $commenting_users[$comment['user_id']]['profile_img'] ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
+                            <img src='/assets/profiles/<?= $commenting_users[$comment['user_id']]['profile_img'] ?>'
+                                alt='Profile Image' onerror='handleImageError(this, "profile")'>
                             <span>
-                                <strong><?= $commenting_users[$comment['user_id']]['username'] ?></strong>
+                                <strong>
+                                    <?= $commenting_users[$comment['user_id']]['username'] ?>
+                                </strong>
                             </span>
                         </span>
                         <span class='comment'>
@@ -82,7 +100,8 @@
             <section id='comment-form-<?= $post['id'] ?>' class='comment-form'>
                 <label>
                     <span class='visually-hidden'>Insert Comment</span>
-                    <textarea name='comment' class='comment-input' placeholder='Add a comment...' autocomplete='on'></textarea>
+                    <textarea name='comment' class='comment-input' placeholder='Add a comment...'
+                        autocomplete='on'></textarea>
                 </label>
                 <button type='submit' class='comment-submit'>
                     <img src='/assets/icons/send.svg' alt='Send Icon'>
