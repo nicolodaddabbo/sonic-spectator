@@ -714,6 +714,12 @@ a.user-info-container {
     margin: auto;
 }
 
+.notification-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 .notification-wrapper {
     display: flex;
     flex-direction: row;

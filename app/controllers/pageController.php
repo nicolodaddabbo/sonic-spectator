@@ -167,12 +167,12 @@ class PageController
         define('NOTIFICATION_TYPE_FOLLOW', 3);
 
         $notifications = $this->userRepository->getUserNotifications($_SESSION['user_id']);
-        $usernames = [];
+        $users = [];
         $notification_types = [];
         $post_images = [];
         foreach ($notifications as $notification) {
-            if (!isset($usernames[$notification['sending_user_id']])) {
-                $usernames[$notification['sending_user_id']] = $this->userRepository->getUser($notification['sending_user_id'])['username'];
+            if (!isset($users[$notification['sending_user_id']])) {
+                $users[$notification['sending_user_id']] = $this->userRepository->getUser($notification['sending_user_id']);
             }
             if (!isset($notification_types[$notification['notification_type_id']])) {
                 $notification_types[$notification['notification_type_id']] = $this->notificationService->getNotificationType($notification['id']);

@@ -1,8 +1,11 @@
 <section class='notification-wrapper <?= $notification['viewed'] ? '' : 'new' ?>'>
     <section>
-        <section>
-            <a href='/user/<?= $notification['sending_user_id'] ?>'>
-                <?= $usernames[$notification['sending_user_id']] ?>
+        <section class='notification-info'>
+            <a class='user-info-container' href='/user/<?= $notification['sending_user_id'] ?>'>
+                <img src='/assets/profiles/<?= $users[$notification['sending_user_id']]['profile_img'] ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
+                <header>
+                    <?= $users[$notification['sending_user_id']]['username'] ?>
+                </header>
             </a>
             <span>
                 <?= $notification_types[$notification['notification_type_id']]['text'] ?>
