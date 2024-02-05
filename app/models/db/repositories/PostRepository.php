@@ -33,7 +33,7 @@ class PostRepository
 
     public function getUserPosts($user_id)
     {
-        $query = "SELECT `id`, `description`, `image` FROM `post` WHERE `user_id`=? ORDER BY `date` DESC";
+        $query = "SELECT * FROM `post` WHERE `user_id`=? ORDER BY `date` DESC";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $user_id);
         $stmt->execute();

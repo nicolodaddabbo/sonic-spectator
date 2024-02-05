@@ -1,5 +1,10 @@
 <article id='post-<?= $post['id'] ?>' class='post-wrapper'>
     <section class='post-container'>
+        <section class='concert-container'>
+            <span>
+                @ <?= $post['artist'] ?> concert
+            </span>
+        </section>
         <img class='post-image' src='/assets/posts/<?= $post['image'] ?>' alt='Post Image' onerror='handleImageError(this, "post")'>
         <section class='post-bottom-container'>
             <section class='post-actions-container'>

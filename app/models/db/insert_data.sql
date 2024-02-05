@@ -42,10 +42,10 @@ INSERT INTO `block` (`blocker_id`, `blocked_id`) VALUES
 (3, 1);
 
 -- Post Table
-INSERT INTO `post` (`description`, `image`, `user_id`) VALUES
-('Post 1 Description', 'post1.jpg', 1),
-('Post 2 Description', 'post2.jpg', 2),
-('Post 3 Description', 'post3.jpg', 3);
+INSERT INTO `post` (`description`, `image`, `artist`, `user_id`) VALUES
+('Post 1 Description', 'post1.jpg', 'Queen', 1),
+('Post 2 Description', 'post2.jpg', 'The Beatles', 2),
+('Post 3 Description', 'post3.jpg', 'The Rolling Stones', 3);
 
 -- Linking table to associate tags with posts
 INSERT INTO `post_tag` (`post_id`, `tag_id`) VALUES
