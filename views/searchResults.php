@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang='en'>
 <?php
 if (isset($users) && !empty($users)) {
     $userRepository = new \UserRepository();
@@ -13,5 +11,3 @@ if (isset($users) && !empty($users)) {
     echo "<section id='searchedUserNotFound'>No user found</section>";
 }
 ?>
-
-</html>
