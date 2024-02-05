@@ -180,7 +180,7 @@ a.user-info-container {
     height: 80%;
     background-color: black;
     color: white;
-    padding: 10px;
+    padding: 0 10px 10px 10px;
     z-index: 100;
     display: none;
 }
@@ -188,7 +188,6 @@ a.user-info-container {
 .comment-section.active {
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 .comment-list-container {
@@ -197,7 +196,7 @@ a.user-info-container {
     gap: 10px;
     flex: 1;
     overflow-y: auto;
-    overflow-x: hidden; 
+    overflow-x: hidden;
     scrollbar-color: white black;
     scrollbar-width: thin;
 }
@@ -216,6 +215,7 @@ a.user-info-container {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+    padding: 15px 0;
 }
 
 .comment-handler div {
@@ -227,8 +227,19 @@ a.user-info-container {
 
 .comment-section-header {
     font-size: 15px;
+    padding: 0 0 10px 0;
     font-weight: bold;
 }
+
+.comment-form textarea::placeholder {
+    line-height: 55px;
+}
+
+textarea:focus::placeholder { color:transparent; }
+textarea:focus::-webkit-input-placeholder { color:transparent; }
+textarea:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+textarea:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 
 .comment-container {
     display: flex;
@@ -640,7 +651,7 @@ a.user-info-container {
     flex-shrink: 0;
 }
 
-.auth-form section, 
+.auth-form section,
 #gender-section {
     width: 300px;
     display: flex;
@@ -664,8 +675,7 @@ a.user-info-container {
     text-align: center;
 }
 
-.auth-form input
- {
+.auth-form input {
     display: flex;
     padding: 15px;
     flex-direction: column;
@@ -723,7 +733,7 @@ a.user-info-container {
     padding-right: 20px;
 }
 
-#gender-selection p{
+#gender-selection p {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -836,5 +846,9 @@ a.user-info-container {
         width: 50%;
         margin: auto;
         justify-content: space-around;
+    }
+
+    #follow-list {
+        width: 50%;
     }
 }
