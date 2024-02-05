@@ -41,6 +41,7 @@ commentButtons.forEach(commentButton => {
         document.getElementById('comment-submit-' + postId).addEventListener('click', function () {
             const commentInput = document.getElementById('comment-input-' + postId);
             const comment = commentInput.value;
+            commentInput.value = '';
             if (comment) {
                 const formData = new FormData();
                 formData.append('post_id', postId);
