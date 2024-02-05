@@ -32,7 +32,7 @@
             </section>
         </a>
     </section>
-    <section id='post-list' role='list'>
+    <section id='post-list'>
         <h2 class='post-list-title'>Posts</h2>
         <?php foreach ($posts as $post): ?>
             <?php include 'template/post.php'; ?>
