@@ -212,6 +212,16 @@ a.user-info-container:active {
     padding: 0 10px 10px 10px;
     z-index: 100;
     display: none;
+    animation: slide-up 0.3s ease-in-out;
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
 }
 
 .comment-section.active {
@@ -593,6 +603,7 @@ textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
     align-items: center;
     justify-content: center;
     gap: 5px;
+    margin-bottom: 10px;
 }
 
 .profile-info img {
