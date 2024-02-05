@@ -51,6 +51,7 @@ body {
     gap: 2px;
     flex: 1 0 0;
     opacity: 0.5;
+    cursor: pointer;
 }
 
 .tab.active {
@@ -138,6 +139,10 @@ body {
     align-items: center;
 }
 
+a.user-info-container {
+    cursor: pointer;
+}
+
 
 .user-info-container img {
     width: 30px;
@@ -160,6 +165,10 @@ body {
 .back {
     height: 20px;
     width: 20px;
+}
+
+.post-action-icon {
+    cursor: pointer;
 }
 
 .post-action-icon.active {
@@ -198,6 +207,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 }
 
 .comment-handler div {
@@ -426,6 +436,7 @@ body {
     border: 5px solid #000;
     background: rgba(0, 0, 0, 0.05);
     box-shadow: 5px 5px 0px 0px #FF5454;
+    cursor: pointer;
 }
 
 .create-post-image span {
@@ -565,6 +576,7 @@ body {
 
 .profile-stats a {
     all: unset;
+    cursor: pointer;
 }
 
 #follow-list {
