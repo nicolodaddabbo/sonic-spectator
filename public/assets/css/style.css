@@ -196,7 +196,18 @@ a.user-info-container {
     flex-direction: column;
     gap: 10px;
     flex: 1;
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden; 
+    scrollbar-color: white black;
+    scrollbar-width: thin;
+}
+
+.comment-list-container::-webkit-scrollbar-thumb {
+    background-color: white;
+}
+
+.comment-list-container::-webkit-scrollbar-track {
+    background-color: black;
 }
 
 .comment-handler {
