@@ -248,16 +248,29 @@ a.user-info-container {
     justify-content: space-between;
 }
 
-.comment-form input {
+.comment-form textarea {
     background-color: transparent;
     border: none;
     color: white;
     font-size: 18px;
     font-weight: bold;
+    width: 100%;
+    resize: none;
+    word-wrap: break-word;
+    scrollbar-color: white black;
+    scrollbar-width: thin;
 }
 
-.comment-form input:focus {
+.comment-form textarea:focus {
     outline: none;
+}
+
+.comment-form textarea::-webkit-scrollbar-thumb {
+    background-color: white;
+}
+
+.comment-form textarea::-webkit-scrollbar-track {
+    background-color: black;
 }
 
 .comment-form button {

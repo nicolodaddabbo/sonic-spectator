@@ -76,7 +76,7 @@
         <section class='comment-form-container'>
             <section id='comment-form-<?= $post['id'] ?>' class='comment-form'>
                 <label for='commentInput' class='visually-hidden'>Insert Comment</label>
-                <input type='text' name='comment' id='commentInput' placeholder='Add a comment...'>
+                <textarea type='text' name='comment' id='commentInput' placeholder='Add a comment...' autocomplete='on'></textarea>
                 <button type='submit' id='commentSubmit'>
                     <img src='/assets/icons/send.svg' alt='Send Icon'>
                 </button>
