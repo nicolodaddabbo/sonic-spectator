@@ -9,6 +9,11 @@
         <form class='create-post-container' id='postForm' role='form' aria-labelledby='postFormHeading'>
             <h2 id='postFormHeading' class='visually-hidden'>Create Post Form</h2>
             <section class='create-post-input'>
+                <label for='artistInput'>Concert Artist</label>
+                <textarea placeholder='Enter the band/artist name' name='artist' id='artistInput' autocomplete='off'></textarea>
+                <p id='artistTextCounter'>0/35</p>
+            </section>
+            <section class='create-post-input'>
                 <label for='descriptionInput'>Description</label>
                 <textarea placeholder='Enter post description' name='description' id='descriptionInput' aria-required='true' autocomplete='off' required></textarea>
                 <p id='textCounter'>0/255</p>

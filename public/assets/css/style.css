@@ -74,7 +74,7 @@ body {
 
 .post-container {
     display: flex;
-    padding: 20px;
+    padding: 15px;
     flex-direction: column;
     align-items: center;
     gap: 10px;
@@ -83,6 +83,20 @@ body {
     background: #FFF;
     box-shadow: 5px 5px 0px 0px #FF5454;
     max-width: 340px;
+    position: relative;
+}
+
+.concert-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px 10px;
+    background: #FF5454;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+
 }
 
 .post-image {
@@ -435,7 +449,7 @@ textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
     flex-direction: column;
     align-items: center;
     margin: auto;
-    gap: 40px;
+    gap: 20px;
     flex-shrink: 0;
 }
 

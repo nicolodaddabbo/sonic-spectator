@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `post` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `description` VARCHAR(255) NOT NULL,
     `image` VARCHAR(255) NOT NULL,
+    `artist` VARCHAR(255),
     `user_id` INT NOT NULL,
     `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE

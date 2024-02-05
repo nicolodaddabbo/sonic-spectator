@@ -5,6 +5,9 @@ const imageInput = document.getElementById('imageInput');
 const notificationContainer = document.getElementById('notification-container');
 const descriptionTextCounter = document.getElementById('textCounter');
 const postImageBox = document.getElementById('postImageBox');
+const artistInput = document.getElementById('artistInput');
+const artistTextCounter = document.getElementById('artistTextCounter');
+const artistTextMaxLength = 35;
 const descriptionTextMaxLength = 255;
 
 function getColorBasedOnPercentage(percentage) {
@@ -13,28 +16,38 @@ function getColorBasedOnPercentage(percentage) {
     return 'rgb(' + red + ', 0, 0)';
 }
 
-descriptionInput.addEventListener('input', function () {
-    
-    const textarea = this;
-
+function textAreaChecks(maxLenght, textarea, counter) {
     // Change textarea height to match wrapping text
-    textarea.style.height = (textarea.scrollHeight > textarea.clientHeight) ? (textarea.scrollHeight)+"px" : "60px";
-
+    textarea.style.height = (textarea.scrollHeight > textarea.clientHeight) ? (textarea.scrollHeight) + "px" : "60px";
     // Get the current length of the text
     const currentLength = textarea.value.length;
     // Calculate the percentage of characters used
-    const percentageUsed = (currentLength / descriptionTextMaxLength) * 100;
+    const percentageUsed = (currentLength / maxLenght) * 100;
     // Change color based on percentage
     const color = getColorBasedOnPercentage(percentageUsed);
     // Update the counter text and color
-    descriptionTextCounter.textContent = currentLength + '/' + descriptionTextMaxLength;
-    descriptionTextCounter.style.color = color;
+    counter.textContent = currentLength + '/' + maxLenght;
+    counter.style.color = color;
     // Trim the text if it exceeds the maximum length
-    if (currentLength > descriptionTextMaxLength) {
-        textarea.value = textarea.value.substring(0, descriptionTextMaxLength);
-        descriptionTextCounter.textContent = descriptionTextMaxLength + '/' + descriptionTextMaxLength;
+    if (currentLength > maxLenght) {
+        textarea.value = textarea.value.substring(0, maxLenght);
+        counter.textContent = maxLenght + '/' + maxLenght;
     }
+}
+
+descriptionInput.addEventListener('input', function() {
+    textAreaChecks(descriptionTextMaxLength, descriptionInput, descriptionTextCounter);
 });
+
+artistInput.addEventListener('input', function () {
+    textAreaChecks(artistTextMaxLength, artistInput, artistTextCounter);
+});
+
+artistInput.onkeydown = function (e) {
+    if (e.keyCode === 13) {
+        e.preventDefault();
+    }
+};
 
 postImageBox.addEventListener('click', function () {
     document.getElementById('imageInput').click();
@@ -56,11 +69,13 @@ imageInput.addEventListener('change', function() {
 document.getElementById('postButton').addEventListener('click', function () {
     const selectedFile = imageInput.files[0];
     const description = descriptionInput.value;
+    const artist = artistInput.value;
 
     if (selectedFile && description) {
         // FormData to construct the data to send to the server
         const formData = new FormData();
         formData.append('description', description);
+        formData.append('artist', artist);
         formData.append('image', selectedFile);
 
         // Send the data to the server using fetch
@@ -125,4 +140,6 @@ function resetForm() {
     imagePreview.style.display = 'none';
     addImageText.style.display = 'block';
     descriptionTextCounter.textContent = '0/' + descriptionTextMaxLength;
+    artistInput.value = '';
+    artistTextCounter.textContent = '0/' + artistTextMaxLength;
 }
