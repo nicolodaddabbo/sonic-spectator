@@ -19,6 +19,7 @@
 
     <script src='/assets/js/postActions.js'></script>
     <script src='/assets/js/notifications.js'></script>
+    <script src="/assets/js/imageErrorHandler.js"></script>
 </body>
 
 </html>

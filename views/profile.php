@@ -6,7 +6,7 @@
 <body>
     <?php include_once 'template/profile_header.php'; ?>
     <section class='profile-info'>
-        <img src='/assets/profiles/<?= $profileImage; ?>' alt='Profile Image' onerror='this.onerror=null;this.src="/assets/system/defaultProfile.jpg"'>
+        <img src='/assets/profiles/<?= $profileImage; ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
     </section>
     <section class='profile-stats'>
         <section class='profile-stats-item'>
@@ -43,6 +43,7 @@
     } ?>
     <script src='/assets/js/postActions.js'></script>
     <script src='/assets/js/notifications.js'></script>
+    <script src="/assets/js/imageErrorHandler.js"></script>
 </body>
 
 </html>
