@@ -22,7 +22,7 @@
                 <span id='addImageText'>Add Image</span>
                 <label for='imageInput' class='visually-hidden'>Upload Image</label>
                 <input type='file' id='imageInput' name='image' accept='image/*' required>
-                <img id='imagePreview' alt='Image Preview' aria-live='polite' role='presentation'>
+                <img src='#' id='imagePreview' alt='Image Preview' aria-live='polite'>
             </section>
             <section class='create-post-buttons'>
                 <button type='reset' class='create-post-cancel' id='cancelButton'>Cancel</button>
