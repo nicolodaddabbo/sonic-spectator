@@ -1,6 +1,6 @@
 <article id='post-<?= $post['id'] ?>' class='post-wrapper'>
     <section class='post-container'>
-        <img class='post-image' src='/assets/posts/<?= $post['image'] ?>' alt='Post Image' />
+        <img class='post-image' src='/assets/posts/<?= $post['image'] ?>' alt='Post Image' onerror='this.onerror=null;this.src="/assets/system/defaultPost.jpg"'>
         <section class='post-bottom-container'>
             <section class='post-actions-container'>
                 <div id='like-<?= $post['id'] ?>' class='post-action-container'>
@@ -29,14 +29,14 @@
             <section class='post-description-container'>
                 <?php if (isset($user) || $_SERVER['REQUEST_URI'] === '/profile') { ?>
                     <section>
-                        <img src="/assets/profiles/<?= $profileImage; ?>" alt="Profile Image" class="profile-image-small">
+                        <img src='/assets/profiles/<?= $profileImage; ?>' alt='Profile Image' onerror='this.onerror=null;this.src="/assets/system/defaultProfile.jpg"'>
                         <header>
                             <?= $_SERVER['REQUEST_URI'] === '/profile' ? $_SESSION['user'] : $user['username'] ?>
                         </header>
                     </section>
                 <?php } else { ?>
                     <a href='/user/<?= $post['user_id'] ?>'>
-                        <img src="/assets/profiles/<?= $posting_users[$post['user_id']]['profile_img'] ?>" alt="Profile Image" class="profile-image-small">
+                        <img src='/assets/profiles/<?= $posting_users[$post['user_id']]['profile_img'] ?>' alt='Profile Image' onerror='this.onerror=null;this.src="/assets/system/defaultProfile.jpg"'>
                         <header>
                             <?= $posting_users[$post['user_id']]['username'] ?>
                         </header>

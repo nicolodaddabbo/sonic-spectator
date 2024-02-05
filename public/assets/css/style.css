@@ -141,6 +141,7 @@ body {
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    object-fit: cover;
     margin-right: 10px;
 }
 
@@ -522,11 +523,11 @@ body {
 }
 
 .profile-info img {
-    width: 150px; /* Adjust as needed */
-    height: 150px; /* Adjust as needed */
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    object-fit: cover; /* Ensure the image covers the circle */
-    margin-bottom: 10px; /* Adjust as needed */
+    object-fit: cover;
+    margin-bottom: 10px;
 }
 
 .profile-stats {

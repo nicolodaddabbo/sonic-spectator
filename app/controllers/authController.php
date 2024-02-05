@@ -47,7 +47,7 @@ class AuthController
         $username = $_POST['username'];
         $password = md5($_POST['password']);
         $birth_date = $_POST['birth_date'];
-        $profile_img = 'default.jpg';
+        $profile_img = null;
         $gender_id = $_POST['gender_id'];
 
         // Check if a file was uploaded
