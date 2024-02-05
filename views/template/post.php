@@ -57,7 +57,7 @@
             if (isset($comments[$post['id']])) {
                 foreach ($comments[$post['id']] as $comment) {
                     ?>
-                    <section class='comment-container'>
+                    <article class='comment-container'>
                         <span class='user-info-container'>
                             <img src='/assets/profiles/<?= $commenting_users[$comment['user_id']]['profile_img'] ?>' alt='Profile Image' onerror='handleImageError(this, "profile")'>
                             <header>
@@ -67,7 +67,7 @@
                         <span class='comment'>
                             <?= $comment['text'] ?>
                         </span>
-                    </section>
+                    </article>
                     <?php
                 }
             }

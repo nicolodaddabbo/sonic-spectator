@@ -19,7 +19,7 @@
     if ($notification['notification_type_id'] !== NOTIFICATION_TYPE_FOLLOW) {
         ?>
         <a href='/profile'>
-            <img class='post-image-preview' src='/assets/posts/<?= $post_images[$notification['post_id']] ?>' alt='Post Image' />
+            <img class='post-image-preview' src='/assets/posts/<?= $post_images[$notification['post_id']] ?>' alt='Post Image' onerror='handleImageError(this, "post")'>
         </a>
         <?php
     } ?>

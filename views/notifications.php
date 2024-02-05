@@ -16,6 +16,7 @@
         </article>
     </main>
     <script src='/assets/js/markNotifications.js'></script>
+    <script src="/assets/js/imageErrorHandler.js"></script>
 </body>
 
 </html>

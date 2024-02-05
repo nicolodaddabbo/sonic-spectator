@@ -145,6 +145,9 @@ a.user-info-container {
     cursor: pointer;
 }
 
+a.user-info-container:hover {
+    text-decoration: none;
+}
 
 .user-info-container img {
     width: 30px;
@@ -611,6 +614,10 @@ textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 .profile-stats a {
     all: unset;
     cursor: pointer;
+}
+
+.profile-stats a:hover {
+    text-decoration: none;
 }
 
 #follow-list {
