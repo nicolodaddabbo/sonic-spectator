@@ -196,7 +196,7 @@ class PageController
         $users = [];
         foreach ($follow_list as $item)
         {
-            if (!isset($users[$item['follower_id']]) && $item['follower_id'] != $_SESSION['user_id']) {
+            if (!isset($users[$item['follower_id']])) {
                 $users[$item['follower_id']] = $this->userRepository->getUser($item['follower_id']);
             }
         }
@@ -216,7 +216,7 @@ class PageController
         $users = [];
         foreach ($follow_list as $item)
         {
-            if (!isset($users[$item['followed_id']]) && $item['followed_id'] != $_SESSION['user_id']) {
+            if (!isset($users[$item['followed_id']])) {
                 $users[$item['followed_id']] = $this->userRepository->getUser($item['followed_id']);
             }
         }
