@@ -24,6 +24,7 @@ class PostController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $description = $_POST['description'];
+            $artist = $_POST['artist'];
 
             // Handle the file upload
             $uploadDir = 'assets/posts/';
@@ -31,7 +32,7 @@ class PostController
             $uploadedFile = $uploadDir . $filename;
             if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadedFile)) {
                 // File upload successful
-                $this->postRepository->createPost($description, $filename, $_SESSION['user_id']);
+                $this->postRepository->createPost($description, $filename, $artist, $_SESSION['user_id']);
                 $response['status'] = true;
             } else {
                 $response['status'] = false;

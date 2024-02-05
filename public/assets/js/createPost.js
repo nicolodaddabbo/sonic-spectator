@@ -38,9 +38,16 @@ function textAreaChecks(maxLenght, textarea, counter) {
 descriptionInput.addEventListener('input', function() {
     textAreaChecks(descriptionTextMaxLength, descriptionInput, descriptionTextCounter);
 });
-artistInput.addEventListener('input', function() {
+
+artistInput.addEventListener('input', function () {
     textAreaChecks(artistTextMaxLength, artistInput, artistTextCounter);
 });
+
+artistInput.onkeydown = function (e) {
+    if (e.keyCode === 13) {
+        e.preventDefault();
+    }
+};
 
 postImageBox.addEventListener('click', function () {
     document.getElementById('imageInput').click();
@@ -62,11 +69,13 @@ imageInput.addEventListener('change', function() {
 document.getElementById('postButton').addEventListener('click', function () {
     const selectedFile = imageInput.files[0];
     const description = descriptionInput.value;
+    const artist = artistInput.value;
 
     if (selectedFile && description) {
         // FormData to construct the data to send to the server
         const formData = new FormData();
         formData.append('description', description);
+        formData.append('artist', artist);
         formData.append('image', selectedFile);
 
         // Send the data to the server using fetch

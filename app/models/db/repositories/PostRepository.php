@@ -160,11 +160,11 @@ class PostRepository
         return $result->fetch_assoc() !== null;
     }
 
-    public function createPost($description, $image, $user_id)
+    public function createPost($description, $image, $artist, $user_id)
     {
-        $query = "INSERT INTO `post` (`description`, `image`, `user_id`) VALUES (?, ?, ?)";
+        $query = "INSERT INTO `post` (`description`, `image`, `artist`, `user_id`) VALUES (?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ssi', $description, $image, $user_id);
+        $stmt->bind_param('sssi', $description, $image, $artist, $user_id);
         $stmt->execute();
 
         return $stmt->insert_id;
