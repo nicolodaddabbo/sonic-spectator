@@ -151,26 +151,30 @@ INSERT INTO `notification_type` (`type`, `text`) VALUES
 
 -- User Table
 INSERT INTO `user` (`email`, `username`, `password`, `birth_date`, `profile_img`, `gender_id`) VALUES
-('user1@example.com', 'user1', md5('password1'), '1990-01-15', 'profile1.jpg', 1),
-('user2@example.com', 'user2', md5('password2'), '1985-05-22', 'profile2.jpg', 2),
-('user3@example.com', 'user3', md5('password3'), '1998-09-10', 'profile3.jpg', 3);
+('user@example.com', 'User', md5('password'), '1988-03-20', 'user.jpg', 1),
+('john.doe@example.com', 'JohnDoe', md5('john_password'), '1988-03-20', 'john_profile.jpg', 1),
+('emma.smith@example.com', 'EmmaSmith', md5('emma_password'), '1992-07-12', 'emma_profile.jpg', 2),
+('alex.jones@example.com', 'AlexJones', md5('alex_password'), '1985-11-05', 'alex_profile.jpg', 1),
+('lisa.brown@example.com', 'LisaBrown', md5('lisa_password'), '1994-04-28', 'lisa_profile.jpg', 2);
 
 -- Follower Table
 INSERT INTO `follower` (`follower_id`, `followed_id`) VALUES
 (1, 2),
 (2, 1),
-(1, 3);
+(1, 3),
+(3, 4);
 
 -- Block Table
 INSERT INTO `block` (`blocker_id`, `blocked_id`) VALUES
-(1, 3),
-(3, 1);
+(1, 4),
+(4, 1);
 
 -- Post Table
 INSERT INTO `post` (`description`, `image`, `artist`, `user_id`) VALUES
-('Post 1 Description', 'post1.jpg', 'Queen', 1),
-('Post 2 Description', 'post2.jpg', 'The Beatles', 2),
-('Post 3 Description', 'post3.jpg', 'The Rolling Stones', 3);
+('Excited for the upcoming Queen concert!', 'queen_concert.jpg', 'Queen', 1),
+('Throwback to The Beatles live performance!', 'beatles_concert.jpg', 'The Beatles', 2),
+('The Rolling Stones rocked the stage last night!', 'stones_concert.jpg', 'The Rolling Stones', 3),
+('Epic Metallica concert with friends!', 'metallica_concert.jpg', 'Metallica', 4);
 
 -- Linking table to associate tags with posts
 INSERT INTO `post_tag` (`post_id`, `tag_id`) VALUES
@@ -179,19 +183,23 @@ INSERT INTO `post_tag` (`post_id`, `tag_id`) VALUES
 (2, 2),
 (2, 4),
 (3, 5),
-(3, 7);
+(3, 7),
+(4, 2),
+(4, 10);
 
 -- Comment Table
 INSERT INTO `comment` (`text`, `user_id`, `post_id`) VALUES
-('Comment on Post 1', 2, 1),
-('Comment on Post 2', 3, 2),
-('Comment on Post 3', 1, 3);
+('Cant wait to see Queen live too!', 2, 1),
+('The Beatles are timeless!', 3, 2),
+('The Rolling Stones never disappoint!', 1, 3),
+('Metallica concerts are always epic!', 3, 4);
 
 -- Like Table
 INSERT INTO `like` (`user_id`, `post_id`) VALUES
 (1, 2),
 (2, 3),
-(3, 1);
+(3, 1),
+(4, 4);
 
 -- Notification Table
 INSERT INTO `notification` (`notification_type_id`, `sending_user_id`, `user_id`, `post_id`) VALUES
@@ -203,4 +211,5 @@ INSERT INTO `notification` (`notification_type_id`, `sending_user_id`, `user_id`
 (2, 1, 3, 3),  -- User 1 commented on a post by User 3
 (3, 1, 2, NULL),  -- User 1 started following User 2
 (3, 2, 1, NULL),  -- User 2 started following User 1
-(3, 1, 3, NULL);  -- User 1 started following User 3
+(3, 1, 3, NULL),  -- User 1 started following User 3
+(3, 3, 4, NULL);  -- User 3 started following User 4
