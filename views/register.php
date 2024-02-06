@@ -9,10 +9,10 @@ if (isset($_SESSION['user'])) {
 <?php include_once 'template/head.php'; ?>
 
 <body>
-    <main id='auth' role='main'>
+    <main id='auth'>
         <section id='auth-section'>
             <h1>Register</h1>
-            <form action='signUp' method='POST' class='auth-form' role='form' aria-labelledby='registerHeading' enctype='multipart/form-data'>
+            <form action='signUp' method='POST' class='auth-form' aria-labelledby='registerHeading' enctype='multipart/form-data'>
                 <h2 id='registerHeading' class='visually-hidden'>Registration Form</h2>
                 <section class='auth-form-input'>
                     <label for='username' class='visually-hidden'>Username</label>
@@ -34,7 +34,7 @@ if (isset($_SESSION['user'])) {
                     <label for='profile_img'>Profile Image</label>
                     <input type='file' id='profile_img' name='profile_img' accept='image/*'>
                 </section>
-                <fieldset id='gender-section' role='group' aria-labelledby='genderLegend'>
+                <fieldset id='gender-section' aria-labelledby='genderLegend'>
                     <legend id='genderLegend' class='visually-hidden'>Gender</legend>
                     <section id='gender-label'>
                         <label>Gender</label>
@@ -58,7 +58,7 @@ if (isset($_SESSION['user'])) {
                     <span>Already registered? <a class='signup-link' href='/login'>Log In</a></span>
                 </section>
                 <section id='submit-button'>
-                    <input type='submit' value='Sign Up' role='button'>
+                    <input type='submit' value='Sign Up'>
                 </section>
             </form>
             <?php
