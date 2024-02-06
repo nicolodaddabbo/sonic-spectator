@@ -155,26 +155,41 @@ INSERT INTO `user` (`email`, `username`, `password`, `birth_date`, `profile_img`
 ('john.doe@example.com', 'JohnDoe', md5('john_password'), '1988-03-20', 'john_profile.jpg', 1),
 ('emma.smith@example.com', 'EmmaSmith', md5('emma_password'), '1992-07-12', 'emma_profile.jpg', 2),
 ('alex.jones@example.com', 'AlexJones', md5('alex_password'), '1985-11-05', 'alex_profile.jpg', 1),
-('lisa.brown@example.com', 'LisaBrown', md5('lisa_password'), '1994-04-28', 'lisa_profile.jpg', 2);
+('lisa.brown@example.com', 'LisaBrown', md5('lisa_password'), '1994-04-28', 'lisa_profile.jpg', 2),
+('sara.miller@example.com', 'SaraMiller', md5('sara_password'), '1990-05-15', 'sara_profile.jpg', 2),
+('mike.wilson@example.com', 'MikeWilson', md5('mike_password'), '1982-09-30', 'mike_profile.jpg', 1),
+('natalie.jones@example.com', 'NatalieJones', md5('natalie_password'), '1995-12-18', 'natalie_profile.jpg', 2),
+('david.smith@example.com', 'DavidSmith', md5('david_password'), '1980-02-25', 'david_profile.jpg', 1);
 
 -- Follower Table
 INSERT INTO `follower` (`follower_id`, `followed_id`) VALUES
 (1, 2),
 (2, 1),
 (1, 3),
-(3, 4);
+(3, 4),
+(4, 2),
+(4, 3),
+(5, 4),
+(3, 5),
+(5, 2);
 
 -- Block Table
 INSERT INTO `block` (`blocker_id`, `blocked_id`) VALUES
 (1, 4),
-(4, 1);
+(4, 1),
+(2, 5),
+(5, 3);
 
 -- Post Table
 INSERT INTO `post` (`description`, `image`, `artist`, `user_id`) VALUES
 ('Excited for the upcoming Queen concert!', 'queen_concert.jpg', 'Queen', 1),
 ('Throwback to The Beatles live performance!', 'beatles_concert.jpg', 'The Beatles', 2),
 ('The Rolling Stones rocked the stage last night!', 'stones_concert.jpg', 'The Rolling Stones', 3),
-('Epic Metallica concert with friends!', 'metallica_concert.jpg', 'Metallica', 4);
+('Epic Metallica concert with friends!', 'metallica_concert.jpg', 'Metallica', 4),
+('Remembering the magical night at the Coldplay concert!', 'coldplay_concert.jpg', 'Coldplay', 2),
+('Fantastic jazz performance by Miles Davis!', 'miles_davis_concert.jpg', 'Miles Davis', 3),
+('Country vibes at the Keith Urban concert!', 'keith_urban_concert.jpg', 'Keith Urban', 4),
+('Folk music under the stars - Unforgettable evening!', 'folk_music_concert.jpg', 'Various Artists', 5);
 
 -- Linking table to associate tags with posts
 INSERT INTO `post_tag` (`post_id`, `tag_id`) VALUES
@@ -192,24 +207,47 @@ INSERT INTO `comment` (`text`, `user_id`, `post_id`) VALUES
 ('Cant wait to see Queen live too!', 2, 1),
 ('The Beatles are timeless!', 3, 2),
 ('The Rolling Stones never disappoint!', 1, 3),
-('Metallica concerts are always epic!', 3, 4);
+('Metallica concerts are always epic!', 3, 4),
+('Coldplay concerts are always magical!', 1, 5),
+('Miles Davis is a legend!', 2, 6),
+('Keith Urban knows how to rock the stage!', 3, 7),
+('Folk music under the stars sounds like a dream!', 4, 8),
+('Cant wait to experience it!', 5, 8);
 
 -- Like Table
 INSERT INTO `like` (`user_id`, `post_id`) VALUES
 (1, 2),
 (2, 3),
 (3, 1),
-(4, 4);
+(4, 4),
+(1, 6),
+(2, 7),
+(3, 5),
+(4, 8),
+(5, 8);
 
 -- Notification Table
 INSERT INTO `notification` (`notification_type_id`, `sending_user_id`, `user_id`, `post_id`) VALUES
 (1, 1, 2, 2),  -- User 1 liked a post by User 2
 (1, 2, 3, 3),  -- User 2 liked a post by User 3
 (1, 3, 1, 1),  -- User 3 liked a post by User 1
+(1, 1, 3, 6),   -- User 1 liked a post by User 3
+(1, 2, 4, 7),   -- User 2 liked a post by User 4
+(1, 3, 2, 5),   -- User 3 liked a post by User 2
+(1, 4, 5, 8),   -- User 4 liked a post by User 5
 (2, 2, 1, 1),  -- User 2 commented on a post by User 1
 (2, 3, 2, 2),  -- User 3 commented on a post by User 2
 (2, 1, 3, 3),  -- User 1 commented on a post by User 3
+(2, 1, 2, 5),   -- User 1 commented on a post by User 2
+(2, 2, 3, 6),   -- User 2 commented on a post by User 3
+(2, 3, 4, 7),   -- User 3 commented on a post by User 4
+(2, 4, 5, 8),   -- User 1 commented on a post by User 5
 (3, 1, 2, NULL),  -- User 1 started following User 2
 (3, 2, 1, NULL),  -- User 2 started following User 1
 (3, 1, 3, NULL),  -- User 1 started following User 3
-(3, 3, 4, NULL);  -- User 3 started following User 4
+(3, 3, 4, NULL),  -- User 3 started following User 4
+(3, 4, 2, NULL),  -- User 4 started following User 2
+(3, 4, 3, NULL),  -- User 4 started following User 3
+(3, 5, 4, NULL),  -- User 5 started following User 4
+(3, 3, 5, NULL),  -- User 3 started following User 5
+(3, 5, 2, NULL);  -- User 5 started following User 2
