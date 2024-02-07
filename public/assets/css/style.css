@@ -161,17 +161,17 @@ body {
 }
 
 a.user-info-container {
-    text-decoration: none;
+    text-decoration: none !important;
     cursor: pointer;
 }
 
 a.user-info-container:hover {
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
 }
 
 a.user-info-container:active {
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
 }
 
@@ -711,18 +711,18 @@ textarea:focus:-ms-input-placeholder {
 }
 
 .profile-stats a {
-    text-decoration: none;
+    text-decoration: none !important;
     all: unset;
     cursor: pointer;
 }
 
 .profile-stats a:hover {
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
 }
 
 .profile-stats a:active {
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
 }
 
