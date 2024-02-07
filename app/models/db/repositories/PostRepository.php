@@ -14,7 +14,6 @@ class PostRepository
 
     public function searchPostsByTags($searchTerm)
     {
-        // Assuming you want to search posts by tags
         $query = "SELECT p.*
                 FROM `post` p
                 INNER JOIN `post_tag` pt ON p.`id` = pt.`post_id`
