@@ -3,9 +3,7 @@
         <?php if ($post['artist'] !== ''): ?>
             <section class='concert-container'>
                 <span>
-                    @
-                    <?= $post['artist'] ?>
-                    <?= substr($post['artist'], -1) === 's' ? "'" : "'s" ?> concert
+                    @ <?= htmlspecialchars($post['artist']) ?><?= substr($post['artist'], -1) === 's' ? "'" : "'s" ?> concert
                 </span>
             </section>
         <?php endif; ?>
@@ -50,12 +48,12 @@
                         <img src='/assets/profiles/<?= $posting_users[$post['user_id']]['profile_img'] ?>'
                             alt='Profile Image' onerror='handleImageError(this, "profile")'>
                         <span>
-                            <?= $posting_users[$post['user_id']]['username'] ?>
+                            <?= htmlspecialchars($posting_users[$post['user_id']]['username']) ?>
                         </span>
                     </a>
                 <?php } ?>
                 <p>
-                    <?= $post['description'] ?>
+                    <?= htmlspecialchars($post['description']) ?>
                 </p>
             </section>
             <section class='post-date-container'>
@@ -80,11 +78,11 @@
                             <img src='/assets/profiles/<?= $commenting_users[$comment['user_id']]['profile_img'] ?>'
                                 alt='Profile Image' onerror='handleImageError(this, "profile")'>
                             <span>
-                                <?= $commenting_users[$comment['user_id']]['username'] ?>
+                                <?= htmlspecialchars($commenting_users[$comment['user_id']]['username']) ?>
                             </span>
                         </span>
                         <span class='comment'>
-                            <?= $comment['text'] ?>
+                            <?= htmlspecialchars($comment['text']) ?>
                         </span>
                     </article>
                     <?php
