@@ -3,7 +3,9 @@
         <?php if ($post['artist'] !== ''): ?>
             <section class='concert-container'>
                 <span>
-                    @ <?= $post['artist'] ?><?= substr($post['artist'], -1) === 's' ? "'" : "'s" ?> concert
+                    @
+                    <?= $post['artist'] ?>
+                    <?= substr($post['artist'], -1) === 's' ? "'" : "'s" ?> concert
                 </span>
             </section>
         <?php endif; ?>
