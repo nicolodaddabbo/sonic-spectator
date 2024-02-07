@@ -6,7 +6,6 @@ The project was developed by Nicolò D'Addabbo and Leonardo Magnani as part of t
 ## Technology Stack
   - LAMP (Linux, Apache, MySQL, PHP): Utilized as the development environment.
   - Composer: Used for PHP dependency management.
-  - 
 
 ## Setup
 
